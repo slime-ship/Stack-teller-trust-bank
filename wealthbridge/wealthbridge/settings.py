@@ -68,7 +68,9 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

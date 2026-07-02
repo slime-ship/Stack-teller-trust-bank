@@ -1,7 +1,7 @@
 # management/commands/process_investments.py
 from django.core.management.base import BaseCommand
 from django.utils import timezone
-from investment.models import UserInvestment, InvestmentTransaction
+from bank_app.models import UserInvestment, InvestmentTransaction
 from decimal import Decimal
 
 class Command(BaseCommand):

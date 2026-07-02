@@ -7,18 +7,10 @@ class Command(BaseCommand):
     help = 'Initialize system crypto settings'
     
     def handle(self, *args, **options):
-        settings, created = SystemCryptoSetting.objects.get_or_create(
-            defaults={
-                'crypto_type': 'BTC',
-                'crypto_address': '3FanWZMKQrbPGj2YErdpavEumHv9qwyGfm',
-                'is_active': True
-            }
-        )
-        if created:
-            self.stdout.write(self.style.SUCCESS('✅ System crypto settings created successfully!'))
-            self.stdout.write(f"   Crypto Type: {settings.crypto_type}")
-            self.stdout.write(f"   Crypto Address: {settings.crypto_address}")
-        else:
-            self.stdout.write(self.style.WARNING('⚠️  System crypto settings already exist'))
-            self.stdout.write(f"   Current Crypto Type: {settings.crypto_type}")
-            self.stdout.write(f"   Current Crypto Address: {settings.crypto_address}")
+        settings = SystemCryptoSetting.get_settings()
+        self.stdout.write(self.style.SUCCESS('[SUCCESS] System crypto settings initialized.'))
+        self.stdout.write(f"   Auto Approve Deposits: {settings.auto_approve_deposits}")
+        self.stdout.write(f"   Deposit Fee %: {settings.deposit_fee_percentage}")
+        self.stdout.write(f"   Min Deposit: {settings.min_deposit_amount}")
+        self.stdout.write(f"   Max Deposit: {settings.max_deposit_amount}")
+        self.stdout.write(f"   Updated At: {settings.updated_at}")
