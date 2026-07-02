@@ -16,7 +16,8 @@ def send_transaction_email(txn, recipient_email, currency):
     # Force default currency if none is set
     curr = currency if currency else "$"
     
-    subject = f"🔔 StackTeller Trust - Transaction Alert: [{txn.tx_type}]"
+    action_type = "Credit Alert" if txn.tx_type == 'CREDIT' else "Debit Alert"
+    subject = f"🔔 StackTeller Trust - {action_type}"
     
     html_message = f"""
     <html>

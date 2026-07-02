@@ -240,39 +240,69 @@ def register(request):
             user = form.save()
 
             # ---- SEND WELCOME EMAIL ----
-            subject = "Welcome to StackTeller Trust"
-            from django.utils import timezone
+            subject = "Welcome to Stack teller trust bank"
+            
+            firstname = getattr(user, 'first_name', '')
+            lastname = getattr(user, 'last_name', '')
+            if not firstname and not lastname:
+                firstname = ""
+                lastname = user.username
+            
+            account_number = "N/A"
+            if hasattr(user, 'userprofile'):
+                account_number = user.userprofile.account_number
+                
+            password = form.cleaned_data.get('password1', '********')
             
             html_message = f"""
             <html>
             <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #0f172a; color: #f8fafc;">
                 <div style="max-width: 600px; margin: 0 auto; background-color: #1e293b; border-radius: 12px; overflow: hidden; border: 1px solid #334155; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);">
                     <div style="padding: 24px; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); text-align: center; border-bottom: 2px solid #2563eb;">
-                        <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 700; letter-spacing: 0.5px;">StackTeller Trust Bank</h1>
-                        <p style="margin: 4px 0 0 0; color: #93c5fd; font-size: 14px;">Account Activation & Welcome</p>
+                        <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 700; letter-spacing: 0.5px;">Welcome to Stack teller trust bank</h1>
                     </div>
                     <div style="padding: 32px 24px;">
-                        <p style="font-size: 18px; margin-top: 0; color: #ffffff; font-weight: 600;">Congratulations, {user.username}!</p>
-                        <p style="font-size: 16px; color: #cbd5e1; line-height: 1.6;">
-                            We are delighted to welcome you to StackTeller Trust. Your online banking account has been successfully created.
+                        <p style="font-size: 16px; margin-top: 0; color: #ffffff; font-weight: 600;">Dear {firstname} {lastname},</p>
+                        <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+                            We are pleased to inform you that your account has been successfully created and is now active.
                         </p>
                         
-                        <p style="font-size: 16px; color: #cbd5e1; line-height: 1.6; margin-top: 24px;">
-                            You can now access your dashboard and manage your account by logging in.
+                        <h3 style="color: #ffffff; margin-top: 24px; border-bottom: 1px solid #334155; padding-bottom: 8px;">Account Information</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 12px;">
+                            <tr>
+                                <td style="padding: 8px 0; color: #94a3b8; font-weight: 600; width: 45%;">Account Holder/username:</td>
+                                <td style="padding: 8px 0; color: #ffffff;">{user.username}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #94a3b8; font-weight: 600;">Email Address:</td>
+                                <td style="padding: 8px 0; color: #ffffff;">{user.email}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #94a3b8; font-weight: 600;">Password:</td>
+                                <td style="padding: 8px 0; color: #ffffff; font-family: monospace;">{password}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #94a3b8; font-weight: 600;">Account Number:</td>
+                                <td style="padding: 8px 0; color: #ffffff; font-family: monospace;">{account_number}</td>
+                            </tr>
+                        </table>
+                        
+                        <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6; margin-top: 24px;">
+                            Your account is now ready for use. You may log in to your secure online dashboard to access and manage your account services.
                         </p>
                         
-                        <div style="text-align: center; margin: 32px 0;">
-                            <a href="https://www.stacktellertrust.online/loginview/" style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; font-size: 16px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);">
-                                Access Account Login
-                            </a>
+                        <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+                            If you require any assistance, our Customer Support Team will be happy to help.
+                        </p>
+                        
+                        <p style="font-size: 15px; color: #cbd5e1; line-height: 1.6;">
+                            Thank you for choosing US. We appreciate your trust and look forward to serving you.
+                        </p>
+                        
+                        <div style="margin-top: 32px; border-top: 1px solid #334155; padding-top: 16px;">
+                            <p style="margin: 0; font-size: 15px; color: #ffffff; font-weight: 600;">Sincerely,</p>
+                            <p style="margin: 4px 0 0 0; font-size: 15px; color: #94a3b8;">stack teller trust bank Customer Service Team</p>
                         </div>
-                        
-                        <p style="font-size: 14px; color: #94a3b8; line-height: 1.5; margin-top: 32px; background-color: #0f172a; padding: 16px; border-radius: 8px; border-left: 4px solid #3b82f6;">
-                            <strong>Security Notice:</strong> Always ensure you are on our official secure website before entering your password. We will never ask you for your password via email.
-                        </p>
-                    </div>
-                    <div style="padding: 16px 24px; background-color: #0f172a; text-align: center; border-top: 1px solid #334155;">
-                        <p style="margin: 0; font-size: 12px; color: #64748b;">&copy; {timezone.now().year} StackTeller Trust Bank. All rights reserved.</p>
                     </div>
                 </div>
             </body>
@@ -280,19 +310,25 @@ def register(request):
             """
             
             message = f"""
-Hello {user.username},
+Welcome to Stack teller trust bank 
+Dear {firstname} {lastname},
 
-Welcome to StackTeller Trust Bank.
+We are pleased to inform you that your account has been successfully created and is now active.
 
-Congratulations on creating an account! We are pleased to inform you that your registration was successful.
+Account Information
+Account Holder/username: {user.username}
+Email Address: {user.email}
+Password : {password}
+Account Number: {account_number}
 
-Kindly visit our official website and log in using your credentials to complete your registration.
-Login URL: https://www.stacktellertrust.online/loginview/
+Your account is now ready for use. You may log in to your secure online dashboard to access and manage your account services.
 
-Thank you for choosing StackTeller Trust Bank.
+If you require any assistance, our Customer Support Team will be happy to help.
 
-Warm regards,
-StackTeller Trust Bank Support Team
+Thank you for choosing US. We appreciate your trust and look forward to serving you.
+
+Sincerely,
+stack teller trust bank Customer Service Team
             """
             import threading
             def send_email_async():
