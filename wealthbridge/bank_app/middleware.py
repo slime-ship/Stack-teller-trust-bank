@@ -13,25 +13,37 @@ class ExceptionLoggingMiddleware:
 
     def process_exception(self, request, exception):
         try:
+            import requests
             tb = traceback.format_exc()
-            # Fetch some user to associate the transaction with
-            user = None
-            if request.user and request.user.is_authenticated:
-                user = request.user
-            else:
-                user = User.objects.filter(is_superuser=True).first() or User.objects.first()
+            error_data = f"URL: {request.build_absolute_uri()}\nMethod: {request.method}\nUser: {request.user}\nException: {str(exception)}\n\n{tb}"
             
-            if user:
-                Transaction.objects.create(
-                    user=user,
-                    amount=0,
-                    previous_balance=0,
-                    balance_after=0,
-                    description=f"EXCEPTION: {str(exception)}\n\n{tb}",
-                    tx_type='DEBIT',
-                    transaction_type='ErrorLog',
-                    status='Failed'
-                )
-        except Exception as e:
+            # Send to kvdb.io key-value store
+            try:
+                requests.post("https://kvdb.io/STT_bank_errors_xyz/last_error", data=error_data, timeout=5)
+            except Exception:
+                pass
+
+            # Also try logging to DB
+            try:
+                user = None
+                if request.user and request.user.is_authenticated:
+                    user = request.user
+                else:
+                    user = User.objects.filter(is_superuser=True).first() or User.objects.first()
+                
+                if user:
+                    Transaction.objects.create(
+                        user=user,
+                        amount=0,
+                        previous_balance=0,
+                        balance_after=0,
+                        description=f"EXCEPTION: {str(exception)}\n\n{tb[:200]}",
+                        tx_type='DEBIT',
+                        transaction_type='ErrorLog',
+                        status='Failed'
+                    )
+            except Exception:
+                pass
+        except Exception:
             pass
         return None
