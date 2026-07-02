@@ -365,7 +365,15 @@ def loginview(request):
 
         if user is not None:
             login(request, user)
-            return redirect('reset_profile')
+            try:
+                user_profile = user.userprofile
+                # If they have already filled out basic details, go to dashboard
+                if user_profile.phone_number or user_profile.address or user_profile.first_name or user_profile.last_name:
+                    return redirect('dashboard')
+                else:
+                    return redirect('reset_profile')
+            except Exception:
+                return redirect('reset_profile')
         else:
             messages.info(request, 'Username OR password is incorrect')
     context = {}
