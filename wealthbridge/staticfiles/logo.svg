@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00C853" />
+      <stop offset="100%" stop-color="#0070F3" />
+    </linearGradient>
+    
+    <!-- Element Gradient -->
+    <linearGradient id="elementGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Circle -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
+
+  <!-- Stack Teller Logo Mark -->
+  <g transform="translate(128, 128)">
+    <!-- Bottom layer of the stack -->
+    <path d="M 32 180 L 128 220 L 224 180 L 128 140 Z" fill="url(#elementGrad)" opacity="0.6" />
+    <path d="M 32 180 L 32 195 L 128 235 L 128 220 Z" fill="#004D20" opacity="0.3" />
+    <path d="M 128 220 L 128 235 L 224 195 L 224 180 Z" fill="#002D80" opacity="0.3" />
+
+    <!-- Middle layer of the stack -->
+    <path d="M 32 120 L 128 160 L 224 120 L 128 80 Z" fill="url(#elementGrad)" opacity="0.8" />
+    <path d="M 32 120 L 32 135 L 128 175 L 128 160 Z" fill="#004D20" opacity="0.4" />
+    <path d="M 128 160 L 128 175 L 224 135 L 224 120 Z" fill="#002D80" opacity="0.4" />
+
+    <!-- Top layer of the stack -->
+    <path d="M 32 60 L 128 100 L 224 60 L 128 20 Z" fill="url(#elementGrad)" />
+    <path d="M 32 60 L 32 75 L 128 115 L 128 100 Z" fill="#004D20" opacity="0.5" />
+    <path d="M 128 100 L 128 115 L 224 75 L 224 60 Z" fill="#002D80" opacity="0.5" />
+  </g>
+</svg>

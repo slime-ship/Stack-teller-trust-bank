@@ -1,0 +1,308 @@
+/* ==========================================================================
+   StackTeller Trust Bank - Modern Digital Banking Global Stylesheet (dash.css)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- Global Theme overrides --- */
+:root {
+    --bg-dark: #020617;
+    --bg-slate: #0b1329;
+    --card-bg: rgba(15, 23, 42, 0.75);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --primary-blue: #3b82f6;
+    --primary-blue-hover: #1d4ed8;
+    --text-white: #f8fafc;
+    --text-muted: #94a3b8;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+}
+
+body {
+    background: var(--bg-dark) !important;
+    color: var(--text-white) !important;
+    font-family: 'Poppins', sans-serif !important;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Navigation & Headers --- */
+.bank-header {
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color) !important;
+    color: var(--text-white) !important;
+    padding: 16px 24px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.bank-header h1, .bank-header h1 i {
+    color: var(--text-white) !important;
+    font-weight: 600 !important;
+    font-size: 1.6rem !important;
+}
+
+.nav-toggle {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: var(--text-white) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 50%;
+    padding: 10px !important;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle:hover {
+    background: var(--primary-blue) !important;
+    transform: translateY(-2px);
+}
+
+.nav-sidebar {
+    background: linear-gradient(180deg, #090d16 0%, #030712 100%) !important;
+    border-left: 1px solid var(--border-color) !important;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.sidebar-header {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 24px !important;
+}
+
+.sidebar-header h2 {
+    color: var(--text-white) !important;
+    font-size: 1.4rem !important;
+    font-weight: 600 !important;
+}
+
+/* --- Card Designs & High-Contrast Adjustments --- */
+.login-container, 
+.account-card, 
+.balance-card, 
+.card, 
+.info-card, 
+.benefits-section, 
+.activation-section, 
+.support-message-section, 
+.modal-content, 
+.transaction-card, 
+.loan-card, 
+.investment-card, 
+.form-container {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+    color: var(--text-white) !important;
+    border-radius: 16px !important;
+    padding: 28px !important;
+    margin-bottom: 24px !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.info-card:hover, .card:hover, .transaction-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* --- High-Contrast Text Color Enforcements --- */
+.info-card h3, .benefits-section h3, .activation-section h3, .support-message-section h4, .form-container h1, .form-container h2 {
+    color: var(--text-white) !important;
+    font-weight: 600 !important;
+    margin-bottom: 16px !important;
+}
+
+.info-card p, .info-card li, .benefits-section p, .benefits-list li, .activation-section p, .support-message-section p, .form-container p {
+    color: var(--text-muted) !important;
+    font-size: 0.95rem !important;
+}
+
+.benefits-list li i {
+    color: var(--success) !important;
+    margin-right: 10px !important;
+}
+
+.info-card ol li {
+    color: var(--text-muted) !important;
+    margin-bottom: 8px !important;
+}
+
+/* --- Form Fields & Inputs --- */
+.form-control, select.form-control {
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-white) !important;
+    border-radius: 8px !important;
+    padding: 12px 16px !important;
+    height: auto !important;
+    transition: all 0.3s ease !important;
+}
+
+.form-control:focus, select.form-control:focus {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border-color: var(--primary-blue) !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
+    color: var(--text-white) !important;
+}
+
+.form-label, label {
+    color: var(--text-white) !important;
+    font-weight: 500 !important;
+    margin-bottom: 8px !important;
+    font-size: 0.9rem !important;
+}
+
+/* --- Premium Buttons --- */
+.btn-primary, .btn-submit, .login-button, .submit-btn, .get-started-btn {
+    background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    padding: 12px 28px !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+}
+
+.btn-primary:hover, .btn-submit:hover, .login-button:hover, .submit-btn:hover, .get-started-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 18px rgba(59, 130, 246, 0.45) !important;
+    filter: brightness(1.1) !important;
+}
+
+.btn-secondary, .btn-outline-primary {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-white) !important;
+    padding: 12px 28px !important;
+    border-radius: 50px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-secondary:hover, .btn-outline-primary:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--text-white) !important;
+    color: #ffffff !important;
+}
+
+/* --- Alerts & Notifications --- */
+.alert {
+    border-radius: 8px !important;
+    padding: 16px !important;
+    border: none !important;
+    font-weight: 500 !important;
+}
+
+.alert-success {
+    background: rgba(16, 185, 129, 0.15) !important;
+    color: #34d399 !important;
+    border-left: 4px solid var(--success) !important;
+}
+
+.alert-warning {
+    background: rgba(245, 158, 11, 0.15) !important;
+    color: #fbbf24 !important;
+    border-left: 4px solid var(--warning) !important;
+}
+
+.alert-danger, .alert-error {
+    background: rgba(239, 68, 68, 0.15) !important;
+    color: #f87171 !important;
+    border-left: 4px solid var(--error) !important;
+}
+
+/* --- Tables & Lists --- */
+table {
+    width: 100% !important;
+    color: var(--text-white) !important;
+    border-collapse: collapse !important;
+}
+
+th {
+    background-color: rgba(255, 255, 255, 0.02) !important;
+    color: var(--text-white) !important;
+    font-weight: 600 !important;
+    border-bottom: 2px solid var(--border-color) !important;
+    padding: 14px 16px !important;
+    text-align: left !important;
+}
+
+td {
+    padding: 14px 16px !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    color: var(--text-muted) !important;
+    font-size: 0.95rem !important;
+}
+
+tr:hover td {
+    color: var(--text-white) !important;
+    background-color: rgba(255, 255, 255, 0.01) !important;
+}
+
+/* --- Specific Section Overrides --- */
+.account-number-section, .payment-icon, .info-box, .detail-row {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-white) !important;
+}
+
+.payment-label {
+    color: var(--text-muted) !important;
+}
+
+.security-notice {
+    background: rgba(239, 68, 68, 0.08) !important;
+    border-left: 4px solid var(--error) !important;
+    color: var(--text-muted) !important;
+    padding: 16px !important;
+    border-radius: 8px !important;
+}
+
+.security-notice i {
+    color: var(--error) !important;
+}
+
+/* --- Layouts & Spacing --- */
+.main-content {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 40px 24px !important;
+}
+
+.transfer-header {
+    font-size: 1.6rem !important;
+    font-weight: 600 !important;
+    color: var(--text-white) !important;
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%) !important;
+    border-radius: 12px 12px 0 0 !important;
+    border: 1px solid var(--border-color) !important;
+    border-bottom: none !important;
+    padding: 20px 28px !important;
+}
+
+.form-container {
+    border-radius: 0 0 16px 16px !important;
+    margin-top: 0 !important;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 20px 16px !important;
+    }
+    .info-card, .benefits-section, .form-container {
+        padding: 20px !important;
+    }
+    .transfer-header {
+        font-size: 1.3rem !important;
+        padding: 16px 20px !important;
+    }
+}

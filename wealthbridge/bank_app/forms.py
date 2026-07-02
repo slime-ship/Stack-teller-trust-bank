@@ -57,7 +57,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User  # or use get_user_model() if you have a custom user model
-        fields = ['username', 'email', 'password1', 'password2']  # Include both username and email
+        fields = ['username', 'email']  # Include both username and email
 
     def clean_email(self):
         # Ensure email uniqueness
@@ -383,13 +383,13 @@ class DepositForm(forms.Form):
         self.user_profile = kwargs.pop('user_profile', None)
         super().__init__(*args, **kwargs)
 
-    def clean_deposit_amount(self):
+    def clean_amount(self):
         amount = self.cleaned_data['amount']
 
         if amount <= 0:
             raise forms.ValidationError("Amount must be greater than zero.")
 
-        if amount > self.user_profile.balance:
+        if self.user_profile and amount > self.user_profile.balance:
             raise forms.ValidationError(f"You cannot withdraw more than your current balance ({self.user_profile.balance}).")
 
         min_deposit_amount = 10  # Example minimum deposit amount

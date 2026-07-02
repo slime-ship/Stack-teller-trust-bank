@@ -127,6 +127,9 @@ def create_investment(request):
 
                     # Deduct from user balance
                     user_profile.balance -= amount
+                    user_profile._description = f"Investment in {plan.name}"
+                    user_profile._transaction_type = 'Investment'
+                    user_profile._status = 'Successful'
                     user_profile.save()
 
                     # Create transaction record
@@ -237,28 +240,72 @@ def register(request):
             user = form.save()
 
             # ---- SEND WELCOME EMAIL ----
-            subject = "Welcome to Revolut Bank!"
+            subject = "Welcome to StackTeller Trust"
+            from django.utils import timezone
+            
+            html_message = f"""
+            <html>
+            <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #0f172a; color: #f8fafc;">
+                <div style="max-width: 600px; margin: 0 auto; background-color: #1e293b; border-radius: 12px; overflow: hidden; border: 1px solid #334155; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);">
+                    <div style="padding: 24px; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); text-align: center; border-bottom: 2px solid #2563eb;">
+                        <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 700; letter-spacing: 0.5px;">StackTeller Trust Bank</h1>
+                        <p style="margin: 4px 0 0 0; color: #93c5fd; font-size: 14px;">Account Activation & Welcome</p>
+                    </div>
+                    <div style="padding: 32px 24px;">
+                        <p style="font-size: 18px; margin-top: 0; color: #ffffff; font-weight: 600;">Congratulations, {user.username}!</p>
+                        <p style="font-size: 16px; color: #cbd5e1; line-height: 1.6;">
+                            We are delighted to welcome you to StackTeller Trust. Your online banking account has been successfully created.
+                        </p>
+                        
+                        <p style="font-size: 16px; color: #cbd5e1; line-height: 1.6; margin-top: 24px;">
+                            You can now access your dashboard and manage your account by logging in.
+                        </p>
+                        
+                        <div style="text-align: center; margin: 32px 0;">
+                            <a href="https://www.stacktellertrust.online/loginview/" style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; font-size: 16px; display: inline-block; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);">
+                                Access Account Login
+                            </a>
+                        </div>
+                        
+                        <p style="font-size: 14px; color: #94a3b8; line-height: 1.5; margin-top: 32px; background-color: #0f172a; padding: 16px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                            <strong>Security Notice:</strong> Always ensure you are on our official secure website before entering your password. We will never ask you for your password via email.
+                        </p>
+                    </div>
+                    <div style="padding: 16px 24px; background-color: #0f172a; text-align: center; border-top: 1px solid #334155;">
+                        <p style="margin: 0; font-size: 12px; color: #64748b;">&copy; {timezone.now().year} StackTeller Trust Bank. All rights reserved.</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+            """
+            
             message = f"""
 Hello {user.username},
 
-Welcome to Revolut Bank.
+Welcome to StackTeller Trust Bank.
 
-We are pleased to inform you that your account has been successfully created. Kindly visit our official website and log in using your username and password to complete your registration.
+Congratulations on creating an account! We are pleased to inform you that your registration was successful.
 
-Once the registration process is completed, you will be able to fully access and enjoy our secure online banking services.
+Kindly visit our official website and log in using your credentials to complete your registration.
+Login URL: https://www.stacktellertrust.online/loginview/
 
-Thank you for choosing Revolut Bank. We look forward to serving you.
+Thank you for choosing StackTeller Trust Bank.
 
 Warm regards,
-Revolut Bank
-"""
-            send_mail(
-                subject,
-                message,
-                settings.DEFAULT_FROM_EMAIL,
-                [user.email],
-                fail_silently=False,
-            )
+StackTeller Trust Bank Support Team
+            """
+            try:
+                send_mail(
+                    subject,
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [user.email],
+                    html_message=html_message,
+                    fail_silently=True,
+                )
+            except Exception as e:
+                # Log email errors silently in production to prevent user registration crash
+                pass
             # ---- END OF EMAIL ----
 
             return redirect('loginview')
@@ -711,15 +758,10 @@ def imf(request):
 
                     # Deduct balance
                     user_profile.balance -= amount_decimal
+                    user_profile._description = 'Transfer Pending (IMF Verification)'
+                    user_profile._transaction_type = 'Transfer'
+                    user_profile._status = 'Pending'
                     user_profile.save()
-
-                    # Create transaction
-                    Transaction.objects.create(
-                        user=user_profile.user,
-                        amount=amount_decimal,
-                        balance_after=user_profile.balance,
-                        description='Pending'
-                    )
                     del request.session['pending_amount']
                 return redirect('pending')
             else:

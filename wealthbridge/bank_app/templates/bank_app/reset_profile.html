@@ -17,6 +17,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 <!-- End of Chaport Live Chat code -->    <link rel="icon" href="{% static 'images/web_logo.jpg' %}" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
     <style>
         /* Base styles */
         body, html {
@@ -1107,14 +1108,25 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
     });
 
-    // Enhanced file upload display
+    // Enhanced file upload display and preview
     const fileInputs = document.querySelectorAll('input[type="file"]');
     fileInputs.forEach(input => {
         input.addEventListener('change', function(e) {
-            const fileName = e.target.files[0]?.name || 'No file chosen';
+            const file = e.target.files[0];
+            const fileName = file?.name || 'No file chosen';
             const button = this.previousElementSibling;
             if (button && button.classList.contains('file-upload-btn')) {
                 button.innerHTML = `<i class="fas fa-check"></i> ${fileName}`;
+            }
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.querySelector('.current-profile-pic');
+                    if (img) {
+                        img.src = event.target.result;
+                    }
+                };
+                reader.readAsDataURL(file);
             }
         });
     });

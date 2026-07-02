@@ -648,24 +648,17 @@ class UserProfile(models.Model):
 
 class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    balance_after = models.DecimalField(max_digits=10, decimal_places=2)
-    description = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    previous_balance = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    balance_after = models.DecimalField(max_digits=15, decimal_places=2)
+    description = models.CharField(max_length=255, blank=True, null=True)
+    tx_type = models.CharField(max_length=10, choices=[('CREDIT', 'Credit'), ('DEBIT', 'Debit')], default='CREDIT')
+    transaction_type = models.CharField(max_length=50, default='Transfer')
+    status = models.CharField(max_length=50, default='Successful')
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.description}"
-
-
-class Transaction(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    balance_after = models.DecimalField(max_digits=10, decimal_places=2)
-    description = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.user.username} - {self.description}"
+        return f"{self.amount} - {self.user.username} - {self.timestamp}"
 class UserInvestment(models.Model):
     STATUS_CHOICES = [
         ('ACTIVE', 'Active'),
@@ -737,13 +730,5 @@ class InvestmentPlan(models.Model):
     def __str__(self):
         return f"{self.name} - {self.interest_rate}%"
 
-class Transaction(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(decimal_places=2, max_digits=10)
-    balance_after = models.DecimalField(decimal_places=2, max_digits=10)
-    timestamp = models.DateTimeField(auto_now_add=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.amount} - {self.user.username} - {self.timestamp}"
+# Consolidated Transaction model defined above
 

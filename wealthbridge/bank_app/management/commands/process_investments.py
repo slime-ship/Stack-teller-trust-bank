@@ -22,6 +22,9 @@ class Command(BaseCommand):
                 # Add return to user balance
                 user_profile = investment.user.userprofile
                 user_profile.balance += investment.expected_return
+                user_profile._description = f"Investment return from {investment.investment_plan.name}"
+                user_profile._transaction_type = 'Investment'
+                user_profile._status = 'Successful'
                 user_profile.save()
 
                 # Create transaction record
