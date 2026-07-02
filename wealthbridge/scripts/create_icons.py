@@ -13,12 +13,12 @@ def create_pwa_icons():
     source_images = os.path.join(project_root, 'static', 'images', 'blue.png')  # Your original
     output_dir = os.path.join(project_root, 'static', 'images')
     
-    print(f"📁 Project root: {project_root}")
-    print(f"🖼️ Source images: {source_images}")
+    print(f"[DIR] Project root: {project_root}")
+    print(f"[IMG] Source images: {source_images}")
     
     # Check source exists
     if not os.path.exists(source_images):
-        print(f"❌ Error: Source images not found at {source_images}")
+        print(f"[ERROR] Source images not found at {source_images}")
         print("Please add your blue.png to static/images/")
         return False
     
@@ -34,20 +34,20 @@ def create_pwa_icons():
             if img.mode != 'RGB':
                 img = img.convert('RGB')
             
-            print("\n📱 Creating PWA icons...")
+            print("\nCreating PWA icons...")
             
             # 1. Create all icon sizes
             for size in all_sizes:
                 output_path = os.path.join(output_dir, f'blue-{size}x{size}.png')
                 img.resize((size, size), Image.LANCZOS).save(output_path, 'PNG')
-                print(f"  ✓ Created: blue-{size}x{size}.png")
+                print(f"  - Created: blue-{size}x{size}.png")
             
             # 2. Create favicon.ico (combines 16x16, 32x32, 48x48)
             favicon_path = os.path.join(output_dir, 'favicon.ico')
             favicon_sizes = [16, 32, 48]
             favicon_images = [img.resize((s, s), Image.LANCZOS) for s in favicon_sizes]
             favicon_images[0].save(favicon_path, format='ICO', sizes=[(s, s) for s in favicon_sizes])
-            print(f"  ✓ Created: favicon.ico")
+            print(f"  - Created: favicon.ico")
             
             # 3. Create screenshot images (if needed)
             screenshot_path = os.path.join(output_dir, 'blue-screenshot.png')
@@ -55,13 +55,13 @@ def create_pwa_icons():
                 # Create a screenshot placeholder (you should replace with actual screenshot)
                 screenshot = img.resize((1170, 2532), Image.LANCZOS)
                 screenshot.save(screenshot_path, 'PNG')
-                print(f"  ✓ Created placeholder: blue-screenshot.png")
-                print(f"    ⚠️ Replace with actual 1170x2532 screenshot")
+                print(f"  - Created placeholder: blue-screenshot.png")
+                print(f"    [WARNING] Replace with actual 1170x2532 screenshot")
             except:
-                print(f"  ⚠️ Could not create screenshot placeholder")
+                print(f"  [WARNING] Could not create screenshot placeholder")
             
-            print("\n✅ Icons created successfully!")
-            print(f"\n📁 Files saved to: {output_dir}/")
+            print("\nIcons created successfully!")
+            print(f"\nFiles saved to: {output_dir}/")
             
             return True
             

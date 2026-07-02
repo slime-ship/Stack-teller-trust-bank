@@ -1,12 +1,12 @@
 
 {
-  "name": "Revolut Bank",
-  "short_name": "Revolut",
-  "description": "Secure banking and finance system",
+  "name": "Stack Teller Trust Bank",
+  "short_name": "StackTeller",
+  "description": "Secure Banking & Investment Solutions",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#811d73",
-  "theme_color": "#811d73",
+  "background_color": "#09090b",
+  "theme_color": "#00C853",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en",
@@ -67,7 +67,7 @@
       "sizes": "1170x2532",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Revolut Bank"
+      "label": "Stack Teller Trust Bank"
     }
   ],
   "shortcuts": [

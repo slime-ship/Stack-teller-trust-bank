@@ -940,21 +940,7 @@ Submit Transfer
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(updateStockMarquee, 1000);
         });
-        if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register("{% static 'sw.js' %}")
-        .then(registration => {
-            console.log('✅ Service Worker Registered:', registration);
-
-            // Check for updates
-            registration.addEventListener('updatefound', () => {
-                const newWorker = registration.installing;
-                console.log('🔄 New service worker found:', newWorker);
-            });
-        })
-        .catch(error => {
-            console.log('❌ Service Worker registration failed:', error);
-        });
-    }
+        
 
     </script>
 <script src="{% static 'js/site_controls.js' %}"></script>

@@ -4,6 +4,25 @@
  */
 
 (function() {
+    // 0. Inject PWA Manifest & Service Worker Registration dynamically
+    if (!document.querySelector('link[rel="manifest"]')) {
+        var linkManifest = document.createElement('link');
+        linkManifest.rel = 'manifest';
+        linkManifest.href = '/manifest.json';
+        document.head.appendChild(linkManifest);
+    }
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function(reg) {
+                    console.log('✅ PWA Service Worker Registered:', reg.scope);
+                })
+                .catch(function(err) {
+                    console.warn('❌ PWA Service Worker Registration failed:', err);
+                });
+        });
+    }
+
     // 1. Ensure Font Awesome is loaded for icons
     if (!document.querySelector('link[href*="font-awesome"]') && !document.querySelector('link[href*="all.min.css"]') && !document.querySelector('link[href*="all.css"]')) {
         var link = document.createElement('link');
@@ -260,6 +279,30 @@
             color: inherit !important;
             border-color: inherit !important;
         }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .site-controls-pill {
+                top: 15px;
+                right: 15px;
+                padding: 6px 12px !important;
+                gap: 8px !important;
+            }
+            .goog-te-menu-frame {
+                max-width: 90vw !important;
+                left: auto !important;
+                right: 15px !important;
+                top: 60px !important;
+            }
+            .goog-te-gadget-simple {
+                padding: 2px 6px !important;
+            }
+        }
+
+        /* Hide Telegram and Email support floats site-wide */
+        .telegram-float, .email-float, .telegram-link, .email-link, #telegramBtn, #emailBtn {
+            display: none !important;
+        }
     `;
     document.head.appendChild(style);
 
@@ -273,6 +316,42 @@
 
     // 4. Create and inject the floating widget
     document.addEventListener("DOMContentLoaded", function() {
+        // Render custom SVG logo inside all logo icons
+        var logoIcons = document.querySelectorAll('.logo-icon');
+        logoIcons.forEach(function(icon) {
+            icon.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="100%" height="100%">
+                  <defs>
+                    <linearGradient id="blockGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#00C853" />
+                      <stop offset="100%" stop-color="#0070F3" />
+                    </linearGradient>
+                  </defs>
+                  <g transform="translate(16, 16) scale(0.9)">
+                    <!-- Bottom block -->
+                    <path d="M 16 160 L 112 200 L 208 160 L 112 120 Z" fill="url(#blockGrad)" opacity="0.5" />
+                    <path d="M 16 160 L 16 172 L 112 212 L 112 200 Z" fill="#004D20" opacity="0.4" />
+                    <path d="M 112 200 L 112 212 L 208 172 L 208 160 Z" fill="#002D80" opacity="0.4" />
+
+                    <!-- Middle block -->
+                    <path d="M 16 110 L 112 150 L 208 110 L 112 70 Z" fill="url(#blockGrad)" opacity="0.8" />
+                    <path d="M 16 110 L 16 122 L 112 162 L 112 150 Z" fill="#004D20" opacity="0.5" />
+                    <path d="M 112 150 L 112 162 L 208 122 L 208 110 Z" fill="#002D80" opacity="0.5" />
+
+                    <!-- Top block -->
+                    <path d="M 16 60 L 112 100 L 208 60 L 112 20 Z" fill="url(#blockGrad)" />
+                    <path d="M 16 60 L 16 72 L 112 112 L 112 100 Z" fill="#004D20" opacity="0.6" />
+                    <path d="M 112 100 L 112 112 L 208 72 L 208 60 Z" fill="#002D80" opacity="0.6" />
+                  </g>
+                </svg>
+            `;
+            icon.style.background = 'transparent';
+            icon.style.border = 'none';
+            icon.style.display = 'inline-flex';
+            icon.style.alignItems = 'center';
+            icon.style.justifyContent = 'center';
+        });
+
         // Create widget container
         var widget = document.createElement('div');
         widget.id = 'site-controls-widget';
@@ -323,6 +402,106 @@
                 localStorage.setItem('site-theme', newTheme);
                 applyTheme(newTheme);
             });
+        }
+
+        // Draggable site controls widget (long press to drag)
+        var draggableWidget = document.getElementById('site-controls-widget');
+        if (draggableWidget) {
+            var isDragging = false;
+            var dragTimeout = null;
+            var startX = 0;
+            var startY = 0;
+            var initialX = 0;
+            var initialY = 0;
+
+            function onStart(e) {
+                if (e.type === 'mousedown' && e.button !== 0) return;
+
+                var clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+                var clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+
+                startX = clientX;
+                startY = clientY;
+
+                var rect = draggableWidget.getBoundingClientRect();
+                initialX = rect.left;
+                initialY = rect.top;
+
+                dragTimeout = setTimeout(function() {
+                    isDragging = true;
+                    draggableWidget.style.transform = 'scale(1.1)';
+                    draggableWidget.style.border = '1px solid #00C853';
+                    draggableWidget.style.cursor = 'move';
+                    draggableWidget.style.boxShadow = '0 0 15px rgba(0, 200, 83, 0.6)';
+                    
+                    if (navigator.vibrate) {
+                        navigator.vibrate(50);
+                    }
+                }, 500);
+
+                window.addEventListener(e.type === 'touchstart' ? 'touchmove' : 'mousemove', onMove, { passive: false });
+                window.addEventListener(e.type === 'touchstart' ? 'touchend' : 'mouseup', onEnd);
+            }
+
+            function onMove(e) {
+                var clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+                var clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+
+                if (!isDragging) {
+                    if (Math.abs(clientX - startX) > 5 || Math.abs(clientY - startY) > 5) {
+                        clearTimeout(dragTimeout);
+                    }
+                    return;
+                }
+
+                e.preventDefault();
+                var dx = clientX - startX;
+                var dy = clientY - startY;
+
+                var newLeft = initialX + dx;
+                var newTop = initialY + dy;
+
+                var padding = 10;
+                newLeft = Math.max(padding, Math.min(newLeft, window.innerWidth - draggableWidget.offsetWidth - padding));
+                newTop = Math.max(padding, Math.min(newTop, window.innerHeight - draggableWidget.offsetHeight - padding));
+
+                draggableWidget.style.left = newLeft + 'px';
+                draggableWidget.style.top = newTop + 'px';
+                draggableWidget.style.right = 'auto';
+                draggableWidget.style.bottom = 'auto';
+            }
+
+            function onEnd() {
+                clearTimeout(dragTimeout);
+                if (isDragging) {
+                    isDragging = false;
+                    draggableWidget.style.transform = 'none';
+                    draggableWidget.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                    draggableWidget.style.cursor = 'pointer';
+                    draggableWidget.style.boxShadow = '0 8px 32px 0 rgba(0, 0, 0, 0.37)';
+                    
+                    localStorage.setItem('widget-pos-left', draggableWidget.style.left);
+                    localStorage.setItem('widget-pos-top', draggableWidget.style.top);
+                }
+
+                window.removeEventListener('mousemove', onMove);
+                window.removeEventListener('touchmove', onMove);
+                window.removeEventListener('mouseup', onEnd);
+                window.removeEventListener('touchend', onEnd);
+            }
+
+            var savedLeft = localStorage.getItem('widget-pos-left');
+            var savedTop = localStorage.getItem('widget-pos-top');
+            if (savedLeft && savedTop) {
+                draggableWidget.style.left = savedLeft;
+                draggableWidget.style.top = savedTop;
+                draggableWidget.style.right = 'auto';
+                draggableWidget.style.bottom = 'auto';
+                draggableWidget.style.position = 'fixed';
+            }
+
+            draggableWidget.addEventListener('mousedown', onStart);
+            draggableWidget.addEventListener('touchstart', onStart, { passive: true });
         }
     });
 })();

@@ -222,3 +222,34 @@ class YourModelAdmin(admin.ModelAdmin):
 
     def image_display(self, obj):
         return obj.image.url if obj.image else None
+
+# ============ ADMIN AUDIT LOGS ============
+
+from django.contrib.admin.models import LogEntry
+
+@admin.register(LogEntry)
+class LogEntryAdmin(admin.ModelAdmin):
+    list_display = ['action_time', 'user', 'content_type', 'object_repr', 'action_flag_display', 'change_message']
+    list_filter = ['action_time', 'user', 'action_flag']
+    search_fields = ['object_repr', 'change_message']
+    readonly_fields = ['action_time', 'user', 'content_type', 'object_id', 'object_repr', 'action_flag', 'change_message']
+
+    def action_flag_display(self, obj):
+        from django.contrib.admin.models import ADDITION, CHANGE, DELETION
+        if obj.action_flag == ADDITION:
+            return format_html('<span style="color: #27AE60; font-weight: bold;">{}</span>', 'Addition')
+        elif obj.action_flag == CHANGE:
+            return format_html('<span style="color: #F39C12; font-weight: bold;">{}</span>', 'Change')
+        elif obj.action_flag == DELETION:
+            return format_html('<span style="color: #C0392B; font-weight: bold;">{}</span>', 'Deletion')
+        return format_html('<span>{}</span>', 'Unknown')
+    action_flag_display.short_description = 'Action'
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False

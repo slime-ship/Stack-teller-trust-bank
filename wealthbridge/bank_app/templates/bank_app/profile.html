@@ -18,284 +18,425 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 <!-- End of Chaport Live Chat code -->    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Base styles */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f7fa;
-            height: 100%;
-            overflow-x: hidden;
+        :root {
+            --bg-dark: #09090b;
+            --card-bg-dark: rgba(255, 255, 255, 0.03);
+            --card-border-dark: rgba(255, 255, 255, 0.08);
+            --text-primary-dark: #ffffff;
+            --text-secondary-dark: #a1a1aa;
+            --accent-green: #00E676;
+            --accent-blue: #0070F3;
+            
+            --bg-light: #f8fafc;
+            --card-bg-light: #ffffff;
+            --card-border-light: #e2e8f0;
+            --text-primary-light: #0f172a;
+            --text-secondary-light: #64748b;
         }
 
-        /* Header */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body, html {
+            background-color: var(--bg-dark);
+            color: var(--text-primary-dark);
+            height: 100%;
+            overflow-x: hidden;
+            padding-bottom: 90px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* HEADER STYLING */
         .bank-header {
-            background-color: #003366;
-            color: white;
-            padding: 15px;
+            background: rgba(9, 9, 11, 0.8) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 18px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--card-border-dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         .bank-header h1 {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, var(--accent-green) 0%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin: 0;
-            padding-left: 20px;
         }
-        .notification-bell, .open-sidebar-btn {
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .open-sidebar-btn {
             cursor: pointer;
-            color: white;
-            font-size: 1.5rem;
+            color: var(--text-primary-dark);
+            font-size: 1.4rem;
+            transition: transform 0.2s ease;
+        }
+        .open-sidebar-btn:hover {
+            transform: scale(1.05);
         }
 
-        /* Sidebar */
+        /* SIDEBAR STYLING */
         .sidebar {
-            width: 250px;
+            width: 280px;
             height: 100vh;
-            background-color: #002244;
+            background: rgba(9, 9, 11, 0.95) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             position: fixed;
-            right: -250px;
+            right: -280px;
             top: 0;
-            transition: right 0.4s ease;
-            color: #fff;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            color: var(--text-primary-dark);
+            border-left: 1px solid var(--card-border-dark);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
             z-index: 1000;
         }
         .sidebar.open {
             right: 0;
         }
-        .sidebar-header, .user-details, .sidebar ul li {
-            padding: 15px 20px;
-            border-bottom: 1px solid #004080;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .sidebar ul li a {
-            color: white;
-            text-decoration: none;
-            display: block;
-        }
-        .sidebar ul li a:hover {
-            background-color: #003366;
-        }
-
-        /* Main Content */
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Page Header */
-        .page-header {
-            margin-bottom: 30px;
-        }
-        .page-header h1 {
-            color: #003366;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        .page-header p {
-            color: #6c757d;
-            font-size: 1rem;
-        }
-
-        /* Card Container */
-        .card-container {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            margin-bottom: 25px;
-        }
-
-        /* Card Header */
-        .card-header {
-            background-color: #003366;
-            color: white;
-            padding: 20px;
-        }
-        .card-header h2 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        /* Card Body */
-        .card-body {
-            padding: 25px;
-        }
-
-        /* Settings Grid */
-        .settings-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        /* Settings Item */
-        .settings-item {
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--card-border-dark);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #e9ecef;
         }
-        .settings-item:last-child {
-            border-bottom: none;
+        .sidebar-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
         }
-        .settings-label {
-            font-weight: bold;
-            color: #495057;
-            flex: 1;
-        }
-        .settings-value {
-            color: #6c757d;
-            flex: 1;
-            text-align: right;
-        }
-        .settings-action {
-            flex: 0 0 auto;
-            margin-left: 15px;
-        }
-
-        /* Form Elements */
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        .form-control:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
-        }
-
-        /* Buttons */
-        .btn {
-            padding: 10px 20px;
+        .sidebar-close {
+            background: transparent;
             border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-        .btn-primary {
-            background-color: #003366;
-            color: white;
-        }
-        .btn-primary:hover {
-            background-color: #002244;
-        }
-        .btn-danger {
-            background-color: #dc3545;
-            color: white;
-        }
-        .btn-danger:hover {
-            background-color: #c82333;
-        }
-        .btn-warning {
-            background-color: #ffc107;
-            color: #212529;
-        }
-        .btn-warning:hover {
-            background-color: #e0a800;
-        }
-
-        /* Select Styling */
-        select.form-control {
-            background-color: white;
+            color: var(--text-secondary-dark);
+            font-size: 1.5rem;
             cursor: pointer;
         }
-
-        /* Messages */
-        .message-container {
-            margin-bottom: 20px;
+        .user-details {
+            padding: 20px 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid var(--card-border-dark);
+            font-size: 0.9rem;
         }
-        .message {
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 10px;
+        .user-details p {
+            margin-bottom: 8px;
+            color: var(--text-secondary-dark);
         }
-        .message-success {
-            color: #155724;
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
+        .user-details strong {
+            color: var(--text-primary-dark);
         }
-        .message-error {
-            color: #721c24;
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-        }
-
-        /* Bottom Navbar */
-        .bottom-navbar {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #003366;
-            color: white;
-            display: flex;
-            justify-content: space-around;
+        .sidebar ul {
+            list-style: none;
             padding: 10px 0;
-            z-index: 100;
         }
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .sidebar ul li a {
+            padding: 14px 24px;
+            color: var(--text-secondary-dark);
             text-decoration: none;
-            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
         }
-        .nav-icon {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-        .nav-label {
-            font-size: 0.8rem;
+        .sidebar ul li a:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--accent-green);
+            padding-left: 30px;
         }
 
-
-
-        /* Marquee */
+        /* STOCK MARQUEE */
         .marquee {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            font-weight: bold;
-            padding: 10px;
-            white-space: nowrap;
+            background: rgba(9, 9, 11, 0.5);
+            border-bottom: 1px solid var(--card-border-dark);
+            padding: 8px 0;
             overflow: hidden;
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            font-weight: 600;
         }
         .marquee-content {
             display: inline-block;
-            animation: scrollLeft 10s linear infinite;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
         }
-        @keyframes scrollLeft {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(-100%);
-            }
+        @keyframes marquee {
+            0% { transform: translate3d(100%, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        /* MAIN CONTENT */
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px;
+        }
+
+        /* DYNAMIC HERO SECTION */
+        .profile-hero-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid var(--card-border-dark);
+            border-radius: 24px;
+            padding: 30px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .profile-hero-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .profile-avatar-wrapper {
+            position: relative;
+            margin-bottom: 16px;
+        }
+        .profile-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            box-shadow: 0 8px 24px rgba(0, 230, 118, 0.3);
+        }
+        .profile-tier-badge {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #09090b;
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
+        }
+        .profile-hero-card h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary-dark);
+            margin-bottom: 6px;
+        }
+        .profile-hero-card p {
+            color: var(--text-secondary-dark);
+            font-size: 0.9rem;
+        }
+
+        /* PROFILE GLASS CARDS */
+        .card-container {
+            background: var(--card-bg-dark);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border-dark);
+            border-radius: 24px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        }
+        .card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--card-border-dark);
+            background: rgba(255, 255, 255, 0.01);
+        }
+        .card-header h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-header h2 i {
+            color: var(--accent-green);
+        }
+        .card-body {
+            padding: 24px;
+        }
+
+        /* SETTINGS ROWS */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        @media(min-width: 600px) {
             .settings-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
             }
-            .settings-item {
+        }
+        .settings-item {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: background-color 0.2s ease;
+        }
+        .settings-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .settings-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .settings-label i {
+            color: var(--accent-blue);
+            font-size: 0.95rem;
+        }
+        .settings-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary-dark);
+        }
+        .settings-action {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        /* FORM CONTROLS & DYNAMIC INPUTS */
+        .form-control, select.form-control {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid var(--card-border-dark) !important;
+            border-radius: 12px !important;
+            padding: 12px 16px !important;
+            color: var(--text-primary-dark) !important;
+            font-size: 0.95rem !important;
+            font-weight: 500 !important;
+            height: auto !important;
+            outline: none !important;
+            transition: all 0.3s ease !important;
+        }
+        .form-control:focus {
+            border-color: var(--accent-green) !important;
+            box-shadow: 0 0 10px rgba(0, 230, 118, 0.2) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+        }
+        
+        /* BUTTONS STYLING */
+        .btn {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-green) 0%, #00a852 100%) !important;
+            color: #000000 !important;
+            border: none !important;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 230, 118, 0.3);
+            filter: brightness(1.1);
+        }
+        .btn-warning {
+            background: rgba(230, 126, 34, 0.1) !important;
+            border: 1px solid rgba(230, 126, 34, 0.4) !important;
+            color: #E67E22 !important;
+        }
+        .btn-warning:hover {
+            background: rgba(230, 126, 34, 0.2) !important;
+            transform: translateY(-2px);
+        }
+        .btn-danger {
+            background: rgba(231, 76, 60, 0.1) !important;
+            border: 1px solid rgba(231, 76, 60, 0.4) !important;
+            color: #E74C3C !important;
+        }
+        .btn-danger:hover {
+            background: rgba(231, 76, 60, 0.2) !important;
+            transform: translateY(-2px);
+        }
+
+        /* RESPONSIVE BOTTOM NAVBAR */
+        .bottom-navbar {
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0;
+            width: 100% !important;
+            background: rgba(9, 9, 11, 0.85) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: flex !important;
+            justify-content: space-around !important;
+            padding: 10px 0 14px 0 !important;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4) !important;
+            border-top: 1px solid var(--card-border-dark) !important;
+            z-index: 999;
+        }
+        .nav-item {
+            text-align: center;
+            color: var(--text-secondary-dark) !important;
+            text-decoration: none !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            flex: 1;
+        }
+        .nav-item:hover, .nav-item.active {
+            color: var(--accent-green) !important;
+        }
+        .nav-icon {
                 flex-direction: column;
                 align-items: flex-start;
             }
@@ -628,10 +769,16 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
     <!-- Main Content -->
     <div class="main-content">
-        <!-- Page Header -->
-        <div class="page-header">
-            <h1>Account Settings</h1>
-            <p>Manage your profile information and security preferences</p>
+        <!-- Exotic Profile Hero Header -->
+        <div class="profile-hero-card">
+            <div class="profile-avatar-wrapper">
+                <div class="profile-avatar">
+                    {{ user_profile.first_name|slice:":1" }}{{ user_profile.last_name|slice:":1" }}
+                </div>
+                <span class="profile-tier-badge">{% if user_profile.is_upgraded %}Gold Member{% else %}Standard Member{% endif %}</span>
+            </div>
+            <h2>{{ user_profile.first_name }} {{ user_profile.last_name }}</h2>
+            <p><i class="far fa-envelope"></i> {{ user_profile.email }} | <i class="fas fa-wallet"></i> {{ user_profile.account_type }}</p>
         </div>
 
         <!-- Messages -->
@@ -648,56 +795,56 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         <!-- Profile Information Section -->
         <div class="card-container">
             <div class="card-header">
-                <h2>Profile Information</h2>
+                <h2><i class="fas fa-user-circle"></i> Profile Information</h2>
             </div>
             <div class="card-body">
                 <div class="settings-grid">
                     <div class="settings-item">
-                        <div class="settings-label">Username:</div>
+                        <div class="settings-label"><i class="fas fa-user"></i> Username</div>
                         <div class="settings-value">{{ request.user }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Email:</div>
+                        <div class="settings-label"><i class="fas fa-envelope"></i> Email</div>
                         <div class="settings-value">{{ user_profile.email }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">First Name:</div>
+                        <div class="settings-label"><i class="fas fa-id-card"></i> First Name</div>
                         <div class="settings-value">{{ user_profile.first_name }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Middle Name:</div>
+                        <div class="settings-label"><i class="fas fa-id-card-clip"></i> Middle Name</div>
                         <div class="settings-value">{{ user_profile.middle_name }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Last Name:</div>
+                        <div class="settings-label"><i class="fas fa-id-card"></i> Last Name</div>
                         <div class="settings-value">{{ user_profile.last_name }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Mobile Number:</div>
+                        <div class="settings-label"><i class="fas fa-phone"></i> Mobile Number</div>
                         <div class="settings-value">{{ user_profile.phone_number }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Date of Birth:</div>
+                        <div class="settings-label"><i class="fas fa-birthday-cake"></i> Date of Birth</div>
                         <div class="settings-value">{{ user_profile.date_of_birth }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Employment Status:</div>
+                        <div class="settings-label"><i class="fas fa-briefcase"></i> Employment Status</div>
                         <div class="settings-value">{{ user_profile.status }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Country:</div>
+                        <div class="settings-label"><i class="fas fa-globe-americas"></i> Country</div>
                         <div class="settings-value">{{ user_profile.country }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Currency:</div>
+                        <div class="settings-label"><i class="fas fa-coins"></i> Currency</div>
                         <div class="settings-value">{{ user_profile.currency }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Gender:</div>
+                        <div class="settings-label"><i class="fas fa-venus-mars"></i> Gender</div>
                         <div class="settings-value">{{ user_profile.Gender }}</div>
                     </div>
                     <div class="settings-item">
-                        <div class="settings-label">Account Type:</div>
+                        <div class="settings-label"><i class="fas fa-shield-halved"></i> Account Type</div>
                         <div class="settings-value">{{ user_profile.account_type }}</div>
                     </div>
                 </div>
@@ -707,22 +854,24 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         <!-- Security Settings Section -->
         <div class="card-container">
             <div class="card-header">
-                <h2>Security Settings</h2>
+                <h2><i class="fas fa-shield-alt"></i> Security Settings</h2>
             </div>
             <div class="card-body">
-                <div class="settings-item">
-                    <div class="settings-label">Profile Reset:</div>
-                    <div class="settings-action">
-                        <a href="{% url 'reset_profile' %}" class="btn btn-primary">Reset Profile</a>
+                <div class="settings-grid">
+                    <div class="settings-item">
+                        <div class="settings-label"><i class="fas fa-user-gear"></i> Profile Reset</div>
+                        <div class="settings-action">
+                            <a href="{% url 'reset_profile' %}" class="btn btn-primary"><i class="fas fa-rotate"></i> Reset Profile</a>
+                        </div>
                     </div>
-                </div>
-                <div class="settings-item">
-                    <div class="settings-label">Two-Factor Authentication:</div>
-                    <div class="settings-action">
-                        <select class="form-control">
-                            <option value="enabled">Enabled</option>
-                            <option value="disabled">Disabled</option>
-                        </select>
+                    <div class="settings-item">
+                        <div class="settings-label"><i class="fas fa-key"></i> Two-Factor Auth</div>
+                        <div class="settings-action">
+                            <select class="form-control">
+                                <option value="enabled">Enabled</option>
+                                <option value="disabled">Disabled</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -791,7 +940,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             <i class="fas fa-exchange-alt nav-icon"></i>
             <span class="nav-label">Transfer</span>
         </a>
-        <a href="{% url 'setting' %}" class="nav-item">
+        <a href="{% url 'setting' %}" class="nav-item active">
             <i class="fas fa-user nav-icon"></i>
             <span class="nav-label">Profile</span>
         </a>

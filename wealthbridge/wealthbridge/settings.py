@@ -29,9 +29,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'postgres.gnemqlmwpbykucseqeek',
-        'PASSWORD': 'i4NgCRp8XXuna3CZ',
-        'HOST': 'aws-1-eu-central-1.pooler.supabase.com',
+        'USER': 'postgres.lsnnclwaxmfblvdpyjao',
+        'PASSWORD': 'uI615X53eS3QyWva',
+        'HOST': 'aws-1-us-west-1.pooler.supabase.com',
         'PORT': '6543',  # PgBouncer port
         'CONN_MAX_AGE': 0,  # Required for PgBouncer compatibility
     }

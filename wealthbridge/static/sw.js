@@ -1,6 +1,6 @@
 
 
-const CACHE_NAME = 'axiscapitaltrust-v2.0.1';
+const CACHE_NAME = 'stackteller-v1.0.0';
 const STATIC_ASSETS = [
   '/',
   // Original and all resized icons
@@ -21,7 +21,7 @@ const STATIC_ASSETS = [
   // Other assets
   '/static/css/dash.css',
   '/static/js/main.js',
-  '/static/manifest.json',
+  '/manifest.json',
   '/offline/'
 ];
 
@@ -68,7 +68,7 @@ self.addEventListener('push', event => {
   const data = event.data ? event.data.json() : {};
   
   const options = {
-    body: data.body || 'New update from Revolut',
+    body: data.body || 'New update from Stack Teller Trust Bank',
     icon: '/static/images/blue-192x192.png',  // Updated
     badge: '/static/images/blue-192x192.png',  // Updated
     images: '/static/images/blue-192x192.png',  // Updated
@@ -92,6 +92,6 @@ self.addEventListener('push', event => {
   };
   
   event.waitUntil(
-    self.registration.showNotification('Revolut', options)
+    self.registration.showNotification('Stack Teller Trust Bank', options)
   );
 });
