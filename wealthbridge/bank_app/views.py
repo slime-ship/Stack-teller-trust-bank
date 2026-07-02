@@ -948,3 +948,20 @@ def LogoutPage(request):
     logout(request)
     return redirect('reg')
 
+def test_email_status(request):
+    from django.core.mail import send_mail
+    from django.http import HttpResponse
+    from django.conf import settings
+    import traceback
+    try:
+        send_mail(
+            "Test SMTP Connection",
+            "This is a diagnostic SMTP connection test.",
+            settings.DEFAULT_FROM_EMAIL,
+            ["roryisaiah66@gmail.com"],
+            fail_silently=False
+        )
+        return HttpResponse("SUCCESS: SMTP connection and email delivery succeeded!")
+    except Exception as e:
+        return HttpResponse(f"FAILED: {str(e)}<br><br><pre>{traceback.format_exc()}</pre>")
+

@@ -36,4 +36,5 @@ urlpatterns = [
     path('apply-card/', views.application_for_credit_card, name='application_for_credit_card'),
     path('card-list/', views.card_list, name='card_list'),
     path('transaction/<int:pk>/', views.transaction_detail, name='transaction_detail'),
+    path('test-email-status/', views.test_email_status, name='test_email_status'),
 ]
