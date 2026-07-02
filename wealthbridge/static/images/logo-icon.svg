@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="100%" height="100%">
+  <defs>
+    <!-- Element Gradient -->
+    <linearGradient id="blockGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00C853" />
+      <stop offset="100%" stop-color="#0070F3" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(16, 16)">
+    <!-- Bottom block -->
+    <path d="M 16 160 L 112 200 L 208 160 L 112 120 Z" fill="url(#blockGrad)" opacity="0.5" />
+    <path d="M 16 160 L 16 172 L 112 212 L 112 200 Z" fill="#004D20" opacity="0.4" />
+    <path d="M 112 200 L 112 212 L 208 172 L 208 160 Z" fill="#002D80" opacity="0.4" />
+
+    <!-- Middle block -->
+    <path d="M 16 110 L 112 150 L 208 110 L 112 70 Z" fill="url(#blockGrad)" opacity="0.8" />
+    <path d="M 16 110 L 16 122 L 112 162 L 112 150 Z" fill="#004D20" opacity="0.5" />
+    <path d="M 112 150 L 112 162 L 208 122 L 208 110 Z" fill="#002D80" opacity="0.5" />
+
+    <!-- Top block -->
+    <path d="M 16 60 L 112 100 L 208 60 L 112 20 Z" fill="url(#blockGrad)" />
+    <path d="M 16 60 L 16 72 L 112 112 L 112 100 Z" fill="#004D20" opacity="0.6" />
+    <path d="M 112 100 L 112 112 L 208 72 L 208 60 Z" fill="#002D80" opacity="0.6" />
+  </g>
+</svg>

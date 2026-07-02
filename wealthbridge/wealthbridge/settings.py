@@ -50,7 +50,7 @@ SECRET_KEY = 'django-insecure-3_)^u&niz%-isn%ciqt+qx7*3h!bo(js3+s%x0qray8bkb8d_1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.revolutpay.online',]
+ALLOWED_HOSTS = ['www.revolutpay.online', '127.0.0.1', 'localhost']
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dlzn0moho',
@@ -60,6 +60,8 @@ CLOUDINARY_STORAGE = {
 
 CSRF_TRUSTED_ORIGINS = [
     "https://www.revolutpay.online",
+    "http://127.0.0.1:8080",
+    "http://localhost:8080",
 ]
 
 MEDIA_URL = '/media/'  # or any prefix you choose
