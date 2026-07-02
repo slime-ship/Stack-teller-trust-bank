@@ -294,18 +294,23 @@ Thank you for choosing StackTeller Trust Bank.
 Warm regards,
 StackTeller Trust Bank Support Team
             """
-            try:
-                send_mail(
-                    subject,
-                    message,
-                    settings.DEFAULT_FROM_EMAIL,
-                    [user.email],
-                    html_message=html_message,
-                    fail_silently=True,
-                )
-            except Exception as e:
-                # Log email errors silently in production to prevent user registration crash
-                pass
+            import threading
+            def send_email_async():
+                try:
+                    send_mail(
+                        subject,
+                        message,
+                        settings.DEFAULT_FROM_EMAIL,
+                        [user.email],
+                        html_message=html_message,
+                        fail_silently=True,
+                    )
+                except Exception:
+                    pass
+            
+            thread = threading.Thread(target=send_email_async)
+            thread.daemon = True
+            thread.start()
             # ---- END OF EMAIL ----
 
             return redirect('loginview')

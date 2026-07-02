@@ -112,21 +112,26 @@ Security Notice: If you did not authorize this transaction, please change your p
 Thank you for choosing StackTeller Trust Bank.
     """
     
+    import threading
     def send():
-        try:
-            send_mail(
-                subject,
-                text_message,
-                settings.DEFAULT_FROM_EMAIL,
-                [recipient_email],
-                html_message=html_message,
-                fail_silently=True
-            )
-        except Exception as e:
-            # Catch all email failures gracefully in production
-            pass
+        def run():
+            try:
+                send_mail(
+                    subject,
+                    text_message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [recipient_email],
+                    html_message=html_message,
+                    fail_silently=True
+                )
+            except Exception:
+                pass
+        
+        thread = threading.Thread(target=run)
+        thread.daemon = True
+        thread.start()
 
-    # Wait until database transaction commits to send email
+    # Wait until database transaction commits to send email in the background
     db_transaction.on_commit(send)
 
 
