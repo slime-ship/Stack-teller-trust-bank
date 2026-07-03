@@ -157,23 +157,32 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             margin-bottom: 20px;
         }
         .form-label {
-            font-weight: bold;
+            font-weight: 600;
             margin-bottom: 8px;
             display: block;
-            color: #495057;
+            color: #cbd5e1 !important;
         }
         .form-control {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ced4da;
-            border-radius: 6px;
+            padding-right: 40px !important;
+            border-radius: 8px;
             font-size: 16px;
             transition: all 0.3s ease;
         }
-        .form-control:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+        
+        .form-input-group {
+            position: relative;
+        }
+        
+        .form-input-group .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 1.2rem;
+            pointer-events: none;
         }
 
         /* Submit Button */
@@ -181,16 +190,19 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             width: 100%;
             padding: 12px;
             border: none;
-            border-radius: 6px;
-            background-color: #003366;
-            color: white;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-hover) 100%) !important;
+            color: white !important;
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
             font-size: 16px;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
         }
         .btn-submit:hover {
-            background-color: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px -2px rgba(59, 130, 246, 0.4);
+            filter: brightness(1.1);
         }
 
         /* Account Status */
@@ -595,19 +607,28 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                     <!-- PayPal Email -->
                     <div class="form-group">
                         <label for="paypalEmail" class="form-label">PayPal Email</label>
-                        <input type="email" class="form-control" id="paypalEmail" name="paypal_email" placeholder="Enter your PayPal email address" required>
+                        <div class="form-input-group">
+                            <input type="email" class="form-control" id="paypalEmail" name="paypal_email" placeholder="Enter your PayPal email address" required>
+                            <i class="fab fa-paypal input-icon"></i>
+                        </div>
                     </div>
 
                     <!-- Amount -->
                     <div class="form-group">
                         <label for="amount" class="form-label">Amount</label>
-                        <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter amount" required>
+                        <div class="form-input-group">
+                            <input type="number" step="0.01" class="form-control" id="amount" name="amount" placeholder="Enter amount" required>
+                            <i class="fas fa-money-bill-wave input-icon"></i>
+                        </div>
                     </div>
 
                     <!-- Description -->
                     <div class="form-group">
                         <label for="description" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="description" name="description" placeholder="Enter payment description">
+                        <div class="form-input-group">
+                            <input type="text" class="form-control" id="description" name="description" placeholder="Enter payment description">
+                            <i class="fas fa-pencil-alt input-icon"></i>
+                        </div>
                     </div>
 
                     <!-- Submit Button -->

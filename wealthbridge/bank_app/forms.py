@@ -375,9 +375,26 @@ ANNUAL_INCOME_CHOICES = [
         ('150k_above', 'Above $150,000'),
     ]
 class DepositForm(forms.Form):
-    amount = forms.DecimalField(max_digits=10, decimal_places=2)
-    account_type = forms.ChoiceField(choices=ACCOUNT_CHOICES, required=False)
-    country = forms.ChoiceField(choices=COUNTRY_CHOICES, required=False)
+    amount = forms.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter amount',
+            'step': '0.01',
+            'required': 'required'
+        })
+    )
+    account_type = forms.ChoiceField(
+        choices=ACCOUNT_CHOICES,
+        required=False,
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    country = forms.ChoiceField(
+        choices=COUNTRY_CHOICES,
+        required=False,
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
 
     def __init__(self, *args, **kwargs):
         self.user_profile = kwargs.pop('user_profile', None)

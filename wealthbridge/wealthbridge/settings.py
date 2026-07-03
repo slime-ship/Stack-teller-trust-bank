@@ -194,11 +194,7 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "stacktellertrustbank.support@gmail.com"
-EMAIL_HOST_PASSWORD = "qriq tsis ehcd nufd"  # Use Gmail App Password
-DEFAULT_FROM_EMAIL = f"Stack Teller Trust Bank <{EMAIL_HOST_USER}>"
+EMAIL_BACKEND = "bank_app.email_backend.SendGridAPIBackend"
+DEFAULT_FROM_EMAIL = "Stack Teller Trust Bank <stacktellertrustbank.support@gmail.com>"
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY', 'SG.your_default_key_here')
 

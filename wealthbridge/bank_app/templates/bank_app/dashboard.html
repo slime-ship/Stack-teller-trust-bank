@@ -426,15 +426,16 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
         /* Transactions Section */
         .transactions-section {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(15, 23, 42, 0.8) !important;
             backdrop-filter: blur(10px);
             border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(42, 110, 187, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
             padding: 25px;
             margin: 20px 0;
-            border: 1px solid var(--medium-gray);
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
             position: relative;
             overflow-x: auto;
+            color: #f8fafc !important;
         }
 
         .transactions-section::before {
@@ -450,7 +451,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         .section-header {
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-            color: var(--dark-blue);
+            color: #f8fafc !important;
             margin-bottom: 20px;
             text-align: center;
             font-size: 1.3rem;
@@ -463,27 +464,38 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         .transactions-table th {
-            background: rgba(42, 110, 187, 0.08);
+            background: rgba(59, 130, 246, 0.15) !important;
             padding: 12px 8px;
             text-align: left;
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-            color: var(--dark-blue);
+            color: #94a3b8 !important;
             font-size: 0.85rem;
+            border-bottom: 2px solid var(--primary-blue);
         }
 
         .transactions-table td {
             padding: 12px 8px;
-            border-bottom: 1px solid var(--medium-gray);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 0.85rem;
         }
 
         .transaction-credit {
-            background: rgba(39, 174, 96, 0.05);
+            background: rgba(16, 185, 129, 0.08) !important;
+        }
+
+        .transaction-credit td {
+            color: #10b981 !important;
+            font-weight: 600;
         }
 
         .transaction-debit {
-            background: rgba(231, 76, 60, 0.05);
+            background: rgba(239, 68, 68, 0.08) !important;
+        }
+
+        .transaction-debit td {
+            color: #f87171 !important;
+            font-weight: 600;
         }
 
         .view-btn {
@@ -1700,7 +1712,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                     </thead>
                     <tbody>
                         {% for transaction in transactions %}
-                        <tr class="{% if transaction.description == 'Credit' %}transaction-credit{% else %}transaction-debit{% endif %}">
+                        <tr class="{% if transaction.tx_type == 'CREDIT' %}transaction-credit{% else %}transaction-debit{% endif %}">
                             <td>{{ forloop.counter }}</td>
                             <td>{{ user_profile.currency }}{{ transaction.amount }}</td>
                             <td>{{ user_profile.currency }}{{ transaction.balance_after }}</td>
