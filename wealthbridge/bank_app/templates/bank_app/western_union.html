@@ -528,16 +528,49 @@
         .payment-label {
             color: #9ca3af !important;
         }
+
+        /* FIX: Input fields visibility on focus */
         .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: black !important;
+            background: #1a1a1a !important;          /* dark background */
+            color: #ffffff !important;                /* white text */
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            transition: all 0.2s ease;
+        }
+        .form-control::placeholder {
+            color: #9ca3af !important;               /* visible placeholder */
+            opacity: 1;
         }
         .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
+            background: #2a2a2a !important;          /* slightly lighter on focus */
             color: #ffffff !important;
-            box-shadow: none !important;
+            border-color: #ffffff !important;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15) !important;
+            outline: none !important;
+        }
+        /* Ensure all input types are covered */
+        input.form-control, textarea.form-control, select.form-control {
+            background: #1a1a1a !important;
+            color: #ffffff !important;
+        }
+        input.form-control:focus, textarea.form-control:focus, select.form-control:focus {
+            background: #2a2a2a !important;
+            color: #ffffff !important;
+        }
+        /* Fix for the card container background */
+        .card-container {
+            background: rgba(10, 10, 10, 0.85) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        .balance-display {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+            color: #ffffff !important;
+        }
+        .balance-amount {
+            color: #4ade80 !important; /* green */
+        }
+        .form-label {
+            color: #e5e7eb !important;
         }
         .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
             background: #ffffff !important;
@@ -587,6 +620,24 @@
         .login-form-container {
             background: #09090b !important;
             color: #ffffff !important;
+        }
+        /* Fix sidebar text color */
+        .sidebar, .sidebar-header, .user-details, .sidebar ul li a {
+            color: #ffffff !important;
+        }
+        .sidebar ul li a:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+        .western-union-info {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-left-color: #ffffff !important;
+            color: #ffffff !important;
+        }
+        .info-title {
+            color: #ffffff !important;
+        }
+        .info-text {
+            color: #d1d5db !important;
         }
 
 </style>
