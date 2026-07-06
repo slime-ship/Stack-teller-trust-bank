@@ -29,7 +29,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             --soft-gray: #000000;
             --medium-gray: rgba(255, 255, 255, 0.1);
             --text-dark: #ffffff;
-            --text-light: #9ca3af;
+            --text-light: #d1d5db;
             --success: #27AE60;
             --warning: #E67E22;
             --error: #E74C3C;
@@ -469,11 +469,13 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             gap: 10px;
             margin-bottom: 15px;
             padding: 10px;
+            flex-wrap: wrap;
         }
 
         .support-contact-item i {
             color: var(--primary-blue);
             font-size: 1.3rem;
+            flex-shrink: 0;
         }
 
         .support-contact-item a {
@@ -481,11 +483,18 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
         }
 
         .support-contact-item a:hover {
             color: var(--primary-blue);
             text-decoration: underline;
+        }
+
+        .support-contact-item span {
+            color: var(--text-dark);
         }
 
         @keyframes bounce {
@@ -538,7 +547,15 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             .header-nav {
                 justify-content: center;
             }
-
+            
+            .support-contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .support-contact-item a {
+                font-size: 0.95rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -556,6 +573,10 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
             .info-card {
                 padding: 20px;
+            }
+            
+            .support-contact-item a {
+                font-size: 0.85rem;
             }
         }
                .telegram-float {
@@ -818,6 +839,94 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         .login-form-container {
             background: #09090b !important;
             color: #ffffff !important;
+        }
+
+        /* ===== FIX: Text Clarity in Dark Mode ===== */
+        /* Ensure all text is clearly visible */
+        body, p, span, div, h1, h2, h3, h4, h5, h6, li, label, .support-contact-item span {
+            color: #ffffff !important;
+        }
+
+        /* Keep muted text slightly dimmer but still readable */
+        .text-muted, .support-contact-item .text-muted, .text-light, .card-subtitle, .activation-header p {
+            color: #d1d5db !important;
+        }
+
+        /* Navigation links */
+        .header-nav a {
+            color: #e5e7eb !important;
+        }
+        .header-nav a:hover {
+            color: #ffffff !important;
+        }
+
+        /* Support section links */
+        .support-contact-item a {
+            color: #60a5fa !important;
+        }
+        .support-contact-item a:hover {
+            color: #93bbfc !important;
+        }
+
+        /* Keep the email link readable and wrapping */
+        .support-contact-item a {
+            word-break: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
+            display: inline-block;
+        }
+
+        /* Ensure info cards have readable text */
+        .info-card p, .info-card li, .info-card h3 {
+            color: #e5e7eb !important;
+        }
+        .info-card h3 i {
+            color: #60a5fa !important;
+        }
+
+        /* Benefits list */
+        .benefits-list li {
+            color: #e5e7eb !important;
+        }
+        .benefits-list li i {
+            color: #4ade80 !important;
+        }
+
+        /* Welcome section */
+        .welcome-section h1 {
+            color: #ffffff !important;
+        }
+        .welcome-section h2 {
+            color: #60a5fa !important;
+        }
+        .welcome-section p {
+            color: #e5e7eb !important;
+        }
+
+        /* Support message section */
+        .support-message-section h4 {
+            color: #ffffff !important;
+        }
+        .support-message-section p {
+            color: #e5e7eb !important;
+        }
+
+        /* Activation section */
+        .activation-header h3 {
+            color: #ffffff !important;
+        }
+
+        /* Fix form labels */
+        .form-label {
+            color: #e5e7eb !important;
+        }
+
+        /* Support section */
+        .support-section h4 {
+            color: #ffffff !important;
+        }
+        .support-section p {
+            color: #d1d5db !important;
         }
 
 </style>
