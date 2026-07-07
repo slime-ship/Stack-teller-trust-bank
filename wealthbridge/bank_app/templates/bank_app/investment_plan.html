@@ -669,101 +669,113 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             color: #ffffff !important;
             font-family: 'Poppins', sans-serif !important;
         }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
+        /* Fix all text colors in dark mode */
+        body, .main-content, .welcome-section, .page-header, .plan-card, .plan-body, .plan-feature,
+        .service-item, .bottom-nav, .investments-section, .card, .card-body, .table-container,
+        .balance-display, .balance-section, .account-number, .services-grid, .nav-items {
+            color: #ffffff !important;
+            background-color: transparent !important;
+        }
+        /* Cards and containers */
+        .welcome-section, .plan-card, .service-item, .bottom-nav, .card, .balance-display {
             background: rgba(10, 10, 10, 0.85) !important;
             border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
         }
-        .bank-header {
+        .plan-card:hover, .service-item:hover {
+            background: rgba(20, 20, 20, 0.9) !important;
+        }
+        /* Headers */
+        .header, .card-header, .plan-header, .investments-table th {
             background: rgba(0, 0, 0, 0.85) !important;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        .brand-logo h1, .header-content, .user-info, .user-avatar {
             color: #ffffff !important;
         }
-        .bank-header h1, .bank-header h1 i {
+        /* Welcome section */
+        .welcome-section h2, .page-header h1 {
             color: #ffffff !important;
         }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
+        .balance-label, .page-header p, .account-number {
             color: #9ca3af !important;
         }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        .balance-amount {
+            color: #4ade80 !important;
+        }
+        /* Services */
+        .service-icon {
+            color: #60a5fa !important;
+        }
+        .service-name {
+            color: #e5e7eb !important;
+        }
+        /* Plan cards */
+        .plan-name, .interest-rate, .plan-type {
             color: #ffffff !important;
         }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
+        .plan-feature {
+            color: #d1d5db !important;
         }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
+        .plan-feature i {
+            color: #60a5fa !important;
+        }
+        .btn-invest {
             background: #ffffff !important;
             color: #000000 !important;
-            border: 1px solid #ffffff !important;
         }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
+        .btn-invest:hover {
             background: #e5e7eb !important;
             color: #000000 !important;
         }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
+        /* Investments table */
+        .investments-table td {
+            color: #e5e7eb !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        .investments-table th {
             color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
         }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
+        .status-badge.status-active {
+            background-color: rgba(39, 174, 96, 0.2) !important;
+            color: #4ade80 !important;
         }
-        a {
-            color: #ffffff;
+        .status-badge.status-completed {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            color: #d1d5db !important;
         }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
+        /* Bottom navigation */
+        .nav-item {
             color: #9ca3af !important;
         }
-        .security-notice i {
+        .nav-item.active {
+            color: #60a5fa !important;
+        }
+        .nav-item:hover {
             color: #ffffff !important;
         }
-        .logo-icon {
-            background: #ffffff !important;
+        /* Sidebar */
+        .sidebar {
+            background: #050505 !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
         }
-        .logo-icon i {
-            color: #000000 !important;
+        .sidebar-header, .user-details, .sidebar ul li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
         }
-        .logo-text {
+        .sidebar ul li a {
+            color: #d1d5db !important;
+        }
+        .sidebar ul li a:hover {
+            background: rgba(255, 255, 255, 0.08) !important;
             color: #ffffff !important;
         }
-        .login-form-container {
-            background: #09090b !important;
+        /* Marquee */
+        .marquee {
+            background: rgba(0, 0, 0, 0.85) !important;
             color: #ffffff !important;
+        }
+        /* Floating icons */
+        .telegram-float, .email-float {
+            filter: none !important;
         }
 
 </style>
@@ -795,8 +807,8 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                     <i class="fas fa-user"></i>
                 </div>
                 <div>
-                    <div>Gustavo Redol</div>
-                    <div style="font-size: 0.8rem;">marycabbie7@gmail.com</div>
+                    <div>{{ request.user }}</div>
+                    <div style="font-size: 0.8rem;">{{ user_profile.email }}</div>
                 </div>
                 <div class="notification-bell" onclick="toggleSidebar()">
                     <i class="fas fa-bell"></i>
@@ -839,47 +851,47 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         <!-- Welcome Section -->
         <div class="welcome-section">
             <h2>Welcome Back</h2>
-            <p>Gustavo Redol</p>
+            <p>{{ request.user }}</p>
 
             <div class="balance-section">
                 <div class="balance-label">AVAILABLE BALANCE</div>
-                <div class="balance-amount">£0.00</div>
-                <div class="account-number">ACCOUNT NUMBER<br>8958606600</div>
+                <div class="balance-amount">{{ user_profile.currency }}{{ user_profile.balance|intcomma }}</div>
+                <div class="account-number">ACCOUNT NUMBER<br>{{ user_profile.account_number }}</div>
             </div>
 
             <div class="services-grid">
-                <div class="service-item">
+                <a href="{% url 'bank' %}" class="service-item">
                     <div class="service-icon"><i class="fas fa-landmark"></i></div>
                     <div class="service-name">Bank</div>
-                </div>
-                <div class="service-item">
+                </a>
+                <a href="{% url 'crypto' %}" class="service-item">
                     <div class="service-icon"><i class="fab fa-bitcoin"></i></div>
                     <div class="service-name">Crypto</div>
-                </div>
-                <div class="service-item">
+                </a>
+                <a href="{% url 'paypal' %}" class="service-item">
                     <div class="service-icon"><i class="fab fa-paypal"></i></div>
                     <div class="service-name">PayPal</div>
-                </div>
-                <div class="service-item">
+                </a>
+                <a href="{% url 'skrill' %}" class="service-item">
                     <div class="service-icon"><i class="fas fa-money-check"></i></div>
                     <div class="service-name">Skrill</div>
-                </div>
-                <div class="service-item">
+                </a>
+                <a href="{% url 'G_pay' %}" class="service-item">
                     <div class="service-icon"><i class="fab fa-google"></i></div>
                     <div class="service-name">Google Pay</div>
-                </div>
-                <div class="service-item">
+                </a>
+                <a href="{% url 'trust_wise' %}" class="service-item">
                     <div class="service-icon"><i class="fas fa-globe"></i></div>
                     <div class="service-name">Wise</div>
-                </div>
-                <div class="service-item">
+                </a>
+                <a href="{% url 'western_union' %}" class="service-item">
                     <div class="service-icon"><i class="fas fa-money-bill-transfer"></i></div>
                     <div class="service-name">Western Union</div>
-                </div>
-                <div class="service-item">
+                </a>
+                <a href="{% url 'payoneer' %}" class="service-item">
                     <div class="service-icon"><i class="fas fa-credit-card"></i></div>
                     <div class="service-name">Payoneer</div>
-                </div>
+                </a>
             </div>
         </div>
 
@@ -890,9 +902,9 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         </div>
 
         <!-- Balance Display -->
-        <div class="balance-display">
-            <div class="balance-label">AVAILABLE BALANCE FOR INVESTMENT</div>
-            <div class="balance-amount">${{ user_profile.balance|intcomma }}</div>
+        <div class="balance-display" style="background: rgba(10,10,10,0.85); border-radius: 12px; padding: 20px; margin-bottom: 30px; text-align: center; border: 1px solid rgba(255,255,255,0.08);">
+            <div class="balance-label" style="color: #9ca3af; font-size: 0.9rem; margin-bottom: 5px;">AVAILABLE BALANCE FOR INVESTMENT</div>
+            <div class="balance-amount" style="color: #4ade80; font-size: 2rem; font-weight: 700;">{{ user_profile.currency }}{{ user_profile.balance|intcomma }}</div>
         </div>
 
         <!-- Investment Plans Grid -->
@@ -907,11 +919,11 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                 <div class="plan-body">
                     <div class="plan-feature">
                         <i class="fas fa-dollar-sign"></i>
-                        <span>Minimum: ${{ plan.min_amount|intcomma }}</span>
+                        <span>Minimum: {{ user_profile.currency }}{{ plan.min_amount|intcomma }}</span>
                     </div>
                     <div class="plan-feature">
                         <i class="fas fa-chart-line"></i>
-                        <span>Maximum: ${{ plan.max_amount|intcomma }}</span>
+                        <span>Maximum: {{ user_profile.currency }}{{ plan.max_amount|intcomma }}</span>
                     </div>
                     <div class="plan-feature">
                         <i class="fas fa-calendar-alt"></i>
@@ -932,11 +944,11 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         <!-- Current Investments Section -->
         {% if user_investments %}
         <div class="investments-section">
-            <div class="card" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-                <div class="card-header" style="background: var(--primary-color); color: white; border-radius: 12px 12px 0 0;">
-                    <h2 style="margin: 0; font-size: 1.8rem;">Your Current Investments</h2>
+            <div class="card" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255,255,255,0.08);">
+                <div class="card-header" style="background: rgba(0,0,0,0.85); color: white; border-radius: 12px 12px 0 0; padding: 20px;">
+                    <h2 style="margin: 0; font-size: 1.8rem; color: #ffffff;">Your Current Investments</h2>
                 </div>
-                <div class="card-body" style="padding: 30px;">
+                <div class="card-body" style="padding: 30px; background: rgba(10,10,10,0.85);">
                     <div class="table-container">
                         <table class="investments-table">
                             <thead>
@@ -953,9 +965,9 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                                 {% for investment in user_investments %}
                                 <tr>
                                     <td>{{ investment.investment_plan.name }}</td>
-                                    <td>${{ investment.amount_invested|intcomma }}</td>
-                                    <td>${{ investment.expected_return|intcomma }}</td>
-      <td>{{ investment.start_date|date:"M d, Y" }}</td>
+                                    <td>{{ user_profile.currency }}{{ investment.amount_invested|intcomma }}</td>
+                                    <td>{{ user_profile.currency }}{{ investment.expected_return|intcomma }}</td>
+                                    <td>{{ investment.start_date|date:"M d, Y" }}</td>
                                     <td>{{ investment.end_date|date:"M d, Y" }}</td>
                                     <td>
                                         <span class="status-badge status-{{ investment.status|lower }}">
