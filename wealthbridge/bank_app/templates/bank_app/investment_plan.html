@@ -6,352 +6,584 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investment Plans - Stack Teller Trust Bank</title>
-<!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-appId : '6a461152c8c6970d5aef3cec',
-};
-
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Begin of Chaport Live Chat code -->
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = {
+                appId : '6a461152c8c6970d5aef3cec',
+            };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <!-- End of Chaport Live Chat code -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* ===== CSS Variables for Theming ===== */
         :root {
-            --primary-color: #004080;
-            --secondary-color: #002b59;
-            --light-bg: #f5f7fa;
-            --white: #ffffff;
-            --text-dark: #333333;
-            --text-muted: #6c757d;
+            /* Light mode (default) */
+            --bg-body: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-header: #ffffff;
+            --bg-sidebar: #1a2332;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+            --shadow: 0 8px 30px rgba(0,0,0,0.06);
+            --shadow-hover: 0 12px 40px rgba(0,0,0,0.12);
+            --accent: #2b6cb0;
+            --accent-hover: #2c5282;
+            --accent-light: #ebf4ff;
+            --success: #38a169;
+            --warning: #d69e2e;
+            --gradient-start: #2b6cb0;
+            --gradient-end: #2c5282;
+            --card-border: 1px solid rgba(0,0,0,0.04);
+            --input-bg: #f7fafc;
+            --input-border: #e2e8f0;
+            --input-focus: #2b6cb0;
+            --badge-active-bg: #c6f6d5;
+            --badge-active-text: #22543d;
+            --badge-completed-bg: #e2e8f0;
+            --badge-completed-text: #2d3748;
+            --marquee-bg: #2d3748;
+            --marquee-text: #ffffff;
+            --telegram-bg: #0088cc;
+            --email-bg: #2b6cb0;
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --bg-body: #0d1117;
+            --bg-card: #161b22;
+            --bg-header: #0d1117;
+            --bg-sidebar: #0d1117;
+            --text-primary: #f0f6fc;
+            --text-secondary: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+            --shadow: 0 8px 30px rgba(0,0,0,0.4);
+            --shadow-hover: 0 12px 40px rgba(0,0,0,0.6);
+            --accent: #58a6ff;
+            --accent-hover: #79c0ff;
+            --accent-light: #1f2937;
+            --success: #3fb950;
+            --warning: #d29922;
+            --gradient-start: #58a6ff;
+            --gradient-end: #1f6feb;
+            --card-border: 1px solid rgba(255,255,255,0.06);
+            --input-bg: #0d1117;
+            --input-border: #30363d;
+            --input-focus: #58a6ff;
+            --badge-active-bg: #1b3a2b;
+            --badge-active-text: #7ee787;
+            --badge-completed-bg: #21262d;
+            --badge-completed-text: #8b949e;
+            --marquee-bg: #161b22;
+            --marquee-text: #f0f6fc;
+            --telegram-bg: #0088cc;
+            --email-bg: #58a6ff;
+        }
+
+        /* ===== Reset & Base ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-bg);
-            margin: 0;
-            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
         }
 
-        /* Header Styles */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== Header ===== */
         .header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .header-content {
+            background-color: var(--bg-header);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .brand-logo {
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .brand-logo h1 {
-            font-size: 1.5rem;
-            margin: 0;
             font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--text-primary);
         }
 
-        .user-info {
+        .brand-logo i {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+
+        .header-actions {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 18px;
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            padding: 6px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .theme-toggle i {
+            font-size: 1rem;
+        }
+
+        .sidebar-toggle {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--accent-light);
         }
 
         .user-avatar {
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.2);
+            background: var(--accent);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
         }
 
-        /* Sidebar Styles */
+        /* ===== Sidebar ===== */
         .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: var(--secondary-color);
             position: fixed;
-            right: -250px;
             top: 0;
-            transition: right 0.4s ease;
-            color: #fff;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+            right: -280px;
+            width: 280px;
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            border-left: 1px solid var(--border-color);
+            transition: right 0.3s ease, background-color 0.3s;
             z-index: 1000;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            color: #f0f6fc;
         }
 
         .sidebar.open {
             right: 0;
         }
 
-        .sidebar-header, .user-details, .sidebar ul li {
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--primary-color);
+        .sidebar-header {
+            padding: 0 24px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
             margin: 0;
         }
 
-        .sidebar ul li a {
+        .sidebar-user {
+            padding: 16px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.9rem;
+        }
+
+        .sidebar-user strong {
             color: white;
-            text-decoration: none;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 0;
+            flex: 1;
+        }
+
+        .sidebar-nav li {
+            padding: 0;
+            margin: 4px 0;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: rgba(255,255,255,0.7);
+            transition: all 0.2s;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(255,255,255,0.06);
+            color: white;
+        }
+
+        .sidebar-nav a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.5);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+            display: none;
+        }
+
+        .sidebar-overlay.active {
             display: block;
         }
 
-        .sidebar ul li a:hover {
-            background-color: var(--primary-color);
-        }
-
-        /* Main Content */
+        /* ===== Main Content ===== */
         .main-content {
-            padding: 30px 20px;
-            max-width: 1200px;
+            flex: 1;
+            padding: 30px 24px;
+            max-width: 1280px;
             margin: 0 auto;
             width: 100%;
         }
 
-        /* Welcome Section */
+        /* ===== Welcome Section ===== */
         .welcome-section {
-            background-color: var(--white);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 28px 30px;
+            margin-bottom: 30px;
+            border: var(--card-border);
+            box-shadow: var(--shadow);
+            transition: background 0.3s, box-shadow 0.3s;
         }
 
         .welcome-section h2 {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .balance-section {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .balance-label {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-
-        .balance-amount {
-            font-size: 2.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--text-dark);
+            color: var(--text-primary);
+            margin-bottom: 4px;
         }
 
-        .account-number {
+        .welcome-section .sub {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .balance-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .balance-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .balance-item .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 15px;
         }
 
-        /* Services Grid */
+        .balance-item .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .balance-item .account-num {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== Services Grid ===== */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin: 25px 0;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 14px;
+            margin: 24px 0 8px;
         }
 
         .service-item {
-            background-color: var(--white);
-            border-radius: 8px;
-            padding: 15px;
+            background: var(--bg-card);
+            border: var(--card-border);
+            border-radius: 12px;
+            padding: 14px 6px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s;
+            transition: all 0.2s;
+            box-shadow: var(--shadow);
             cursor: pointer;
+            color: var(--text-secondary);
         }
 
         .service-item:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+            color: var(--text-primary);
         }
 
-        .service-icon {
+        .service-item .service-icon {
             font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 8px;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 6px;
         }
 
-        .service-name {
-            font-size: 0.85rem;
-            color: var(--text-dark);
+        .service-item .service-name {
+            font-size: 0.7rem;
             font-weight: 500;
         }
 
-        /* Page Header */
+        /* ===== Page Header ===== */
         .page-header {
-            margin-bottom: 30px;
+            margin: 36px 0 24px;
         }
 
         .page-header h1 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
         .page-header p {
-            color: var(--text-muted);
-            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
         }
 
-        /* Plans Grid */
+        /* ===== Plans Grid ===== */
         .plans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
             margin-bottom: 40px;
         }
 
         .plan-card {
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: var(--card-border);
+            box-shadow: var(--shadow);
             overflow: hidden;
-            transition: transform 0.3s ease;
-            border: 1px solid #e9ecef;
+            transition: all 0.3s;
         }
 
         .plan-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
         }
 
         .plan-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 24px 20px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
-            padding: 25px;
             text-align: center;
         }
 
-        .plan-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .plan-header .plan-name {
+            font-size: 1.3rem;
+            font-weight: 700;
         }
 
-        .interest-rate {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin: 15px 0;
+        .plan-header .interest-rate {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin: 6px 0;
+        }
+
+        .plan-header .plan-type {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .plan-body {
-            padding: 25px;
+            padding: 20px;
         }
 
         .plan-feature {
             display: flex;
             align-items: center;
-            margin-bottom: 12px;
-            color: #495057;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
         .plan-feature i {
-            color: var(--primary-color);
-            margin-right: 10px;
             width: 20px;
-        }
-
-        .btn-invest {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 20px;
-            text-decoration: none;
-            display: block;
+            color: var(--accent);
             text-align: center;
         }
 
-        .btn-invest:hover {
-            background-color: var(--secondary-color);
+        .btn-invest {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
             color: white;
-            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.2s;
+            margin-top: 16px;
+            font-size: 0.95rem;
         }
 
-        /* Investments Section */
-        .investments-section {
-            margin-top: 50px;
+        .btn-invest:hover {
+            background: var(--accent-hover);
+            color: white;
         }
 
-        .table-container {
+        /* ===== Current Investments ===== */
+        .investments-section .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: var(--card-border);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .investments-section .card-header {
+            padding: 18px 24px;
+            background: var(--bg-header);
+            border-bottom: var(--card-border);
+        }
+
+        .investments-section .card-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .investments-section .card-body {
+            padding: 20px 24px;
             overflow-x: auto;
         }
 
         .investments-table {
             width: 100%;
             border-collapse: collapse;
+            font-size: 0.9rem;
         }
 
         .investments-table th {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px;
             text-align: left;
-            font-weight: bold;
+            padding: 12px 8px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.3px;
         }
 
         .investments-table td {
-            padding: 15px;
-            border-bottom: 1px solid #e9ecef;
+            padding: 12px 8px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .investments-table tr:last-child td {
+            border-bottom: none;
         }
 
         .status-badge {
-            padding: 6px 12px;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
         .status-active {
-            background-color: #d4edda;
-            color: #155724;
+            background: var(--badge-active-bg);
+            color: var(--badge-active-text);
         }
 
         .status-completed {
-            background-color: #e2e3e5;
-            color: #383d41;
+            background: var(--badge-completed-bg);
+            color: var(--badge-completed-text);
         }
 
-        /* Bottom Navigation */
+        /* ===== Bottom Navigation ===== */
         .bottom-nav {
-            background-color: var(--white);
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-            margin-top: 20px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 14px 20px;
+            margin-top: 30px;
+            border: var(--card-border);
+            box-shadow: var(--shadow);
         }
 
         .nav-items {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .nav-item {
@@ -359,555 +591,262 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             flex-direction: column;
             align-items: center;
             color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
+            transition: color 0.2s;
+            padding: 6px 12px;
+            border-radius: 8px;
         }
 
         .nav-item.active {
-            color: var(--primary-color);
+            color: var(--accent);
         }
 
-        .nav-icon {
+        .nav-item:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-item .nav-icon {
             font-size: 1.2rem;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
         }
 
-        /* Marquee */
+        .nav-item .nav-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        /* ===== Marquee ===== */
         .marquee {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            font-weight: bold;
-            padding: 10px;
+            background: var(--marquee-bg);
+            color: var(--marquee-text);
+            padding: 8px 0;
             white-space: nowrap;
             overflow: hidden;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .marquee-content {
             display: inline-block;
-            animation: scrollLeft 10s linear infinite;
+            animation: scrollLeft 25s linear infinite;
+            padding-left: 100%;
         }
 
         @keyframes scrollLeft {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(-100%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
-        /* Media Queries */
-        @media (max-width: 1200px) {
-            .main-content {
-                padding: 25px 15px;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .plans-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                padding: 0 15px;
-            }
-
-            .brand-logo h1 {
-                font-size: 1.3rem;
-            }
-
-            .main-content {
-                padding: 20px 10px;
-            }
-
-            .page-header h1 {
-                font-size: 2rem;
-            }
-
-            .page-header p {
-                font-size: 1rem;
-            }
-
-            .balance-amount {
-                font-size: 2rem;
-            }
-
-            .plans-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-items {
-                flex-wrap: wrap;
-            }
-
-            .nav-item {
-                flex: 0 0 25%;
-                margin-bottom: 10px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .header-content {
-                flex-direction: column;
-                gap: 10px;
-                padding: 10px;
-            }
-
-            .user-info {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .welcome-section {
-                padding: 20px 15px;
-            }
-
-            .balance-amount {
-                font-size: 1.8rem;
-            }
-
-            .plan-header {
-                padding: 20px;
-            }
-
-            .plan-body {
-                padding: 20px;
-            }
-
-            .interest-rate {
-                font-size: 2rem;
-            }
-
-            .nav-items {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .nav-item {
-                flex-direction: row;
-                justify-content: center;
-                gap: 10px;
-            }
-
-            .nav-icon {
-                margin-bottom: 0;
-            }
-        }
-                .telegram-float {
+        /* ===== Floating Icons ===== */
+        .telegram-float, .email-float {
             position: fixed;
             left: 20px;
-            bottom: 20px;
             z-index: 1000;
             animation: float 3s ease-in-out infinite;
         }
+        .telegram-float { bottom: 20px; }
+        .email-float { bottom: 80px; }
 
-        .telegram-link {
+        .telegram-link, .email-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
+            width: 54px;
+            height: 54px;
             border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .telegram-tooltip {
-            position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
             color: white;
-            padding: 8px 12px;
+            font-size: 1.3rem;
+        }
+
+        .telegram-link { background: var(--telegram-bg); }
+        .email-link { background: var(--email-bg); }
+
+        .telegram-link:hover, .email-link:hover {
+            transform: scale(1.1);
+        }
+
+        .telegram-tooltip, .email-tooltip {
+            position: absolute;
+            left: 68px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 4px 12px;
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 0.8rem;
             white-space: nowrap;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.2s;
             pointer-events: none;
         }
 
-        .telegram-link:hover .telegram-tooltip {
+        .telegram-link:hover .telegram-tooltip,
+        .email-link:hover .email-tooltip {
             opacity: 1;
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
+        /* ===== Responsive ===== */
         @media (max-width: 768px) {
-            .telegram-float {
-                left: 10px;
-                bottom: 10px;
-            }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
-            }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
-            }
-        }
-         .email-float {
-        position: fixed;
-        left: 20px;
-        bottom: 90px;
-        z-index: 1000;
-        animation: floatEmail 3s ease-in-out infinite;
-    }
-
-    .email-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .email-link:hover {
-        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
-    }
-
-    .email-icon {
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    .email-tooltip {
-        position: absolute;
-        left: 70px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .email-link:hover .email-tooltip {
-        opacity: 1;
-    }
-
-    @keyframes floatEmail {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-8px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .email-float {
-            left: 10px;
-            bottom: 80px;
+            .header { padding: 12px 16px; }
+            .brand-logo { font-size: 1rem; }
+            .brand-logo i { font-size: 1.4rem; }
+            .main-content { padding: 20px 16px; }
+            .welcome-section { padding: 20px; }
+            .balance-item .value { font-size: 1.4rem; }
+            .services-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; }
+            .service-item { padding: 10px 4px; }
+            .service-item .service-icon { font-size: 1.2rem; }
+            .page-header h1 { font-size: 1.6rem; }
+            .plans-grid { grid-template-columns: 1fr; }
+            .investments-section .card-body { padding: 12px; }
+            .investments-table { font-size: 0.75rem; }
+            .telegram-float, .email-float { left: 12px; }
+            .telegram-link, .email-link { width: 46px; height: 46px; font-size: 1.1rem; }
+            .email-float { bottom: 70px; }
         }
 
-        .email-link {
-            width: 50px;
-            height: 50px;
+        @media (max-width: 480px) {
+            .header { flex-wrap: wrap; gap: 8px; }
+            .header-actions { gap: 12px; }
+            .user-avatar { width: 32px; height: 32px; font-size: 0.75rem; }
+            .sidebar { width: 260px; right: -260px; }
+            .services-grid { grid-template-columns: repeat(3, 1fr); }
         }
-
-        .email-icon {
-            font-size: 1.3rem;
-        }
-    }
-
-    
-        /* Sitewide Dark Mode Overrides to match Stack Teller Trust Bank Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        /* Fix all text colors in dark mode */
-        body, .main-content, .welcome-section, .page-header, .plan-card, .plan-body, .plan-feature,
-        .service-item, .bottom-nav, .investments-section, .card, .card-body, .table-container,
-        .balance-display, .balance-section, .account-number, .services-grid, .nav-items {
-            color: #ffffff !important;
-            background-color: transparent !important;
-        }
-        /* Cards and containers */
-        .welcome-section, .plan-card, .service-item, .bottom-nav, .card, .balance-display {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .plan-card:hover, .service-item:hover {
-            background: rgba(20, 20, 20, 0.9) !important;
-        }
-        /* Headers */
-        .header, .card-header, .plan-header, .investments-table th {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .brand-logo h1, .header-content, .user-info, .user-avatar {
-            color: #ffffff !important;
-        }
-        /* Welcome section */
-        .welcome-section h2, .page-header h1 {
-            color: #ffffff !important;
-        }
-        .balance-label, .page-header p, .account-number {
-            color: #9ca3af !important;
-        }
-        .balance-amount {
-            color: #4ade80 !important;
-        }
-        /* Services */
-        .service-icon {
-            color: #60a5fa !important;
-        }
-        .service-name {
-            color: #e5e7eb !important;
-        }
-        /* Plan cards */
-        .plan-name, .interest-rate, .plan-type {
-            color: #ffffff !important;
-        }
-        .plan-feature {
-            color: #d1d5db !important;
-        }
-        .plan-feature i {
-            color: #60a5fa !important;
-        }
-        .btn-invest {
-            background: #ffffff !important;
-            color: #000000 !important;
-        }
-        .btn-invest:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        /* Investments table */
-        .investments-table td {
-            color: #e5e7eb !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .investments-table th {
-            color: #ffffff !important;
-        }
-        .status-badge.status-active {
-            background-color: rgba(39, 174, 96, 0.2) !important;
-            color: #4ade80 !important;
-        }
-        .status-badge.status-completed {
-            background-color: rgba(255, 255, 255, 0.1) !important;
-            color: #d1d5db !important;
-        }
-        /* Bottom navigation */
-        .nav-item {
-            color: #9ca3af !important;
-        }
-        .nav-item.active {
-            color: #60a5fa !important;
-        }
-        .nav-item:hover {
-            color: #ffffff !important;
-        }
-        /* Sidebar */
-        .sidebar {
-            background: #050505 !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header, .user-details, .sidebar ul li {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar ul li a {
-            color: #d1d5db !important;
-        }
-        .sidebar ul li a:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        /* Marquee */
-        .marquee {
-            background: rgba(0, 0, 0, 0.85) !important;
-            color: #ffffff !important;
-        }
-        /* Floating icons */
-        .telegram-float, .email-float {
-            filter: none !important;
-        }
-
-</style>
+    </style>
 </head>
 <body>
-    <!-- Email Floating Icon -->
-<div class="email-float">
-    <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
-        <i class="fas fa-envelope email-icon"></i>
-        <span class="email-tooltip">Contact us via email</span>
-    </a>
-</div>
-<!-- Telegram Floating Icon -->
-    <div class="telegram-float">
-        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
-            <span class="telegram-tooltip">Join our Telegram group</span>
+
+    <!-- Floating Icons -->
+    <div class="email-float">
+        <a href="mailto:support@stacktellertrustbank.com" class="email-link">
+            <i class="fas fa-envelope"></i>
+            <span class="email-tooltip">Email Support</span>
         </a>
     </div>
-    <!-- Header -->
-    <div class="header">
-        <div class="header-content">
-            <div class="brand-logo">
-                <i class="fas fa-university fa-2x"></i>
-                <h1>Stack Teller Trust Bank</h1>
-            </div>
-            <div class="user-info">
-                <div class="user-avatar">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div>
-                    <div>{{ request.user }}</div>
-                    <div style="font-size: 0.8rem;">{{ user_profile.email }}</div>
-                </div>
-                <div class="notification-bell" onclick="toggleSidebar()">
-                    <i class="fas fa-bell"></i>
-                </div>
-                <div class="open-sidebar-btn" onclick="toggleSidebar()">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </div>
-        </div>
+    <div class="telegram-float">
+        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
+            <i class="fab fa-telegram-plane"></i>
+            <span class="telegram-tooltip">Join Telegram</span>
+        </a>
     </div>
 
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
     <!-- Sidebar -->
-    <div id="sidebar" class="sidebar">
+    <div class="sidebar" id="sidebar">
+        <button class="sidebar-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
         <div class="sidebar-header">
             <h2>Account Menu</h2>
-            <button onclick="toggleSidebar()">Close</button>
         </div>
-        <div class="user-details">
-            <p>Username: <strong>{{ request.user }}</strong></p>
-            <p>Email: <strong>{{ user_profile.email }}</strong></p>
+        <div class="sidebar-user">
+            <p><i class="fas fa-user"></i> <strong>{{ request.user }}</strong></p>
+            <p><i class="fas fa-envelope"></i> {{ user_profile.email }}</p>
         </div>
-        <ul>
-            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-            <li><a href="{% url 'investment_plans' %}">Investments</a></li>
-            <li><a href="{% url 'transaction' %}">Transactions</a></li>
-            <li><a href="{% url 'setting' %}">Profile</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
+        <ul class="sidebar-nav">
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="{% url 'investment_plans' %}"><i class="fas fa-chart-line"></i> Investments</a></li>
+            <li><a href="{% url 'transaction' %}"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+            <li><a href="{% url 'setting' %}"><i class="fas fa-user-cog"></i> Profile</a></li>
+            <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
 
-    <!-- Marquee for Stock Market -->
+    <!-- Header -->
+    <header class="header">
+        <div class="brand-logo">
+            <i class="fas fa-university"></i>
+            <span>Stack Teller Trust Bank</span>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i> <span id="themeLabel">Dark</span>
+            </button>
+            <div class="user-avatar" title="{{ request.user }}">
+                {{ request.user|slice:":1"|upper }}
+            </div>
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Marquee -->
     <div class="marquee">
         <div class="marquee-content" id="stockMarquee">
-            Loading stock market data...
+            Loading market data...
         </div>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-        <!-- Welcome Section -->
-        <div class="welcome-section">
-            <h2>Welcome Back</h2>
-            <p>{{ request.user }}</p>
 
-            <div class="balance-section">
-                <div class="balance-label">AVAILABLE BALANCE</div>
-                <div class="balance-amount">{{ user_profile.currency }}{{ user_profile.balance|intcomma }}</div>
-                <div class="account-number">ACCOUNT NUMBER<br>{{ user_profile.account_number }}</div>
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h2>Welcome back, {{ request.user }}</h2>
+            <p class="sub">Manage your investments and grow your wealth</p>
+            <div class="balance-row">
+                <div class="balance-item">
+                    <span class="label">Available Balance</span>
+                    <span class="value">{{ user_profile.currency }}{{ user_profile.balance|intcomma }}</span>
+                </div>
+                <div class="balance-item">
+                    <span class="label">Account Number</span>
+                    <span class="account-num">{{ user_profile.account_number }}</span>
+                </div>
             </div>
 
+            <!-- Quick Services -->
             <div class="services-grid">
                 <a href="{% url 'bank' %}" class="service-item">
-                    <div class="service-icon"><i class="fas fa-landmark"></i></div>
-                    <div class="service-name">Bank</div>
+                    <span class="service-icon"><i class="fas fa-landmark"></i></span>
+                    <span class="service-name">Bank</span>
                 </a>
                 <a href="{% url 'crypto' %}" class="service-item">
-                    <div class="service-icon"><i class="fab fa-bitcoin"></i></div>
-                    <div class="service-name">Crypto</div>
+                    <span class="service-icon"><i class="fab fa-bitcoin"></i></span>
+                    <span class="service-name">Crypto</span>
                 </a>
                 <a href="{% url 'paypal' %}" class="service-item">
-                    <div class="service-icon"><i class="fab fa-paypal"></i></div>
-                    <div class="service-name">PayPal</div>
+                    <span class="service-icon"><i class="fab fa-paypal"></i></span>
+                    <span class="service-name">PayPal</span>
                 </a>
                 <a href="{% url 'skrill' %}" class="service-item">
-                    <div class="service-icon"><i class="fas fa-money-check"></i></div>
-                    <div class="service-name">Skrill</div>
+                    <span class="service-icon"><i class="fas fa-money-check"></i></span>
+                    <span class="service-name">Skrill</span>
                 </a>
                 <a href="{% url 'G_pay' %}" class="service-item">
-                    <div class="service-icon"><i class="fab fa-google"></i></div>
-                    <div class="service-name">Google Pay</div>
+                    <span class="service-icon"><i class="fab fa-google"></i></span>
+                    <span class="service-name">Google Pay</span>
                 </a>
                 <a href="{% url 'trust_wise' %}" class="service-item">
-                    <div class="service-icon"><i class="fas fa-globe"></i></div>
-                    <div class="service-name">Wise</div>
+                    <span class="service-icon"><i class="fas fa-globe"></i></span>
+                    <span class="service-name">Wise</span>
                 </a>
                 <a href="{% url 'western_union' %}" class="service-item">
-                    <div class="service-icon"><i class="fas fa-money-bill-transfer"></i></div>
-                    <div class="service-name">Western Union</div>
+                    <span class="service-icon"><i class="fas fa-money-bill-transfer"></i></span>
+                    <span class="service-name">Western Union</span>
                 </a>
                 <a href="{% url 'payoneer' %}" class="service-item">
-                    <div class="service-icon"><i class="fas fa-credit-card"></i></div>
-                    <div class="service-name">Payoneer</div>
+                    <span class="service-icon"><i class="fas fa-credit-card"></i></span>
+                    <span class="service-name">Payoneer</span>
                 </a>
             </div>
-        </div>
+        </section>
 
         <!-- Page Header -->
         <div class="page-header">
             <h1>Investment Plans</h1>
-            <p>Grow your wealth with our carefully crafted investment plans</p>
+            <p>Choose a plan that suits your financial goals</p>
         </div>
 
-        <!-- Balance Display -->
-        <div class="balance-display" style="background: rgba(10,10,10,0.85); border-radius: 12px; padding: 20px; margin-bottom: 30px; text-align: center; border: 1px solid rgba(255,255,255,0.08);">
-            <div class="balance-label" style="color: #9ca3af; font-size: 0.9rem; margin-bottom: 5px;">AVAILABLE BALANCE FOR INVESTMENT</div>
-            <div class="balance-amount" style="color: #4ade80; font-size: 2rem; font-weight: 700;">{{ user_profile.currency }}{{ user_profile.balance|intcomma }}</div>
-        </div>
-
-        <!-- Investment Plans Grid -->
+        <!-- Plans Grid -->
         <div class="plans-grid">
             {% for plan in plans %}
             <div class="plan-card">
@@ -919,120 +858,168 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                 <div class="plan-body">
                     <div class="plan-feature">
                         <i class="fas fa-dollar-sign"></i>
-                        <span>Minimum: {{ user_profile.currency }}{{ plan.min_amount|intcomma }}</span>
+                        <span>Min: {{ user_profile.currency }}{{ plan.min_amount|intcomma }}</span>
                     </div>
                     <div class="plan-feature">
                         <i class="fas fa-chart-line"></i>
-                        <span>Maximum: {{ user_profile.currency }}{{ plan.max_amount|intcomma }}</span>
+                        <span>Max: {{ user_profile.currency }}{{ plan.max_amount|intcomma }}</span>
                     </div>
                     <div class="plan-feature">
                         <i class="fas fa-calendar-alt"></i>
-                        <span>Duration: {{ plan.duration_days }} days</span>
+                        <span>{{ plan.duration_days }} days</span>
                     </div>
                     <div class="plan-feature">
                         <i class="fas fa-info-circle"></i>
-                        <span>{{ plan.description }}</span>
+                        <span>{{ plan.description|truncatechars:60 }}</span>
                     </div>
-                    <a href="{% url 'create_investment' %}?plan={{ plan.id }}" class="btn-invest">
-                        Invest Now
-                    </a>
+                    <a href="{% url 'create_investment' %}?plan={{ plan.id }}" class="btn-invest">Invest Now</a>
                 </div>
             </div>
+            {% empty %}
+            <p style="color: var(--text-secondary); grid-column: 1 / -1; text-align: center; padding: 40px 0;">No investment plans available at the moment.</p>
             {% endfor %}
         </div>
 
-        <!-- Current Investments Section -->
+        <!-- Current Investments -->
         {% if user_investments %}
-        <div class="investments-section">
-            <div class="card" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255,255,255,0.08);">
-                <div class="card-header" style="background: rgba(0,0,0,0.85); color: white; border-radius: 12px 12px 0 0; padding: 20px;">
-                    <h2 style="margin: 0; font-size: 1.8rem; color: #ffffff;">Your Current Investments</h2>
+        <section class="investments-section">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-clock"></i> Your Current Investments</h2>
                 </div>
-                <div class="card-body" style="padding: 30px; background: rgba(10,10,10,0.85);">
-                    <div class="table-container">
-                        <table class="investments-table">
-                            <thead>
-                                <tr>
-                                    <th>Plan</th>
-                                    <th>Amount Invested</th>
-                                    <th>Expected Return</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for investment in user_investments %}
-                                <tr>
-                                    <td>{{ investment.investment_plan.name }}</td>
-                                    <td>{{ user_profile.currency }}{{ investment.amount_invested|intcomma }}</td>
-                                    <td>{{ user_profile.currency }}{{ investment.expected_return|intcomma }}</td>
-                                    <td>{{ investment.start_date|date:"M d, Y" }}</td>
-                                    <td>{{ investment.end_date|date:"M d, Y" }}</td>
-                                    <td>
-                                        <span class="status-badge status-{{ investment.status|lower }}">
-                                            {{ investment.status }}
-                                        </span>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="card-body">
+                    <table class="investments-table">
+                        <thead>
+                            <tr>
+                                <th>Plan</th>
+                                <th>Amount</th>
+                                <th>Expected Return</th>
+                                <th>Start</th>
+                                <th>End</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for investment in user_investments %}
+                            <tr>
+                                <td>{{ investment.investment_plan.name }}</td>
+                                <td>{{ user_profile.currency }}{{ investment.amount_invested|intcomma }}</td>
+                                <td>{{ user_profile.currency }}{{ investment.expected_return|intcomma }}</td>
+                                <td>{{ investment.start_date|date:"M d, Y" }}</td>
+                                <td>{{ investment.end_date|date:"M d, Y" }}</td>
+                                <td>
+                                    <span class="status-badge status-{{ investment.status|lower }}">
+                                        {{ investment.status }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
+        </section>
         {% endif %}
 
         <!-- Bottom Navigation -->
-        <div class="bottom-nav">
+        <nav class="bottom-nav">
             <div class="nav-items">
                 <a href="{% url 'dashboard' %}" class="nav-item">
                     <i class="fas fa-home nav-icon"></i>
-                    <span>Home</span>
+                    <span class="nav-label">Home</span>
                 </a>
                 <a href="{% url 'investment_plans' %}" class="nav-item active">
                     <i class="fas fa-chart-line nav-icon"></i>
-                    <span>Invest</span>
+                    <span class="nav-label">Invest</span>
                 </a>
                 <a href="{% url 'bank' %}" class="nav-item">
                     <i class="fas fa-exchange-alt nav-icon"></i>
-                    <span>Transfer</span>
+                    <span class="nav-label">Transfer</span>
                 </a>
                 <a href="{% url 'setting' %}" class="nav-item">
                     <i class="fas fa-user nav-icon"></i>
-                    <span>Profile</span>
+                    <span class="nav-label">Profile</span>
                 </a>
             </div>
-        </div>
+        </nav>
+
     </div>
 
     <script>
+        // ===== Sidebar Toggle =====
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
             sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
         }
 
-        // Mock API Data for stocks
+        // Close sidebar on link click
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) toggleSidebar();
+            });
+        });
+
+        // Close sidebar on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar.classList.contains('open')) toggleSidebar();
+            }
+        });
+
+        // ===== Theme Toggle =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeLabel = document.getElementById('themeLabel');
+        let currentTheme = localStorage.getItem('theme') || 'dark'; // default dark
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            const icon = themeToggle.querySelector('i');
+            if (theme === 'dark') {
+                icon.className = 'fas fa-moon';
+                themeLabel.textContent = 'Dark';
+            } else {
+                icon.className = 'fas fa-sun';
+                themeLabel.textContent = 'Light';
+            }
+            currentTheme = theme;
+        }
+
+        themeToggle.addEventListener('click', () => {
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        // Apply saved theme
+        setTheme(currentTheme);
+
+        // ===== Stock Marquee =====
         const stockData = [
-            { symbol: "AAPL", price: 178.23 },
-            { symbol: "GOOGL", price: 123.45 },
-            { symbol: "AMZN", price: 99.12 },
-            { symbol: "TSLA", price: 246.78 }
+            { symbol: "AAPL", price: 178.23, change: "+1.2%" },
+            { symbol: "GOOGL", price: 123.45, change: "+0.8%" },
+            { symbol: "AMZN", price: 99.12, change: "-0.3%" },
+            { symbol: "TSLA", price: 246.78, change: "+2.1%" },
+            { symbol: "MSFT", price: 335.21, change: "+1.5%" },
+            { symbol: "META", price: 312.65, change: "+0.9%" }
         ];
 
-        // Update stock marquee dynamically
-        function updateStockMarquee() {
-            const marquee = document.getElementById("stockMarquee");
-            const stockText = stockData.map(stock => `${stock.symbol}: $${stock.price.toFixed(2)}`).join(" | ");
-            marquee.innerHTML = stockText;
+        function updateMarquee() {
+            const el = document.getElementById('stockMarquee');
+            if (!el) return;
+            const text = stockData.map(s =>
+                `${s.symbol}: $${s.price.toFixed(2)} ${s.change}`
+            ).join(' &nbsp;|&nbsp; ');
+            el.innerHTML = text;
         }
 
-        // Call functions after the DOM is loaded
-        document.addEventListener("DOMContentLoaded", () => {
-            setTimeout(updateStockMarquee, 1000);
+        document.addEventListener('DOMContentLoaded', () => {
+            updateMarquee();
+            // Refresh every 30 seconds
+            setInterval(updateMarquee, 30000);
         });
     </script>
-<script src="{% static 'js/site_controls.js' %}"></script>
+    <script src="{% static 'js/site_controls.js' %}"></script>
 </body>
-</html>
+    </html>
