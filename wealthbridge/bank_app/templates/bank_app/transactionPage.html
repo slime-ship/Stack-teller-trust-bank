@@ -1,777 +1,869 @@
- {% load humanize %}
+{% load humanize %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - Stack Teller Trust Bank</title>
-<!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-appId : '6a461152c8c6970d5aef3cec',
-};
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Dashboard - Stack Teller Trust Bank</title>
+    <!-- Begin of Chaport Live Chat code -->
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = {
+                appId : '6a461152c8c6970d5aef3cec',
+            };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <!-- End of Chaport Live Chat code -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --bg-body: #0b0f15;
+            --bg-card: #141a24;
+            --bg-header: #0f141c;
+            --bg-sidebar: #0b0f15;
+            --text-primary: #f0f4f8;
+            --text-secondary: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-color: #2a313c;
+            --shadow: 0 8px 30px rgba(0,0,0,0.6);
+            --shadow-hover: 0 12px 40px rgba(0,0,0,0.8);
+            --accent: #f0b429;
+            --accent-hover: #d49e20;
+            --accent-light: #2a313c;
+            --success: #3fb950;
+            --warning: #d29922;
+            --error: #f85149;
+            --card-border: 1px solid #2a313c;
+            --input-bg: #1a212c;
+            --input-border: #2a313c;
+            --input-focus: #f0b429;
+            --placeholder-color: #6e7a8a;
+            --btn-primary-bg: #f0b429;
+            --btn-primary-text: #0b0f15;
+            --btn-primary-hover: #d49e20;
+            --badge-active-bg: #1b3a2b;
+            --badge-active-text: #7ee787;
+            --badge-completed-bg: #21262d;
+            --badge-completed-text: #8b949e;
+        }
 
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->  <meta name="description" content="Dashboard for managing account and transactions.">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
-  <style>
-    /* Base styles */
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f7fa;
-      height: 100%;
-      overflow-x: hidden;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Header */
-    .bank-header {
-      background-color: #003366;
-      color: white;
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .bank-header h1 {
-      font-size: 1.8rem;
-      margin: 0;
-      padding-left: 20px;
-    }
-    .notification-bell, .open-sidebar-btn {
-      cursor: pointer;
-      color: white;
-      font-size: 1.5rem;
-    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
 
-    /* Sidebar */
-    .sidebar {
-      width: 250px;
-      height: 100vh;
-      background-color: #002244;
-      position: fixed;
-      right: -250px;
-      top: 0;
-      transition: right 0.4s ease;
-      color: #fff;
-      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-    }
-    .sidebar.open {
-      right: 0;
-    }
-    .sidebar-header, .user-details, .sidebar ul li {
-      padding: 15px 20px;
-      border-bottom: 1px solid #004080;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .sidebar ul li a {
-      color: white;
-      text-decoration: none;
-      display: block;
-    }
-    .sidebar ul li a:hover {
-      background-color: #003366;
-    }
+        /* ===== Header ===== */
+        .bank-header {
+            background-color: var(--bg-header);
+            border-bottom: var(--card-border);
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    /* Main Content */
-    .main-content {
-      padding: 25px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        .bank-header h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    /* Welcome Section */
-    .welcome-section {
-      background-color: white;
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .profile-img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #003366;
-    }
-    .welcome-text h2 {
-      color: #003366;
-      margin-bottom: 5px;
-    }
-    .welcome-text p {
-      color: #6c757d;
-      margin: 0;
-    }
+        .bank-header h1 i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
 
-    /* Balance Cards */
-    .balance-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-bottom: 25px;
-    }
-    .balance-card {
-      background-color: white;
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      animation: fadeIn 1s ease-in-out;
-    }
-    .balance-card h3 {
-      color: #495057;
-      font-size: 1.1rem;
-      margin-bottom: 15px;
-    }
-    .balance-amount {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #28a745;
-    }
-    .refundable-amount {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #6c757d;
-    }
+        .header-actions {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
 
-    /* Quick Actions */
-    .quick-actions {
-      background-color: white;
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    .section-title {
-      color: #003366;
-      margin-bottom: 20px;
-      font-size: 1.5rem;
-    }
-    .action-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 15px;
-    }
-    .action-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 15px;
-      border-radius: 8px;
-      background-color: #f8f9fa;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      color: #495057;
-    }
-    .action-item:hover {
-      background-color: #003366;
-      color: white;
-      transform: translateY(-5px);
-    }
-    .action-icon {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-    }
-    .action-label {
-      font-size: 0.9rem;
-      font-weight: bold;
-      text-align: center;
-    }
+        .notification-bell,
+        .open-sidebar-btn {
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: color 0.2s;
+            padding: 4px 8px;
+            background: none;
+            border: none;
+        }
 
-    /* Recent Transactions */
-    .transactions-section {
-      background-color: white;
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    .table-container {
-      overflow-x: auto;
-    }
-    .transactions-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .transactions-table th {
-      background-color: #003366;
-      color: white;
-      padding: 12px;
-      text-align: left;
-      font-weight: bold;
-    }
-    .transactions-table td {
-      padding: 12px;
-      border-bottom: 1px solid #e9ecef;
-    }
-    .transaction-credit {
-      background-color: #d4edda;
-    }
-    .transaction-debit {
-      background-color: #f8d7da;
-    }
-    .no-transactions {
-      text-align: center;
-      color: #6c757d;
-      padding: 20px;
-    }
+        .notification-bell:hover,
+        .open-sidebar-btn:hover {
+            color: var(--text-primary);
+        }
 
-    /* Bottom Navbar */
-    .bottom-navbar {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #003366;
-      color: white;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-    }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      color: white;
-    }
-    .nav-icon {
-      font-size: 1.2rem;
-      margin-bottom: 5px;
-    }
-    .nav-label {
-      font-size: 0.8rem;
-    }
+        /* ===== Sidebar ===== */
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            position: fixed;
+            right: -280px;
+            top: 0;
+            transition: right 0.3s ease;
+            color: #f0f4f8;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.6);
+            z-index: 1000;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+        }
 
-    /* Marquee */
-    .marquee {
-      background-color: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      font-weight: bold;
-      padding: 10px;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-    .marquee-content {
-      display: inline-block;
-      animation: scrollLeft 10s linear infinite;
-    }
-    @keyframes scrollLeft {
-      from {
-        transform: translateX(100%);
-      }
-      to {
-        transform: translateX(-100%);
-      }
-    }
+        .sidebar.open {
+            right: 0;
+        }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        .sidebar-header {
+            padding: 0 24px 20px;
+            border-bottom: var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .welcome-section {
-        flex-direction: column;
-        text-align: center;
-      }
-      .balance-cards {
-        grid-template-columns: 1fr;
-      }
-      .action-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .main-content {
-        padding: 15px;
-      }
-    }
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+        }
 
-        .telegram-float {
+        .sidebar-header button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .sidebar-header button:hover {
+            color: white;
+        }
+
+        .user-details {
+            padding: 16px 24px;
+            border-bottom: var(--card-border);
+            font-size: 0.9rem;
+        }
+
+        .user-details strong {
+            color: white;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+        }
+
+        .sidebar ul li {
+            padding: 0;
+            margin: 4px 0;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 12px 24px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .sidebar ul li a:hover {
+            background: rgba(255,255,255,0.06);
+            color: white;
+        }
+
+        .sidebar ul li a i {
+            width: 24px;
+            text-align: center;
+            margin-right: 8px;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* ===== Main Content ===== */
+        .main-content {
+            flex: 1;
+            padding: 30px 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ===== Welcome Section ===== */
+        .welcome-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            border: var(--card-border);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: box-shadow 0.3s;
+        }
+
+        .welcome-section:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .profile-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            flex-shrink: 0;
+        }
+
+        .welcome-text h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .welcome-text p {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .welcome-text .account-number {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ===== Balance Cards ===== */
+        .balance-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .balance-card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 22px 24px;
+            border: var(--card-border);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .balance-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .balance-card h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .balance-amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--success);
+        }
+
+        .refundable-amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-muted);
+        }
+
+        .balance-card .card-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* ===== Quick Actions ===== */
+        .quick-actions {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            border: var(--card-border);
+            box-shadow: var(--shadow);
+            transition: box-shadow 0.3s;
+        }
+
+        .quick-actions:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 18px;
+        }
+
+        .section-title i {
+            color: var(--accent);
+            margin-right: 8px;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px;
+        }
+
+        .action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 14px 10px;
+            border-radius: 10px;
+            background: var(--bg-header);
+            transition: all 0.2s;
+            text-decoration: none;
+            color: var(--text-secondary);
+            border: 1px solid transparent;
+        }
+
+        .action-item:hover {
+            background: var(--accent);
+            color: var(--btn-primary-text);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(240,180,41,0.25);
+            border-color: var(--accent);
+        }
+
+        .action-icon {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+            color: var(--accent);
+        }
+
+        .action-item:hover .action-icon {
+            color: var(--btn-primary-text);
+        }
+
+        .action-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* ===== Recent Transactions ===== */
+        .transactions-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            border: var(--card-border);
+            box-shadow: var(--shadow);
+            transition: box-shadow 0.3s;
+        }
+
+        .transactions-section:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .transactions-table th {
+            padding: 12px 14px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-bottom: 1.5px solid var(--border-color);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .transactions-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .transactions-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .transactions-table tr:hover td {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .transaction-credit td {
+            border-left: 3px solid var(--success);
+        }
+
+        .transaction-debit td {
+            border-left: 3px solid var(--error);
+        }
+
+        .no-transactions {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 30px 20px;
+        }
+
+        .no-transactions i {
+            font-size: 2.5rem;
+            color: var(--border-color);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        /* ===== Bottom Navigation ===== */
+        .bottom-navbar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: var(--bg-header);
+            border-top: var(--card-border);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: color 0.2s;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 8px;
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+        }
+
+        .nav-item:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+
+        /* ===== Marquee ===== */
+        .marquee {
+            background: var(--bg-header);
+            color: var(--text-secondary);
+            padding: 8px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-bottom: var(--card-border);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scrollLeft 25s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* ===== Floating Icons ===== */
+        .telegram-float,
+        .email-float {
             position: fixed;
             left: 20px;
-            bottom: 20px;
             z-index: 1000;
             animation: float 3s ease-in-out infinite;
         }
+        .telegram-float { bottom: 20px; }
+        .email-float { bottom: 80px; }
 
-        .telegram-link {
+        .telegram-link,
+        .email-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
+            width: 54px;
+            height: 54px;
             border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transition: transform 0.2s;
+            color: white;
+            font-size: 1.3rem;
             text-decoration: none;
         }
 
-        .telegram-link:hover {
-            background: #0077b5;
+        .telegram-link { background: #0088cc; }
+        .email-link { background: #2b6cb0; }
+
+        .telegram-link:hover,
+        .email-link:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
 
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .telegram-tooltip {
+        .telegram-tooltip,
+        .email-tooltip {
             position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
+            left: 68px;
+            background: rgba(0,0,0,0.85);
             color: white;
-            padding: 8px 12px;
+            padding: 4px 12px;
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 0.8rem;
             white-space: nowrap;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.2s;
             pointer-events: none;
         }
 
-        .telegram-link:hover .telegram-tooltip {
+        .telegram-link:hover .telegram-tooltip,
+        .email-link:hover .email-tooltip {
             opacity: 1;
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
+        /* ===== Responsive ===== */
         @media (max-width: 768px) {
-            .telegram-float {
-                left: 10px;
-                bottom: 10px;
-            }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
-            }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
-            }
-        }
-  .email-float {
-        position: fixed;
-        left: 20px;
-        bottom: 90px;
-        z-index: 1000;
-        animation: floatEmail 3s ease-in-out infinite;
-    }
-
-    .email-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .email-link:hover {
-        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
-    }
-
-    .email-icon {
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    .email-tooltip {
-        position: absolute;
-        left: 70px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .email-link:hover .email-tooltip {
-        opacity: 1;
-    }
-
-    @keyframes floatEmail {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-8px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .email-float {
-            left: 10px;
-            bottom: 80px;
+            .main-content { padding: 20px 16px; }
+            .welcome-section { flex-direction: column; text-align: center; padding: 20px; }
+            .profile-img { width: 60px; height: 60px; }
+            .balance-cards { grid-template-columns: 1fr 1fr; gap: 14px; }
+            .balance-amount, .refundable-amount { font-size: 1.6rem; }
+            .action-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .action-item { padding: 12px 8px; }
+            .action-icon { font-size: 1.2rem; }
+            .action-label { font-size: 0.6rem; }
+            .transactions-table { font-size: 0.8rem; }
+            .transactions-table th, .transactions-table td { padding: 8px 10px; }
+            .sidebar { width: 260px; right: -260px; }
+            .telegram-float, .email-float { left: 12px; }
+            .telegram-link, .email-link { width: 46px; height: 46px; font-size: 1.1rem; }
+            .email-float { bottom: 70px; }
+            .quick-actions, .transactions-section { padding: 18px 16px; }
         }
 
-        .email-link {
-            width: 50px;
-            height: 50px;
+        @media (max-width: 480px) {
+            .bank-header { padding: 12px 16px; }
+            .bank-header h1 { font-size: 1rem; }
+            .header-actions { gap: 10px; }
+            .balance-cards { grid-template-columns: 1fr; gap: 12px; }
+            .balance-amount, .refundable-amount { font-size: 1.4rem; }
+            .action-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .action-item { padding: 10px 6px; }
+            .action-icon { font-size: 1rem; }
+            .action-label { font-size: 0.55rem; }
+            .transactions-table { font-size: 0.7rem; }
+            .transactions-table th, .transactions-table td { padding: 6px 8px; }
+            .welcome-text h2 { font-size: 1rem; }
+            .section-title { font-size: 1rem; }
+            .bottom-navbar .nav-item span { display: none; }
+            .bottom-navbar .nav-item .nav-icon { font-size: 1.4rem; margin-bottom: 0; }
         }
-
-        .email-icon {
-            font-size: 1.3rem;
-        }
-    }
-
-  
-        /* Sitewide Dark Mode Overrides to match Stack Teller Trust Bank Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
-        }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .bank-header h1, .bank-header h1 i {
-            color: #ffffff !important;
-        }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
-            color: #9ca3af !important;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-        }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-        }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
-        }
-
-</style>
+    </style>
 </head>
 <body>
-    <!-- Email Floating Icon -->
-<div class="email-float">
-    <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
-        <i class="fas fa-envelope email-icon"></i>
-        <span class="email-tooltip">Contact us via email</span>
-    </a>
-</div>
-   <!-- Telegram Floating Icon -->
+
+    <!-- Floating Icons -->
+    <div class="email-float">
+        <a href="mailto:support@stacktellertrustbank.com" class="email-link">
+            <i class="fas fa-envelope"></i>
+            <span class="email-tooltip">Email Support</span>
+        </a>
+    </div>
     <div class="telegram-float">
         <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
-            <span class="telegram-tooltip">Join our Telegram group</span>
+            <i class="fab fa-telegram-plane"></i>
+            <span class="telegram-tooltip">Join Telegram</span>
         </a>
     </div>
-  <header class="bank-header">
-    <h1>Stack Teller Trust Bank</h1>
-    <div class="notification-bell" onclick="toggleSidebar()">
-      <i class="fas fa-bell"></i>
-    </div>
-    <div class="open-sidebar-btn" onclick="toggleSidebar()">
-      <i class="fas fa-bars"></i>
-    </div>
-  </header>
 
-  <!-- Sidebar -->
-  <div id="sidebar" class="sidebar">
-    <div class="sidebar-header">
-      <h2>Account Menu</h2>
-      <button onclick="toggleSidebar()">Close</button>
-    </div>
-    <div class="user-details">
-      <p>Username: <strong>{{ request.user }}</strong></p>
-      <p>Email: <strong>{{ user_profile.email }}</strong></p>
-    </div>
-    <ul>
-      <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-      <li><a href="{% url 'setting' %}">Profile</a></li>
-      <li><a href="{% url 'transaction' %}">Transactions</a></li>
-      <li><a href="{% url 'loans' %}">Loans</a></li>
-      <li><a href="{% url 'logout' %}">Logout</a></li>
-    </ul>
-  </div>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-  <!-- Marquee for Stock Market -->
-  <div class="marquee">
-    <div class="marquee-content" id="stockMarquee">
-      Loading stock market data...
-    </div>
-  </div>
-
-  <!-- Main Content -->
-  <div class="main-content">
-
-    <!-- Welcome Section -->
-    <div class="welcome-section">
-      {% if user_profile.profile_pic %}
-        <img src="{{ user_profile.profile_pic.url }}" alt="Profile Picture" class="profile-img">
-      {% else %}
-        <img src="{% static 'images/default.jpg' %}" alt="Default Profile Picture" class="profile-img">
-      {% endif %}
-      <div class="welcome-text">
-        <h2>Welcome Back, {{ user_profile.first_name }}!</h2>
-        <p>Account Number: {{ user_profile.account_number }}</p>
-      </div>
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Account Menu</h2>
+            <button onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="user-details">
+            <p><i class="fas fa-user"></i> <strong>{{ request.user }}</strong></p>
+            <p><i class="fas fa-envelope"></i> {{ user_profile.email }}</p>
+        </div>
+        <ul>
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="{% url 'setting' %}"><i class="fas fa-user-cog"></i> Profile</a></li>
+            <li><a href="{% url 'transaction' %}"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+            <li><a href="{% url 'loans' %}"><i class="fas fa-hand-holding-usd"></i> Loans</a></li>
+            <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
     </div>
 
-    <!-- Balance Cards -->
-    <div class="balance-cards">
-      <div class="balance-card">
-        <h3>CURRENT BALANCE</h3>
-        <div class="balance-amount">{{ user_profile.currency }}{{ user_profile.balance|intcomma }}</div>
-      </div>
-      <div class="balance-card">
-        <h3>REFUNDABLE BALANCE</h3>
-        <div class="refundable-amount">{{ user_profile.currency }}0.00</div>
-      </div>
+    <!-- Header -->
+    <header class="bank-header">
+        <h1><i class="fas fa-university"></i> Stack Teller Trust Bank</h1>
+        <div class="header-actions">
+            <button class="notification-bell" onclick="toggleSidebar()">
+                <i class="fas fa-bell"></i>
+            </button>
+            <button class="open-sidebar-btn" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Marquee -->
+    <div class="marquee">
+        <div class="marquee-content" id="stockMarquee">
+            Loading market data...
+        </div>
     </div>
 
-    <!-- Quick Actions -->
-    <div class="quick-actions">
-      <h3 class="section-title">Quick Actions</h3>
-      <div class="action-grid">
-        <a href="{% url 'bank' %}" class="action-item">
-          <i class="fas fa-exchange-alt action-icon"></i>
-          <span class="action-label">Transfer</span>
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            {% if user_profile.profile_pic %}
+                <img src="{{ user_profile.profile_pic.url }}" alt="Profile Picture" class="profile-img">
+            {% else %}
+                <img src="{% static 'images/default.jpg' %}" alt="Default Profile Picture" class="profile-img">
+            {% endif %}
+            <div class="welcome-text">
+                <h2>Welcome Back, {{ user_profile.first_name }}!</h2>
+                <p>
+                    <i class="fas fa-credit-card" style="color: var(--accent);"></i>
+                    Account Number: <span class="account-number">{{ user_profile.account_number }}</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Balance Cards -->
+        <div class="balance-cards">
+            <div class="balance-card">
+                <span class="card-icon"><i class="fas fa-wallet"></i></span>
+                <h3>Current Balance</h3>
+                <div class="balance-amount">{{ user_profile.currency }}{{ user_profile.balance|intcomma }}</div>
+            </div>
+            <div class="balance-card">
+                <span class="card-icon"><i class="fas fa-undo-alt"></i></span>
+                <h3>Refundable Balance</h3>
+                <div class="refundable-amount">{{ user_profile.currency }}0.00</div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h3 class="section-title"><i class="fas fa-bolt"></i> Quick Actions</h3>
+            <div class="action-grid">
+                <a href="{% url 'bank' %}" class="action-item">
+                    <i class="fas fa-exchange-alt action-icon"></i>
+                    <span class="action-label">Transfer</span>
+                </a>
+                <a href="{% url 'transaction' %}" class="action-item">
+                    <i class="fas fa-history action-icon"></i>
+                    <span class="action-label">Transactions</span>
+                </a>
+                <a href="{% url 'loans' %}" class="action-item">
+                    <i class="fas fa-hand-holding-usd action-icon"></i>
+                    <span class="action-label">Loans</span>
+                </a>
+                <a href="{% url 'setting' %}" class="action-item">
+                    <i class="fas fa-user action-icon"></i>
+                    <span class="action-label">Profile</span>
+                </a>
+                <a href="#" class="action-item" onclick="showComingSoon()">
+                    <i class="fas fa-credit-card action-icon"></i>
+                    <span class="action-label">Cards</span>
+                </a>
+                <a href="#" class="action-item" onclick="showComingSoon()">
+                    <i class="fas fa-cog action-icon"></i>
+                    <span class="action-label">Settings</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="transactions-section">
+            <h3 class="section-title"><i class="fas fa-clock"></i> Recent Transactions</h3>
+            <div class="table-container">
+                {% if transactions %}
+                    <table class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Amount</th>
+                                <th>Balance After</th>
+                                <th>Description</th>
+                                <th>Date &amp; Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for transaction in transactions %}
+                                <tr class="{% if transaction.description == 'Credit' %}transaction-credit{% else %}transaction-debit{% endif %}">
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ user_profile.currency }}{{ transaction.amount }}</td>
+                                    <td>{{ user_profile.currency }}{{ transaction.balance_after }}</td>
+                                    <td>{{ transaction.description }}</td>
+                                    <td>{{ transaction.timestamp|date:"M d, Y H:i" }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="no-transactions">
+                        <i class="fas fa-inbox"></i>
+                        <p>No recent transactions found.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-navbar">
+        <a href="{% url 'dashboard' %}" class="nav-item active">
+            <i class="fas fa-home nav-icon"></i>
+            <span>Home</span>
         </a>
-        <a href="{% url 'transaction' %}" class="action-item">
-          <i class="fas fa-history action-icon"></i>
-          <span class="action-label">Transactions</span>
+        <a href="{% url 'bank' %}" class="nav-item">
+            <i class="fas fa-exchange-alt nav-icon"></i>
+            <span>Transfer</span>
         </a>
-        <a href="{% url 'loans' %}" class="action-item">
-          <i class="fas fa-hand-holding-usd action-icon"></i>
-          <span class="action-label">Loans</span>
+        <a href="{% url 'transaction' %}" class="nav-item">
+            <i class="fas fa-chart-line nav-icon"></i>
+            <span>Overview</span>
         </a>
-        <a href="{% url 'setting' %}" class="action-item">
-          <i class="fas fa-user action-icon"></i>
-          <span class="action-label">Profile</span>
+        <a href="{% url 'setting' %}" class="nav-item">
+            <i class="fas fa-user nav-icon"></i>
+            <span>Profile</span>
         </a>
-        <a href="#" class="action-item">
-          <i class="fas fa-credit-card action-icon"></i>
-          <span class="action-label">Cards</span>
-        </a>
-        <a href="#" class="action-item">
-          <i class="fas fa-cog action-icon"></i>
-          <span class="action-label">Settings</span>
-        </a>
-      </div>
-    </div>
+    </nav>
 
-    <!-- Recent Transactions -->
-    <div class="transactions-section">
-      <h3 class="section-title">Recent Transactions</h3>
-      <div class="table-container">
-        {% if transactions %}
-          <table class="transactions-table">
-            <thead>
-              <tr>
-                <th>S/N</th>
-                <th>Amount</th>
-                <th>Balance After</th>
-                <th>Description</th>
-                <th>Date & Time</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for transaction in transactions %}
-                <tr class="{% if transaction.description == 'Credit' %}transaction-credit{% else %}transaction-debit{% endif %}">
-                  <td>{{ forloop.counter }}</td>
-                  <td>{{ user_profile.currency }}{{ transaction.amount }}</td>
-                  <td>{{ user_profile.currency }}{{ transaction.balance_after }}</td>
-                  <td>{{ transaction.description }}</td>
-                  <td>{{ transaction.timestamp|date:"M d, Y H:i" }}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        {% else %}
-          <div class="no-transactions">
-            <p>No recent transactions found.</p>
-          </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
+    <script>
+        // ===== Sidebar Toggle =====
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
 
-  <!-- Bottom Navigation Bar -->
-  <nav class="bottom-navbar">
-    <a href="{% url 'dashboard' %}" class="nav-item">
-      <i class="fas fa-home nav-icon"></i>
-      <span class="nav-label">Home</span>
-    </a>
-    <a href="{% url 'bank' %}" class="nav-item">
-      <i class="fas fa-exchange-alt nav-icon"></i>
-      <span class="nav-label">Transfer</span>
-    </a>
-    <a href="{% url 'transaction' %}" class="nav-item">
-      <i class="fas fa-chart-line nav-icon"></i>
-      <span class="nav-label">Overview</span>
-    </a>
-    <a href="{% url 'setting' %}" class="nav-item">
-      <i class="fas fa-user nav-icon"></i>
-      <span class="nav-label">Profile</span>
-    </a>
-  </nav>
+        function showComingSoon() {
+            alert('🚀 This feature is coming soon!');
+        }
 
+        // Close sidebar on link click (mobile)
+        document.querySelectorAll('.sidebar ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) toggleSidebar();
+            });
+        });
 
+        // Close sidebar on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar.classList.contains('open')) toggleSidebar();
+            }
+        });
 
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('open');
-    }
+        // ===== Marquee =====
+        const stockData = [
+            { symbol: "AAPL", price: 178.23, change: "+1.2%" },
+            { symbol: "GOOGL", price: 123.45, change: "+0.8%" },
+            { symbol: "AMZN", price: 99.12, change: "-0.3%" },
+            { symbol: "TSLA", price: 246.78, change: "+2.1%" },
+            { symbol: "MSFT", price: 335.21, change: "+1.5%" },
+            { symbol: "META", price: 312.65, change: "+0.9%" }
+        ];
 
-    // Mock API Data for stocks
-    const stockData = [
-      { symbol: "AAPL", price: 178.23 },
-      { symbol: "GOOGL", price: 123.45 },
-      { symbol: "AMZN", price: 99.12 },
-      { symbol: "TSLA", price: 246.78 }
-    ];
+        function updateMarquee() {
+            const el = document.getElementById('stockMarquee');
+            if (!el) return;
+            const text = stockData.map(s =>
+                `${s.symbol}: $${s.price.toFixed(2)} ${s.change}`
+            ).join(' &nbsp;|&nbsp; ');
+            el.innerHTML = text;
+        }
 
-    // Update stock marquee dynamically
-    function updateStockMarquee() {
-      const marquee = document.getElementById("stockMarquee");
-      const stockText = stockData.map(stock => `${stock.symbol}: $${stock.price.toFixed(2)}`).join(" | ");
-      marquee.innerHTML = stockText;
-    }
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updateMarquee, 500);
+            setInterval(updateMarquee, 30000);
 
-    // Call functions after the DOM is loaded
-    document.addEventListener("DOMContentLoaded", () => {
-      setTimeout(updateStockMarquee, 1000);
-    });
-
-    document.getElementById("telegramBtn").addEventListener("click", function() {
-      window.open("https://t.me/Financial_Services_Team", "_blank");
-    });
-  </script>
-<script src="{% static 'js/site_controls.js' %}"></script>
+            // Set active nav item
+            const currentPath = window.location.pathname;
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.toggle('active', item.getAttribute('href') === currentPath);
+            });
+        });
+    </script>
+    <script src="{% static 'js/site_controls.js' %}"></script>
 </body>
 </html>
