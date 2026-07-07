@@ -664,7 +664,7 @@
                     <div class="detail-row">
                         <span class="detail-label"><i class="fas fa-money-bill-wave"></i> Transaction Amount</span>
                         <span class="detail-value amount-value">
-                            {% if transaction.description == 'Credit' %}
+                            {% if transaction.tx_type == 'CREDIT' %}
                                 <i class="fas fa-plus-circle" style="color: var(--success); font-size: 0.8rem;"></i>
                             {% else %}
                                 <i class="fas fa-minus-circle" style="color: var(--error); font-size: 0.8rem;"></i>
@@ -709,7 +709,7 @@
                     <div class="detail-row">
                         <span class="detail-label"><i class="fas fa-tag"></i> Transaction Type</span>
                         <span class="detail-value">
-                            {% if transaction.description == 'Credit' %}
+                            {% if transaction.tx_type == 'CREDIT' %}
                                 <span class="status-badge-sm status-credit">
                                     <i class="fas fa-arrow-up"></i> Credit
                                 </span>
