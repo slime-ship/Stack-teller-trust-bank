@@ -679,7 +679,9 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
           <div class="detail-row">
             <span class="detail-label">Transaction ID:</span>
-            <span class="detail-value transaction-id">#{{ transaction.id }}</span>
+            <span class="detail-value transaction-id">
+    #{{ transaction.id }}{{ transaction.timestamp|date:"ymdHis" }}{{ transaction.user.id }}
+            </span>
           </div>
 
           <div class="detail-row">
