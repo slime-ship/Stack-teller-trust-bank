@@ -525,16 +525,87 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         .payment-label {
             color: #9ca3af !important;
         }
+
+        /* FIX: Input fields visibility on focus */
         .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
+            background: #1a1a1a !important;          /* dark background */
+            color: #ffffff !important;                /* white text */
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            transition: all 0.2s ease;
+        }
+        .form-control::placeholder {
+            color: #9ca3af !important;               /* visible placeholder */
+            opacity: 1;
         }
         .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
+            background: #2a2a2a !important;          /* slightly lighter on focus */
             color: #ffffff !important;
-            box-shadow: none !important;
+            border-color: #ffffff !important;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15) !important;
+            outline: none !important;
+        }
+        /* Ensure all input types are covered */
+        input.form-control, textarea.form-control, select.form-control {
+            background: #1a1a1a !important;
+            color: #ffffff !important;
+        }
+        input.form-control:focus, textarea.form-control:focus, select.form-control:focus {
+            background: #2a2a2a !important;
+            color: #ffffff !important;
+        }
+        /* Fix for the card container background */
+        .card-container {
+            background: rgba(10, 10, 10, 0.85) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        .card-header {
+            background: rgba(0, 0, 0, 0.85) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: #ffffff !important;
+        }
+        .card-header h2, .card-header .security-icon {
+            color: #ffffff !important;
+        }
+        /* Fix user greeting and other text */
+        .user-greeting {
+            color: #e5e7eb !important;
+        }
+        .user-name {
+            color: #60a5fa !important;
+        }
+        .security-message {
+            background: rgba(230, 126, 34, 0.1) !important;
+            color: #e5e7eb !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+        .security-alert {
+            color: #fbbf24 !important;
+        }
+        .form-label {
+            color: #e5e7eb !important;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+        .info-text {
+            color: #d1d5db !important;
+        }
+        .info-text strong {
+            color: #60a5fa !important;
+        }
+        .error-messages {
+            background: rgba(231, 76, 60, 0.1) !important;
+            color: #f87171 !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+        .btn-submit {
+            background: #ffffff !important;
+            color: #000000 !important;
+        }
+        .btn-submit:hover {
+            background: #e5e7eb !important;
+            color: #000000 !important;
         }
         .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
             background: #ffffff !important;
@@ -585,7 +656,27 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             background: #09090b !important;
             color: #ffffff !important;
         }
-
+        /* Sidebar text color */
+        .sidebar, .sidebar-header, .user-details, .sidebar ul li a {
+            color: #ffffff !important;
+        }
+        .sidebar ul li a:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+        .bottom-navbar {
+            background: rgba(0, 0, 0, 0.85) !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        .nav-item {
+            color: #ffffff !important;
+        }
+        .nav-item:hover {
+            color: #60a5fa !important;
+        }
+        /* Marquee dark mode */
+        .marquee {
+            background: rgba(0, 0, 0, 0.85) !important;
+        }
 </style>
 </head>
 <body>
@@ -685,7 +776,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                     <!-- Info Card -->
                     <div class="info-card">
                         <p class="info-text">Thank you for your cooperation in keeping your transactions secure.</p>
-                        <p class="info-text">Best regards,<br>Stack Teller Trust Bank Security Team</p>
+                        <p class="info-text">Best regards,<br><strong>Stack Teller Trust Bank Security Team</strong></p>
                     </div>
 
                     <!-- Submit Button -->
