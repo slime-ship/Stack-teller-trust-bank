@@ -34,7 +34,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             --soft-gray: #000000;
             --medium-gray: rgba(255, 255, 255, 0.1);
             --text-dark: #ffffff;
-            --text-light: #9ca3af;
+            --text-light: #d1d5db;
             --success: #27AE60;
             --warning: #E67E22;
             --error: #E74C3C;
@@ -267,6 +267,9 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-block;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
         }
 
         .email-link:hover {
@@ -614,6 +617,108 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             color: #ffffff !important;
         }
 
+        /* ===== FIX: Text Clarity in Dark Mode ===== */
+        /* Ensure all text is clearly visible */
+        body, p, span, div, h1, h2, h3, h4, h5, h6, li, label, .support-contact-item span {
+            color: #ffffff !important;
+        }
+
+        /* Keep muted text slightly dimmer but still readable */
+        .text-muted, .support-contact-item .text-muted, .text-light, .card-subtitle, .activation-header p {
+            color: #d1d5db !important;
+        }
+
+        /* Contact section email link */
+        .contact-section .email-link {
+            color: #60a5fa !important;
+        }
+        .contact-section .email-link:hover {
+            color: #93bbfc !important;
+        }
+        .contact-section p {
+            color: #e5e7eb !important;
+        }
+
+        /* Info card text */
+        .info-card small, .info-card strong {
+            color: #e5e7eb !important;
+        }
+        .info-card strong {
+            color: #60a5fa !important;
+        }
+
+        /* User greeting */
+        .user-greeting p {
+            color: #e5e7eb !important;
+        }
+        .user-name {
+            color: #60a5fa !important;
+        }
+
+        /* Security notice */
+        .security-notice {
+            color: #e5e7eb !important;
+        }
+        .security-notice strong {
+            color: #fbbf24 !important;
+        }
+
+        /* Form label */
+        .form-label {
+            color: #e5e7eb !important;
+        }
+
+        /* Header title */
+        .header-section h1 {
+            color: #ffffff !important;
+        }
+        .security-icon {
+            color: #60a5fa !important;
+        }
+
+        /* Main container background in dark mode */
+        .main-container {
+            background: rgba(10, 10, 10, 0.85) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        .main-container::before {
+            background: linear-gradient(90deg, #ffffff 0%, #a3a3a3 100%) !important;
+        }
+
+        /* Ensure input fields have proper background and text */
+        .form-control, input {
+            background: #1a1a1a !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+        .form-control::placeholder, input::placeholder {
+            color: #9ca3af !important;
+            opacity: 1;
+        }
+        .form-control:focus, input:focus {
+            background: #2a2a2a !important;
+            color: #ffffff !important;
+            border-color: #ffffff !important;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15) !important;
+        }
+
+        /* Fix submit button text color */
+        .submit-btn {
+            color: #000000 !important;
+            background: #ffffff !important;
+        }
+        .submit-btn:hover {
+            background: #e5e7eb !important;
+            color: #000000 !important;
+        }
+
+        /* Error alert */
+        .alert-danger {
+            background: rgba(231, 76, 60, 0.1) !important;
+            color: #f87171 !important;
+            border-left-color: #f87171 !important;
+        }
+
 </style>
 </head>
 <body>
@@ -672,8 +777,8 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         <!-- Contact Section -->
         <div class="contact-section">
             <p>Kindly contact us via email for any assistance:</p>
-            <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
-                axiscapitaltrustbank@gmail.com
+            <a href="mailto:stacktellertrustbank.support@gmail.com" class="email-link">
+                stacktellertrustbank.support@gmail.com
             </a>
         </div>
     </div>
