@@ -7,15 +7,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-appId : '6a461152c8c6970d5aef3cec',
-};
-
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = {
+                appId : '6a461152c8c6970d5aef3cec',
+            };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <!-- End of Chaport Live Chat code -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <title>IMF Code Verification - Stack Teller Trust Bank</title>
     <style>
@@ -27,7 +27,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             --soft-gray: #000000;
             --medium-gray: rgba(255, 255, 255, 0.1);
             --text-dark: #ffffff;
-            --text-light: #9ca3af;
+            --text-light: #d1d5db;
             --success: #27AE60;
             --warning: #E67E22;
             --error: #E74C3C;
@@ -97,6 +97,12 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             font-size: 3rem;
             color: var(--primary-blue);
             margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .header-section h1 {
@@ -115,6 +121,12 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             background: var(--primary-blue);
             margin: 10px auto 0;
             border-radius: 2px;
+            animation: expandWidth 1s ease-out;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 60px; }
         }
 
         /* User Greeting */
@@ -122,6 +134,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             text-align: center;
             margin-bottom: 25px;
             font-size: 1.1rem;
+            animation: fadeIn 1s ease-out 0.3s both;
         }
 
         .user-greeting p {
@@ -143,6 +156,18 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             border-left: 4px solid var(--warning);
             font-size: 0.95rem;
             line-height: 1.5;
+            animation: slideInLeft 0.8s ease-out 0.5s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .security-notice strong {
@@ -152,6 +177,12 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         /* Form Styling */
         .form-group {
             margin-bottom: 25px;
+            animation: fadeIn 0.8s ease-out 0.7s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .form-label {
@@ -179,6 +210,15 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             border-color: var(--primary-blue);
             box-shadow: 0 0 0 3px rgba(42, 110, 187, 0.15);
             background: rgba(255, 255, 255, 0.03);
+            transform: translateY(-2px);
+        }
+
+        /* Input group text */
+        .input-group-text {
+            background: transparent;
+            border: 1px solid var(--medium-gray);
+            border-left: none;
+            color: var(--text-light);
         }
 
         /* Error Styling */
@@ -190,6 +230,13 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             border-left: 4px solid var(--error);
             padding: 12px;
             margin-bottom: 20px;
+            animation: shake 0.5s ease-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
 
         /* Info Card */
@@ -200,6 +247,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             margin-bottom: 25px;
             text-align: center;
             border-left: 4px solid var(--primary-blue);
+            animation: fadeIn 0.8s ease-out 0.9s both;
         }
 
         .info-card small {
@@ -222,6 +270,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(42, 110, 187, 0.25);
             font-family: 'Montserrat', sans-serif;
+            animation: fadeIn 0.8s ease-out 1.1s both;
         }
 
         .submit-btn:hover {
@@ -233,6 +282,35 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             transform: translateY(0);
         }
 
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            animation: fadeIn 0.8s ease-out 1.3s both;
+        }
+
+        .contact-section p {
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .email-link {
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
+        }
+
+        .email-link:hover {
+            color: var(--dark-blue);
+            transform: translateY(-2px);
+        }
 
         @keyframes bounce {
             0%, 100% {
@@ -257,9 +335,9 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             .security-icon {
                 font-size: 2.5rem;
             }
-
         }
-              .telegram-float {
+
+        .telegram-float {
             position: fixed;
             left: 20px;
             bottom: 20px;
@@ -338,194 +416,212 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                 height: 25px;
             }
         }
-          .email-float {
-        position: fixed;
-        left: 20px;
-        bottom: 90px;
-        z-index: 1000;
-        animation: floatEmail 3s ease-in-out infinite;
-    }
 
-    .email-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .email-link:hover {
-        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
-    }
-
-    .email-icon {
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    .email-tooltip {
-        position: absolute;
-        left: 70px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .email-link:hover .email-tooltip {
-        opacity: 1;
-    }
-
-    @keyframes floatEmail {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-8px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
         .email-float {
-            left: 10px;
-            bottom: 80px;
+            position: fixed;
+            left: 20px;
+            bottom: 90px;
+            z-index: 1000;
+            animation: floatEmail 3s ease-in-out infinite;
         }
 
-        .email-link {
-            width: 50px;
-            height: 50px;
+        .email-link-float {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .email-link-float:hover {
+            background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
         }
 
         .email-icon {
-            font-size: 1.3rem;
+            color: white;
+            font-size: 1.5rem;
         }
-    }
 
-    
-        /* Sitewide Dark Mode Overrides to match Stack Teller Trust Bank Landing Page */
+        .email-tooltip {
+            position: absolute;
+            left: 70px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .email-link-float:hover .email-tooltip {
+            opacity: 1;
+        }
+
+        @keyframes floatEmail {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .email-float {
+                left: 10px;
+                bottom: 80px;
+            }
+
+            .email-link-float {
+                width: 50px;
+                height: 50px;
+            }
+
+            .email-icon {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* ===== Dark Mode Fixes ===== */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
+
         body {
             background: #000000 !important;
             color: #ffffff !important;
             font-family: 'Poppins', sans-serif !important;
         }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
+
+        .main-container {
             background: rgba(10, 10, 10, 0.85) !important;
             border: 1px solid rgba(255, 255, 255, 0.08) !important;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+        }
+        .main-container::before {
+            background: linear-gradient(90deg, #ffffff 0%, #a3a3a3 100%) !important;
+        }
+
+        .header-section h1 {
             color: #ffffff !important;
         }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        .security-icon {
+            color: #60a5fa !important;
+        }
+
+        .user-greeting p {
+            color: #e5e7eb !important;
+        }
+        .user-name {
+            color: #60a5fa !important;
+        }
+
+        .security-notice {
+            color: #e5e7eb !important;
+            background: rgba(230, 126, 34, 0.1) !important;
+        }
+        .security-notice strong {
+            color: #fbbf24 !important;
+        }
+
+        .form-label {
+            color: #e5e7eb !important;
+        }
+
+        .form-control, input {
+            background: #1a1a1a !important;
             color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
         }
-        .bank-header h1, .bank-header h1 i {
+        .form-control::placeholder, input::placeholder {
+            color: #9ca3af !important;
+            opacity: 1;
+        }
+        .form-control:focus, input:focus {
+            background: #2a2a2a !important;
             color: #ffffff !important;
+            border-color: #ffffff !important;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15) !important;
         }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
+
+        .input-group-text {
+            background: #1a1a1a !important;
+            border-color: rgba(255, 255, 255, 0.15) !important;
             color: #9ca3af !important;
         }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
+
+        .info-card {
             background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
+            border-left-color: #60a5fa !important;
         }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
+        .info-card small {
+            color: #d1d5db !important;
+        }
+        .info-card strong {
+            color: #60a5fa !important;
+        }
+
+        .submit-btn {
             background: #ffffff !important;
             color: #000000 !important;
-            border: 1px solid #ffffff !important;
         }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
+        .submit-btn:hover {
             background: #e5e7eb !important;
             color: #000000 !important;
         }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
+
+        .alert-danger {
+            background: rgba(231, 76, 60, 0.1) !important;
+            color: #f87171 !important;
+            border-left-color: #f87171 !important;
         }
 
-</style>
+        .contact-section p {
+            color: #e5e7eb !important;
+        }
+        .contact-section .email-link {
+            color: #60a5fa !important;
+        }
+        .contact-section .email-link:hover {
+            color: #93bbfc !important;
+        }
+
+        .telegram-float .telegram-link {
+            background: #0088cc !important;
+        }
+        .email-link-float {
+            background: #60a5fa !important;
+        }
+    </style>
 </head>
 <body>
 
+    <!-- Email Floating Icon -->
+    <div class="email-float">
+        <a href="mailto:stacktellertrustbank.support@gmail.com" class="email-link-float">
+            <i class="fas fa-envelope email-icon"></i>
+            <span class="email-tooltip">Contact us via email</span>
+        </a>
+    </div>
+
+    <!-- Telegram Floating Icon -->
+    <div class="telegram-float">
+        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
+            <span class="telegram-tooltip">Join our Telegram group</span>
+        </a>
+    </div>
 
     <div class="main-container">
         <!-- Header Section -->
@@ -536,7 +632,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
         <!-- User Greeting -->
         <div class="user-greeting">
-            <p>Dear <span class="user-name">{{userprofile.first_name}} {{userprofile.middle_name}}</span>,</p>
+            <p>Dear <span class="user-name">{{ userprofile.first_name }} {{ userprofile.middle_name }}</span>,</p>
         </div>
 
         <!-- Security Notice -->
@@ -576,10 +672,17 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                 Verify IMF Code
             </button>
         </form>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <p>Kindly contact us via email for any assistance:</p>
+            <a href="mailto:stacktellertrustbank.support@gmail.com" class="email-link">
+                stacktellertrustbank.support@gmail.com
+            </a>
+        </div>
     </div>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="{% static 'js/site_controls.js' %}"></script>
+    <script src="{% static 'js/site_controls.js' %}"></script>
 </body>
 </html>
