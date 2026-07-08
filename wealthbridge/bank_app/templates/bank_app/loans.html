@@ -1,843 +1,638 @@
-  {% load humanize %}
+{% load humanize %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loan Application - Stack Teller Trust Bank</title>
-  <meta name="description" content="Apply for a loan with Stack Teller Trust Bank">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    :root {
-        --light-blue: #000000;
-        --primary-blue: #ffffff;
-        --dark-blue: #ffffff;
-        --accent-blue: #a3a3a3;
-        --soft-gray: #000000;
-        --medium-gray: rgba(255, 255, 255, 0.1);
-        --text-dark: #ffffff;
-        --text-light: #9ca3af;
-        --success: #27AE60;
-        --warning: #E67E22;
-        --error: #E74C3C;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Source Sans Pro', sans-serif;
-        background: linear-gradient(135deg, var(--light-blue) 0%, var(--soft-gray) 100%);
-        color: var(--text-dark);
-        min-height: 100vh;
-        line-height: 1.6;
-        padding-bottom: 80px;
-    }
-
-    /* Header Styling */
-    .bank-header {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        padding: 15px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid var(--medium-gray);
-        box-shadow: 0 2px 15px rgba(42, 110, 187, 0.1);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
-
-    .bank-header h1 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--dark-blue);
-        margin: 0;
-    }
-
-    .bank-header h1::after {
-        content: "";
-        display: block;
-        width: 40px;
-        height: 3px;
-        background: var(--primary-blue);
-        margin-top: 5px;
-        border-radius: 2px;
-    }
-
-    .header-controls {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-    }
-
-    .nav-toggle {
-        cursor: pointer;
-        color: var(--dark-blue);
-        font-size: 1.3rem;
-        transition: all 0.3s ease;
-        padding: 8px;
-        border-radius: 50%;
-        background: rgba(42, 110, 187, 0.08);
-        position: relative;
-        z-index: 1001;
-    }
-
-    .nav-toggle:hover {
-        color: var(--primary-blue);
-        transform: translateY(-2px);
-        background: rgba(42, 110, 187, 0.15);
-    }
-
-    /* Navigation Sidebar */
-    .nav-sidebar {
-        position: fixed;
-        top: 0;
-        right: -300px;
-        width: 300px;
-        height: 100vh;
-        background: linear-gradient(180deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
-        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
-        z-index: 1000;
-        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        overflow-y: auto;
-    }
-
-    .nav-sidebar.open {
-        right: 0;
-    }
-
-    .sidebar-header {
-        padding: 25px;
-        background: rgba(255, 255, 255, 0.1);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        backdrop-filter: blur(5px);
-    }
-
-    .sidebar-header h2 {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        margin: 0;
-        font-size: 1.4rem;
-        color: white;
-    }
-
-    .sidebar-close {
-        background: rgba(255, 255, 255, 0.2);
-        color: white;
-        border: none;
-        padding: 8px 15px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-weight: 500;
-    }
-
-    .sidebar-close:hover {
-        background: rgba(255, 255, 255, 0.3);
-    }
-
-    .nav-menu {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .nav-menu li {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .nav-menu a {
-        color: rgba(255, 255, 255, 0.9);
-        text-decoration: none;
-        display: block;
-        padding: 18px 25px;
-        transition: all 0.3s ease;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .nav-menu a i {
-        width: 20px;
-        text-align: center;
-    }
-
-    .nav-menu a:hover {
-        background: rgba(255, 255, 255, 0.1);
-        padding-left: 30px;
-        color: white;
-    }
-
-    /* Main Content */
-    .main-content {
-        padding: 20px;
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Loan Application Card */
-    .loan-card {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 16px;
-        box-shadow: 0 15px 35px rgba(42, 110, 187, 0.15);
-        padding: 40px;
-        margin-bottom: 20px;
-        border: 1px solid var(--medium-gray);
-        position: relative;
-        overflow: hidden;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .loan-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-    }
-
-    .card-title {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        color: var(--dark-blue);
-        margin-bottom: 30px;
-        text-align: center;
-        font-size: 2rem;
-        position: relative;
-        padding-bottom: 15px;
-    }
-
-    .card-title::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background: var(--primary-blue);
-        border-radius: 2px;
-    }
-
-    .card-subtitle {
-        text-align: center;
-        color: var(--text-light);
-        margin-bottom: 30px;
-        font-size: 1.1rem;
-    }
-
-    /* Form Styling */
-    .form-group {
-        margin-bottom: 25px;
-    }
-
-    .form-label {
-        font-weight: 600;
-        margin-bottom: 8px;
-        display: block;
-        color: var(--dark-blue);
-        font-size: 1rem;
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    .form-control {
-        width: 100%;
-        padding: 14px 16px;
-        border: 1px solid var(--medium-gray);
-        border-radius: 8px;
-        font-size: 16px;
-        transition: all 0.3s ease;
-        background: rgba(255, 255, 255, 0.03);
-        font-family: 'Source Sans Pro', sans-serif;
-    }
-
-    .form-control:focus {
-        outline: none;
-        border-color: var(--primary-blue);
-        box-shadow: 0 0 0 3px rgba(42, 110, 187, 0.15);
-        background: rgba(255, 255, 255, 0.03);
-    }
-
-    .input-group {
-        position: relative;
-    }
-
-    .input-icon {
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--text-light);
-        font-size: 1.2rem;
-    }
-
-    textarea.form-control {
-        resize: vertical;
-        min-height: 100px;
-    }
-
-    /* Submit Button */
-    .submit-btn {
-        width: 100%;
-        padding: 16px;
-        border: none;
-        border-radius: 8px;
-        background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-        color: white;
-        font-weight: 600;
-        font-size: 1.1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 15px rgba(42, 110, 187, 0.25);
-        margin-top: 10px;
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    .submit-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(42, 110, 187, 0.35);
-    }
-
-    .submit-btn:active {
-        transform: translateY(0);
-    }
-
-    /* Loan Features */
-    .loan-features {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin: 40px 0;
-    }
-
-    .feature-card {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        padding: 25px;
-        text-align: center;
-        box-shadow: 0 8px 20px rgba(42, 110, 187, 0.1);
-        border: 1px solid var(--medium-gray);
-        transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 25px rgba(42, 110, 187, 0.15);
-    }
-
-    .feature-icon {
-        font-size: 2.5rem;
-        color: var(--primary-blue);
-        margin-bottom: 15px;
-    }
-
-    .feature-title {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        color: var(--dark-blue);
-        margin-bottom: 10px;
-        font-size: 1.1rem;
-    }
-
-    .feature-description {
-        color: var(--text-dark);
-        font-size: 0.9rem;
-    }
-
-    /* Bottom Navigation */
-    .bottom-navbar {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        display: flex;
-        justify-content: space-around;
-        padding: 12px 0;
-        box-shadow: 0 -2px 15px rgba(42, 110, 187, 0.1);
-        border-top: 1px solid var(--medium-gray);
-        z-index: 100;
-    }
-
-    .nav-link {
-        text-align: center;
-        color: var(--text-light);
-        text-decoration: none;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: all 0.3s ease;
-        flex: 1;
-    }
-
-    .nav-link i {
-        font-size: 1.3rem;
-        margin-bottom: 4px;
-        color: var(--text-light);
-    }
-
-    .nav-link span {
-        font-size: 0.7rem;
-        font-weight: 500;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-        color: var(--primary-blue);
-    }
-
-    .nav-link:hover i,
-    .nav-link.active i {
-        color: var(--primary-blue);
-    }
-
-    /* Overlay for sidebar */
-    .sidebar-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-        display: none;
-    }
-
-    .sidebar-overlay.active {
-        display: block;
-    }
-
-
-
-    @keyframes bounce {
-        0%, 100% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-10px);
-        }
-    }
-
-    /* JivoChat Override */
-    .jivochat-container {
-        z-index: 98 !important;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .loan-card {
-            padding: 30px 20px;
-            margin: 20px auto;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Loan Application - Stack Teller Trust Bank</title>
+    <meta name="description" content="Apply for a loan with Stack Teller Trust Bank">
+    <!-- Begin of Chaport Live Chat code -->
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = {
+                appId : '6a461152c8c6970d5aef3cec',
+            };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <!-- End of Chaport Live Chat code -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/blue-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/blue-16x16.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/blue-180x180.png' %}">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <meta name="theme-color" content="#0a3ee3">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --bg-body: #0b0f15;
+            --bg-card: #141a24;
+            --bg-header: #0f141c;
+            --bg-sidebar: #0b0f15;
+            --text-primary: #f0f4f8;
+            --text-secondary: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-color: #2a313c;
+            --shadow: 0 8px 30px rgba(0,0,0,0.6);
+            --shadow-hover: 0 12px 40px rgba(0,0,0,0.8);
+            --accent: #f0b429;
+            --accent-hover: #d49e20;
+            --accent-light: #2a313c;
+            --success: #3fb950;
+            --warning: #d29922;
+            --error: #f85149;
+            --card-border: 1px solid #2a313c;
+            --input-bg: #1a212c;
+            --input-border: #2a313c;
+            --input-focus: #f0b429;
+            --placeholder-color: #6e7a8a;
+            --btn-primary-bg: #f0b429;
+            --btn-primary-text: #0b0f15;
+            --btn-primary-hover: #d49e20;
         }
 
-        .card-title {
-            font-size: 1.7rem;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .loan-features {
-            grid-template-columns: 1fr;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            padding-bottom: 80px;
         }
 
-        .nav-sidebar {
-            width: 280px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .main-content {
-            padding: 15px;
-        }
-
-        .loan-card {
-            padding: 25px 15px;
-        }
-
-        .nav-sidebar {
-            width: 100%;
-            right: -100%;
+        /* ===== Header ===== */
+        .bank-header {
+            background-color: var(--bg-header);
+            border-bottom: var(--card-border);
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .card-title {
-            font-size: 1.5rem;
-        }
-    }
-            .telegram-float {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            z-index: 1000;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .telegram-link {
+        .bank-header h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            text-decoration: none;
+            gap: 10px;
         }
 
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        .bank-header h1 i {
+            color: var(--accent);
+            font-size: 1.5rem;
         }
 
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
+        .header-controls {
+            display: flex;
+            gap: 14px;
+            align-items: center;
         }
 
-        .telegram-tooltip {
-            position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
+        .notification-bell,
+        .open-sidebar-btn {
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: color 0.2s;
+            padding: 4px 8px;
+            background: none;
+            border: none;
+        }
+
+        .notification-bell:hover,
+        .open-sidebar-btn:hover {
+            color: var(--text-primary);
+        }
+
+        /* ===== Sidebar ===== */
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            position: fixed;
+            right: -280px;
+            top: 0;
+            transition: right 0.3s ease;
+            color: #f0f4f8;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.6);
+            z-index: 1000;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.open {
+            right: 0;
+        }
+
+        .sidebar-header {
+            padding: 0 24px 20px;
+            border-bottom: var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .sidebar-header button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .sidebar-header button:hover {
             color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        }
+
+        .user-details {
+            padding: 16px 24px;
+            border-bottom: var(--card-border);
+            font-size: 0.9rem;
+        }
+
+        .user-details strong {
+            color: white;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+        }
+
+        .sidebar ul li {
+            padding: 0;
+            margin: 4px 0;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 12px 24px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .sidebar ul li a:hover {
+            background: rgba(255,255,255,0.06);
+            color: white;
+        }
+
+        .sidebar ul li a i {
+            width: 24px;
+            text-align: center;
+            margin-right: 8px;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* ===== Main Content ===== */
+        .main-content {
+            flex: 1;
+            padding: 30px 24px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ===== Loan Features ===== */
+        .loan-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 24px 20px;
+            text-align: center;
+            border: var(--card-border);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .feature-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .feature-description {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* ===== Loan Card ===== */
+        .loan-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: var(--card-border);
+            box-shadow: var(--shadow);
+            padding: 32px 30px;
+            transition: box-shadow 0.3s;
+        }
+
+        .loan-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .card-title i {
+            color: var(--accent);
+            margin-right: 8px;
+        }
+
+        .card-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 28px;
+        }
+
+        /* ===== Form ===== */
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-label i {
+            color: var(--accent);
+            margin-right: 6px;
+            width: 18px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            padding-right: 44px;
+            background: var(--input-bg);
+            border: 1.5px solid var(--input-border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--input-focus);
+            box-shadow: 0 0 0 3px rgba(240,180,41,0.15);
+        }
+
+        .form-control::placeholder {
+            color: var(--placeholder-color);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+            padding-right: 16px;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1rem;
             pointer-events: none;
         }
 
-        .telegram-link:hover .telegram-tooltip {
+        textarea.form-control ~ .input-icon {
+            top: 18px;
+            transform: none;
+        }
+
+        /* ===== Submit Button ===== */
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .submit-btn:hover {
+            background: var(--btn-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(240,180,41,0.3);
+        }
+
+        /* ===== Bottom Navigation ===== */
+        .bottom-navbar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: var(--bg-header);
+            border-top: var(--card-border);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 100;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: color 0.2s;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 8px;
+        }
+
+        .nav-link.active {
+            color: var(--accent);
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link i {
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+
+        .nav-link span {
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* ===== Marquee ===== */
+        .marquee {
+            background: var(--bg-header);
+            color: var(--text-secondary);
+            padding: 8px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-bottom: var(--card-border);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scrollLeft 25s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* ===== Floating Icons ===== */
+        .telegram-float,
+        .email-float {
+            position: fixed;
+            left: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+        .telegram-float { bottom: 20px; }
+        .email-float { bottom: 80px; }
+
+        .telegram-link,
+        .email-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transition: transform 0.2s;
+            color: white;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+
+        .telegram-link { background: #0088cc; }
+        .email-link { background: #2b6cb0; }
+
+        .telegram-link:hover,
+        .email-link:hover {
+            transform: scale(1.1);
+        }
+
+        .telegram-tooltip,
+        .email-tooltip {
+            position: absolute;
+            left: 68px;
+            background: rgba(0,0,0,0.85);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+
+        .telegram-link:hover .telegram-tooltip,
+        .email-link:hover .email-tooltip {
             opacity: 1;
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
+        /* ===== Responsive ===== */
         @media (max-width: 768px) {
-            .telegram-float {
-                left: 10px;
-                bottom: 10px;
-            }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
-            }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
-            }
-        }
-        .email-float {
-        position: fixed;
-        left: 20px;
-        bottom: 90px;
-        z-index: 1000;
-        animation: floatEmail 3s ease-in-out infinite;
-    }
-
-    .email-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .email-link:hover {
-        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
-    }
-
-    .email-icon {
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    .email-tooltip {
-        position: absolute;
-        left: 70px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .email-link:hover .email-tooltip {
-        opacity: 1;
-    }
-
-    @keyframes floatEmail {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-8px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .email-float {
-            left: 10px;
-            bottom: 80px;
+            .main-content { padding: 20px 16px; }
+            .loan-card { padding: 24px 18px; }
+            .card-title { font-size: 1.3rem; }
+            .loan-features { grid-template-columns: 1fr 1fr; gap: 14px; }
+            .feature-card { padding: 18px 14px; }
+            .feature-icon { font-size: 1.8rem; }
+            .feature-title { font-size: 0.9rem; }
+            .sidebar { width: 260px; right: -260px; }
+            .telegram-float, .email-float { left: 12px; }
+            .telegram-link, .email-link { width: 46px; height: 46px; font-size: 1.1rem; }
+            .email-float { bottom: 70px; }
         }
 
-        .email-link {
-            width: 50px;
-            height: 50px;
+        @media (max-width: 480px) {
+            .bank-header { padding: 12px 16px; }
+            .bank-header h1 { font-size: 1rem; }
+            .header-controls { gap: 10px; }
+            .loan-card { padding: 18px 14px; }
+            .card-title { font-size: 1.1rem; }
+            .card-subtitle { font-size: 0.85rem; }
+            .loan-features { grid-template-columns: 1fr; gap: 12px; }
+            .form-control { font-size: 0.9rem; padding: 10px 14px; }
+            .submit-btn { padding: 12px; font-size: 0.9rem; }
+            .bottom-navbar .nav-link span { display: none; }
+            .bottom-navbar .nav-link i { font-size: 1.4rem; margin-bottom: 0; }
         }
-
-        .email-icon {
-            font-size: 1.3rem;
-        }
-    }
-
-  
-        /* Sitewide Dark Mode Overrides to match Stack Teller Trust Bank Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
-        }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .bank-header h1, .bank-header h1 i {
-            color: #ffffff !important;
-        }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
-            color: #9ca3af !important;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-        }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-        }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
-        }
-
-</style>
-<!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-appId : '6a461152c8c6970d5aef3cec',
-};
-
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->
+    </style>
 </head>
 <body>
-    <!-- Email Floating Icon -->
-<div class="email-float">
-    <a href="mailto:axiscapitaltrustbank@gmail.com" class="email-link">
-        <i class="fas fa-envelope email-icon"></i>
-        <span class="email-tooltip">Contact us via email</span>
-    </a>
-</div>
-     <!-- Telegram Floating Icon -->
-    <div class="telegram-float">
-        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
-            <span class="telegram-tooltip">Join our Telegram group</span>
+
+    <!-- Floating Icons -->
+    <div class="email-float">
+        <a href="mailto:support@stacktellertrustbank.com" class="email-link">
+            <i class="fas fa-envelope"></i>
+            <span class="email-tooltip">Email Support</span>
         </a>
     </div>
-    <!-- Header -->
-    <header class="bank-header">
-        <h1>Stack Teller Trust Bank</h1>
-        <div class="header-controls">
-            <div class="nav-toggle" onclick="toggleSidebar()">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
+    <div class="telegram-float">
+        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
+            <i class="fab fa-telegram-plane"></i>
+            <span class="telegram-tooltip">Join Telegram</span>
+        </a>
+    </div>
 
-    <!-- Navigation Sidebar -->
-    <div class="nav-sidebar" id="navSidebar">
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
         <div class="sidebar-header">
             <h2>Account Menu</h2>
-            <button class="sidebar-close" onclick="toggleSidebar()">
-                <i class="fas fa-times"></i> Close
-            </button>
+            <button onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
         </div>
-
-        <ul class="nav-menu">
-            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="{% url 'setting' %}"><i class="fas fa-user"></i> Profile</a></li>
+        <div class="user-details">
+            <p><i class="fas fa-user"></i> <strong>{{ request.user }}</strong></p>
+            <p><i class="fas fa-envelope"></i> {{ user_profile.email }}</p>
+        </div>
+        <ul>
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="{% url 'setting' %}"><i class="fas fa-user-cog"></i> Profile</a></li>
             <li><a href="{% url 'transaction' %}"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
-            <li><a href="{% url 'reset_profile' %}"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="{% url 'reset_profile' %}"><i class="fas fa-sliders-h"></i> Settings</a></li>
             <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
 
-    <!-- Overlay for sidebar -->
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <!-- Header -->
+    <header class="bank-header">
+        <h1><i class="fas fa-university"></i> Stack Teller Trust Bank</h1>
+        <div class="header-controls">
+            <button class="notification-bell" onclick="toggleSidebar()">
+                <i class="fas fa-bell"></i>
+            </button>
+            <button class="open-sidebar-btn" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Marquee -->
+    <div class="marquee">
+        <div class="marquee-content" id="stockMarquee">
+            Loading market data...
+        </div>
+    </div>
 
     <!-- Main Content -->
     <div class="main-content">
+
         <!-- Loan Features -->
         <div class="loan-features">
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-percentage"></i>
-                </div>
+                <span class="feature-icon"><i class="fas fa-percentage"></i></span>
                 <h4 class="feature-title">Competitive Rates</h4>
                 <p class="feature-description">Low interest rates tailored to your financial needs</p>
             </div>
-
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
+                <span class="feature-icon"><i class="fas fa-bolt"></i></span>
                 <h4 class="feature-title">Quick Approval</h4>
                 <p class="feature-description">Fast processing and quick loan disbursement</p>
             </div>
-
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
+                <span class="feature-icon"><i class="fas fa-shield-alt"></i></span>
                 <h4 class="feature-title">Secure Process</h4>
                 <p class="feature-description">Your information is protected with bank-level security</p>
             </div>
@@ -845,66 +640,61 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
         <!-- Loan Application Form -->
         <div class="loan-card">
-            <h2 class="card-title">Loan Application</h2>
+            <h2 class="card-title"><i class="fas fa-hand-holding-usd"></i> Loan Application</h2>
             <p class="card-subtitle">Complete your application to get started with your loan request</p>
 
             <form id="loanApplicationForm">
                 <!-- Full Name -->
                 <div class="form-group">
-                    <label for="fullName" class="form-label">Full Name</label>
+                    <label for="fullName" class="form-label"><i class="fas fa-user"></i> Full Name</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
-                        <span class="input-icon">
-                            <i class="fas fa-user"></i>
-                        </span>
+                        <span class="input-icon"><i class="fas fa-user"></i></span>
                     </div>
                 </div>
 
                 <!-- Email -->
                 <div class="form-group">
-                    <label for="email" class="form-label">Email Address</label>
+                    <label for="email" class="form-label"><i class="fas fa-envelope"></i> Email Address</label>
                     <div class="input-group">
                         <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
-                        <span class="input-icon">
-                            <i class="fas fa-envelope"></i>
-                        </span>
+                        <span class="input-icon"><i class="fas fa-envelope"></i></span>
                     </div>
                 </div>
 
                 <!-- Phone Number -->
                 <div class="form-group">
-                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <label for="phoneNumber" class="form-label"><i class="fas fa-phone"></i> Phone Number</label>
                     <div class="input-group">
                         <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter your phone number" required>
-                        <span class="input-icon">
-                            <i class="fas fa-phone"></i>
-                        </span>
+                        <span class="input-icon"><i class="fas fa-phone"></i></span>
                     </div>
                 </div>
 
                 <!-- Loan Amount -->
                 <div class="form-group">
-                    <label for="loanAmount" class="form-label">Loan Amount</label>
+                    <label for="loanAmount" class="form-label"><i class="fas fa-dollar-sign"></i> Loan Amount</label>
                     <div class="input-group">
-                        <input type="number" class="form-control" id="loanAmount" placeholder="Enter the desired loan amount" required>
-                        <span class="input-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </span>
+                        <input type="number" class="form-control" id="loanAmount" placeholder="Enter the desired loan amount" required min="1">
+                        <span class="input-icon"><i class="fas fa-dollar-sign"></i></span>
                     </div>
                 </div>
 
                 <!-- Loan Purpose -->
                 <div class="form-group">
-                    <label for="loanPurpose" class="form-label">Loan Purpose</label>
-                    <textarea class="form-control" id="loanPurpose" placeholder="Please describe the purpose of your loan" rows="4" required></textarea>
+                    <label for="loanPurpose" class="form-label"><i class="fas fa-bullseye"></i> Loan Purpose</label>
+                    <div class="input-group">
+                        <textarea class="form-control" id="loanPurpose" placeholder="Please describe the purpose of your loan" rows="4" required></textarea>
+                        <span class="input-icon"><i class="fas fa-bullseye"></i></span>
+                    </div>
                 </div>
 
                 <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
-                    Submit Application
+                    <i class="fas fa-paper-plane"></i> Submit Application
                 </button>
             </form>
         </div>
+
     </div>
 
     <!-- Bottom Navigation -->
@@ -917,7 +707,7 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             <i class="fas fa-exchange-alt"></i>
             <span>Transfer</span>
         </a>
-        <a href="#" class="nav-link">
+        <a href="#" class="nav-link" onclick="showComingSoon()">
             <i class="fas fa-chart-line"></i>
             <span>Overview</span>
         </a>
@@ -927,56 +717,76 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         </a>
     </nav>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
-        // Function to toggle sidebar
+        // ===== Sidebar Toggle =====
         function toggleSidebar() {
-            const sidebar = document.getElementById('navSidebar');
+            const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
             sidebar.classList.toggle('open');
             overlay.classList.toggle('active');
         }
 
-        // Close sidebar when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
+        function showComingSoon() {
+            alert('🚀 This feature is coming soon!');
+        }
+
+        // Close sidebar on link click (mobile)
+        document.querySelectorAll('.sidebar ul li a').forEach(link => {
             link.addEventListener('click', () => {
-                toggleSidebar();
+                if (window.innerWidth <= 768) toggleSidebar();
             });
         });
 
-        // Handle loan application form submission
+        // Close sidebar on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar.classList.contains('open')) toggleSidebar();
+            }
+        });
+
+        // ===== Form Submit =====
         document.getElementById('loanApplicationForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault();
 
-            // Retrieve form data
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            const loanAmount = document.getElementById('loanAmount').value;
-            const loanPurpose = document.getElementById('loanPurpose').value;
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phoneNumber = document.getElementById('phoneNumber').value.trim();
+            const loanAmount = document.getElementById('loanAmount').value.trim();
+            const loanPurpose = document.getElementById('loanPurpose').value.trim();
 
-            // Basic validation
             if (!fullName || !email || !phoneNumber || !loanAmount || !loanPurpose) {
                 alert('Please fill in all required fields.');
                 return;
             }
 
-            // Redirect to KYC page with form data
             window.location.href = `{% url 'kyc' %}?fullName=${encodeURIComponent(fullName)}&email=${encodeURIComponent(email)}&phoneNumber=${encodeURIComponent(phoneNumber)}&loanAmount=${encodeURIComponent(loanAmount)}&loanPurpose=${encodeURIComponent(loanPurpose)}`;
         });
 
-        // Fix JivoChat z-index issue
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                const jivoElements = document.querySelectorAll('[id*="jivo"], .jivochat-container');
-                jivoElements.forEach(element => {
-                    element.style.zIndex = '98';
-                });
-            }, 2000);
+        // ===== Marquee =====
+        const stockData = [
+            { symbol: "AAPL", price: 178.23, change: "+1.2%" },
+            { symbol: "GOOGL", price: 123.45, change: "+0.8%" },
+            { symbol: "AMZN", price: 99.12, change: "-0.3%" },
+            { symbol: "TSLA", price: 246.78, change: "+2.1%" },
+            { symbol: "MSFT", price: 335.21, change: "+1.5%" },
+            { symbol: "META", price: 312.65, change: "+0.9%" }
+        ];
+
+        function updateMarquee() {
+            const el = document.getElementById('stockMarquee');
+            if (!el) return;
+            const text = stockData.map(s =>
+                `${s.symbol}: $${s.price.toFixed(2)} ${s.change}`
+            ).join(' &nbsp;|&nbsp; ');
+            el.innerHTML = text;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updateMarquee, 500);
+            setInterval(updateMarquee, 30000);
         });
     </script>
-<script src="{% static 'js/site_controls.js' %}"></script>
+    <script src="{% static 'js/site_controls.js' %}"></script>
 </body>
 </html>
