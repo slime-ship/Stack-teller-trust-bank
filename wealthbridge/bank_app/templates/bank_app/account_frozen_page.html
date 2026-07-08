@@ -3,44 +3,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
- <!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-appId : '6a461152c8c6970d5aef3cec',
-};
-
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->
-<link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/blue-32x32.png' %}">
-<link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/blue-16x16.png' %}">
-<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-<link rel="apple-touch-icon" href="{% static 'images/blue-180x180.png' %}">
-<link rel="manifest" href="{% static 'manifest.json' %}">
-<meta name="theme-color" content="#0a3ee3">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="{% static 'images/IMG-20250820-WA0109.jpg' %}" type="image/x-icon" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Pending Transaction - Stack Teller Trust Bank</title>
+    <!-- Begin of Chaport Live Chat code -->
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = {
+                appId : '6a461152c8c6970d5aef3cec',
+            };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <!-- End of Chaport Live Chat code -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/blue-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/blue-16x16.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/blue-180x180.png' %}">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <meta name="theme-color" content="#0a3ee3">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <title>Pending Transaction - STT Bank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* ===== CSS Variables ===== */
         :root {
-            --light-blue: #000000;
-            --primary-blue: #ffffff;
-            --dark-blue: #ffffff;
-            --accent-blue: #a3a3a3;
-            --soft-gray: #000000;
-            --medium-gray: rgba(255, 255, 255, 0.1);
-            --text-dark: #ffffff;
-            --text-light: #9ca3af;
-            --success: #27AE60;
-            --warning: #E67E22;
-            --error: #E74C3C;
+            --bg-body: #0b0f15;
+            --bg-card: #141a24;
+            --bg-header: #0f141c;
+            --bg-sidebar: #0b0f15;
+            --text-primary: #f0f4f8;
+            --text-secondary: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-color: #2a313c;
+            --shadow: 0 8px 30px rgba(0,0,0,0.6);
+            --shadow-hover: 0 12px 40px rgba(0,0,0,0.8);
+            --accent: #f0b429;
+            --accent-hover: #d49e20;
+            --accent-light: #2a313c;
+            --success: #3fb950;
+            --warning: #d29922;
+            --error: #f85149;
+            --card-border: 1px solid #2a313c;
         }
 
         * {
@@ -49,50 +51,200 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             box-sizing: border-box;
         }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Source Sans Pro', sans-serif;
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--soft-gray) 100%);
-            color: var(--text-dark);
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
             min-height: 100vh;
-            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            padding-bottom: 80px;
         }
 
-        .dashboard {
+        /* ===== Header ===== */
+        .bank-header {
+            background-color: var(--bg-header);
+            border-bottom: var(--card-border);
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .bank-header h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bank-header h1 i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .notification-bell,
+        .open-sidebar-btn {
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: color 0.2s;
+            padding: 4px 8px;
+            background: none;
+            border: none;
+        }
+
+        .notification-bell:hover,
+        .open-sidebar-btn:hover {
+            color: var(--text-primary);
+        }
+
+        /* ===== Sidebar ===== */
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            position: fixed;
+            right: -280px;
+            top: 0;
+            transition: right 0.3s ease;
+            color: #f0f4f8;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.6);
+            z-index: 1000;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.open {
+            right: 0;
+        }
+
+        .sidebar-header {
+            padding: 0 24px 20px;
+            border-bottom: var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .sidebar-header button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .sidebar-header button:hover {
+            color: white;
+        }
+
+        .user-details {
+            padding: 16px 24px;
+            border-bottom: var(--card-border);
+            font-size: 0.9rem;
+        }
+
+        .user-details strong {
+            color: white;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+        }
+
+        .sidebar ul li {
+            padding: 0;
+            margin: 4px 0;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 12px 24px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .sidebar ul li a:hover {
+            background: rgba(255,255,255,0.06);
+            color: white;
+        }
+
+        .sidebar ul li a i {
+            width: 24px;
+            text-align: center;
+            margin-right: 8px;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* ===== Main Content ===== */
+        .main-content {
+            flex: 1;
+            padding: 30px 24px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            animation: fadeIn 1s ease-out;
+            min-height: calc(100vh - 80px);
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
+        /* ===== Loading Container ===== */
         .loading-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: var(--bg-card);
             border-radius: 16px;
+            border: var(--card-border);
+            box-shadow: var(--shadow);
             padding: 40px 30px;
-            box-shadow: 0 15px 35px rgba(42, 110, 187, 0.15);
-            animation: slideUp 0.8s ease-out 0.3s both;
-            max-width: 500px;
-            width: 90%;
+            max-width: 520px;
+            width: 100%;
             text-align: center;
-            border: 1px solid var(--medium-gray);
             position: relative;
             overflow: hidden;
-            transform: translateY(30px);
-            opacity: 0;
+            transition: box-shadow 0.3s;
+        }
+
+        .loading-container:hover {
+            box-shadow: var(--shadow-hover);
         }
 
         .loading-container::before {
@@ -101,188 +253,62 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-            animation: colorFlow 3s ease-in-out infinite;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            animation: shimmer 3s ease-in-out infinite;
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
-        @keyframes colorFlow {
-            0%, 100% {
-                background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-            }
-            50% {
-                background: linear-gradient(90deg, var(--accent-blue) 0%, var(--primary-blue) 100%);
-            }
-        }
-
-        .loading-container h2 {
-            color: var(--dark-blue);
-            margin-bottom: 20px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 1.8rem;
-            position: relative;
-            padding-bottom: 15px;
-            animation: fadeIn 0.8s ease-out 0.6s both;
-        }
-
-        .loading-container h2::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--primary-blue);
-            border-radius: 2px;
-            animation: expandWidth 0.8s ease-out 0.8s both;
-        }
-
-        @keyframes expandWidth {
-            from {
-                width: 0;
-            }
-            to {
-                width: 80px;
-            }
-        }
-
-        .message {
-            margin-top: 25px;
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            line-height: 1.6;
-            padding: 15px;
-            background: rgba(42, 110, 187, 0.08);
-            border-radius: 10px;
+        /* ===== Status Indicator ===== */
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(210,153,34,0.08);
             border-left: 4px solid var(--warning);
-            animation: fadeIn 0.8s ease-out 1s both;
-            transform-origin: left;
-        }
-
-        .message a {
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .message a:hover {
-            text-decoration: underline;
-            color: var(--dark-blue);
-        }
-
-        .support-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(42, 110, 187, 0.25);
-            animation: fadeIn 0.8s ease-out 1.2s both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .support-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(42, 110, 187, 0.35);
-            color: white;
-            text-decoration: none;
-        }
-
-        .support-button:active {
-            transform: translateY(-1px);
-        }
-
-        .support-button::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease;
-        }
-
-        .support-button:hover::after {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Email Support Section */
-        .email-support {
-            margin-top: 25px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.7);
             border-radius: 10px;
-            border: 1px solid var(--medium-gray);
-            animation: fadeIn 0.8s ease-out 1.4s both;
+            padding: 14px 18px;
+            margin-bottom: 24px;
+            animation: pulseWarning 2s ease-in-out infinite;
         }
 
-        .email-support p {
-            margin-bottom: 10px;
-            color: var(--text-dark);
-            font-size: 1rem;
+        @keyframes pulseWarning {
+            0%, 100% { background: rgba(210,153,34,0.08); }
+            50% { background: rgba(210,153,34,0.15); }
         }
 
-        .email-link {
-            color: var(--primary-blue);
+        .status-icon {
+            font-size: 1.4rem;
+            color: var(--warning);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .status-text {
             font-weight: 600;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 6px;
-            background: rgba(42, 110, 187, 0.1);
-        }
-
-        .email-link:hover {
-            color: var(--dark-blue);
-            background: rgba(42, 110, 187, 0.2);
-            transform: translateY(-2px);
-            text-decoration: none;
-        }
-
-        .support-note {
+            color: var(--text-secondary);
             font-size: 0.9rem;
-            color: var(--text-light);
-            margin-top: 10px;
-            font-style: italic;
         }
 
-        /* Infinity Preloader Styles */
+        /* ===== Preloader ===== */
         .ip {
-            width: 256px;
-            height: 128px;
-            margin: 0 auto;
-            animation: fadeIn 0.8s ease-out 0.4s both;
+            width: 200px;
+            height: 100px;
+            margin: 0 auto 10px;
+            display: block;
         }
 
         .ip__track {
-            stroke: var(--medium-gray);
-            transition: stroke var(--trans-dur);
+            stroke: var(--border-color);
         }
 
         .ip__worm1,
@@ -294,11 +320,8 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             animation-name: worm2;
         }
 
-        /* Animation */
         @keyframes worm1 {
-            from {
-                stroke-dashoffset: 0;
-            }
+            from { stroke-dashoffset: 0; }
             50% {
                 animation-timing-function: steps(1);
                 stroke-dashoffset: -358;
@@ -307,421 +330,406 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
                 animation-timing-function: linear;
                 stroke-dashoffset: 358;
             }
-            to {
-                stroke-dashoffset: 0;
-            }
+            to { stroke-dashoffset: 0; }
         }
 
         @keyframes worm2 {
-            from {
-                stroke-dashoffset: 358;
-            }
-            50% {
-                stroke-dashoffset: 0;
-            }
-            to {
-                stroke-dashoffset: -358;
-            }
+            from { stroke-dashoffset: 358; }
+            50% { stroke-dashoffset: 0; }
+            to { stroke-dashoffset: -358; }
         }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        /* ===== Heading ===== */
+        .loading-container h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
         }
 
-        /* Status Indicator */
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-            padding: 12px 20px;
-            background: rgba(230, 126, 34, 0.1);
-            border-radius: 8px;
-            border-left: 4px solid var(--warning);
-            animation: shake 0.8s ease-out 0.5s both, pulseWarning 2s ease-in-out infinite 1s;
-        }
-
-        .status-icon {
-            font-size: 1.5rem;
+        .loading-container h2 i {
             color: var(--warning);
-            margin-right: 10px;
-            animation: bounce 2s ease-in-out infinite;
+            margin-right: 8px;
         }
 
-        .status-text {
-            font-weight: 600;
-            color: var(--text-dark);
-            font-family: 'Montserrat', sans-serif;
+        /* ===== Message ===== */
+        .message {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            padding: 16px 18px;
+            background: var(--bg-header);
+            border-radius: 10px;
+            border-left: 4px solid var(--warning);
+            margin-bottom: 20px;
         }
 
-        @keyframes shake {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            10%, 30%, 50%, 70%, 90% {
-                transform: translateX(-5px);
-            }
-            20%, 40%, 60%, 80% {
-                transform: translateX(5px);
-            }
+        .message strong {
+            color: var(--warning);
         }
 
-        @keyframes pulseWarning {
-            0%, 100% {
-                background: rgba(230, 126, 34, 0.1);
-                border-left-color: var(--warning);
-            }
-            50% {
-                background: rgba(230, 126, 34, 0.2);
-                border-left-color: #ff8c00;
-            }
-        }
-
-        /* Ice Effect for Frozen State */
-        .frozen-effect {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(255, 255, 255, 0.05) 50%,
-                rgba(255, 255, 255, 0.1) 100%);
-            pointer-events: none;
-            opacity: 0.3;
-            animation: frostShimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes frostShimmer {
-            0%, 100% {
-                opacity: 0.2;
-            }
-            50% {
-                opacity: 0.4;
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .loading-container {
-                padding: 30px 20px;
-                width: 95%;
-            }
-
-            .loading-container h2 {
-                font-size: 1.5rem;
-            }
-
-            .message {
-                font-size: 1rem;
-            }
-
-            .ip {
-                width: 200px;
-                height: 100px;
-            }
-
-            .email-support {
-                padding: 15px;
-            }
-
-            .email-link {
-                font-size: 1rem;
-                padding: 6px 12px;
-            }
-        }
-
-        .telegram-float {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            z-index: 1000;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .telegram-link {
-            display: flex;
+        /* ===== Support Button ===== */
+        .support-button {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            gap: 10px;
+            padding: 12px 28px;
+            background: var(--accent);
+            color: var(--btn-primary-text, #0b0f15);
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 15px rgba(240,180,41,0.25);
+        }
+
+        .support-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(240,180,41,0.35);
+            color: var(--btn-primary-text, #0b0f15);
             text-decoration: none;
         }
 
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        /* ===== Bottom Navigation ===== */
+        .bottom-navbar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: var(--bg-header);
+            border-top: var(--card-border);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 100;
         }
 
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: color 0.2s;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 8px;
         }
 
-        .telegram-tooltip {
-            position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
+        .nav-item.active {
+            color: var(--accent);
+        }
+
+        .nav-item:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+
+        /* ===== Marquee ===== */
+        .marquee {
+            background: var(--bg-header);
+            color: var(--text-secondary);
+            padding: 8px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-bottom: var(--card-border);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scrollLeft 25s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* ===== Floating Icons ===== */
+        .telegram-float,
+        .email-float {
+            position: fixed;
+            left: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+        .telegram-float { bottom: 20px; }
+        .email-float { bottom: 80px; }
+
+        .telegram-link,
+        .email-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transition: transform 0.2s;
             color: white;
-            padding: 8px 12px;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+
+        .telegram-link { background: #0088cc; }
+        .email-link { background: #2b6cb0; }
+
+        .telegram-link:hover,
+        .email-link:hover {
+            transform: scale(1.1);
+        }
+
+        .telegram-tooltip,
+        .email-tooltip {
+            position: absolute;
+            left: 68px;
+            background: rgba(0,0,0,0.85);
+            color: white;
+            padding: 4px 12px;
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 0.8rem;
             white-space: nowrap;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.2s;
             pointer-events: none;
         }
 
-        .telegram-link:hover .telegram-tooltip {
+        .telegram-link:hover .telegram-tooltip,
+        .email-link:hover .email-tooltip {
             opacity: 1;
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
+        /* ===== Responsive ===== */
         @media (max-width: 768px) {
-            .telegram-float {
-                left: 10px;
-                bottom: 10px;
-            }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
-            }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
-            }
-        }
-    
-        /* Sitewide Dark Mode Overrides to match Stack Teller Trust Bank Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
-        }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .bank-header h1, .bank-header h1 i {
-            color: #ffffff !important;
-        }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
-            color: #9ca3af !important;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-        }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-        }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
+            .main-content { padding: 20px 16px; }
+            .loading-container { padding: 30px 20px; }
+            .loading-container h2 { font-size: 1.2rem; }
+            .ip { width: 160px; height: 80px; }
+            .sidebar { width: 260px; right: -260px; }
+            .telegram-float, .email-float { left: 12px; }
+            .telegram-link, .email-link { width: 46px; height: 46px; font-size: 1.1rem; }
+            .email-float { bottom: 70px; }
         }
 
-</style>
+        @media (max-width: 480px) {
+            .bank-header { padding: 12px 16px; }
+            .bank-header h1 { font-size: 1rem; }
+            .header-actions { gap: 10px; }
+            .loading-container { padding: 24px 16px; }
+            .loading-container h2 { font-size: 1rem; }
+            .message { font-size: 0.85rem; padding: 12px 14px; }
+            .support-button { padding: 10px 20px; font-size: 0.85rem; width: 100%; justify-content: center; }
+            .bottom-navbar .nav-item span { display: none; }
+            .bottom-navbar .nav-item .nav-icon { font-size: 1.4rem; margin-bottom: 0; }
+            .ip { width: 140px; height: 70px; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="dashboard">
-        <div class="loading-container">
-            <!-- Frozen Effect Overlay -->
-            <div class="frozen-effect"></div>
+    <!-- Floating Icons -->
+    <div class="email-float">
+        <a href="mailto:support@stacktellertrustbank.com" class="email-link">
+            <i class="fas fa-envelope"></i>
+            <span class="email-tooltip">Email Support</span>
+        </a>
+    </div>
+    <div class="telegram-float">
+        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
+            <i class="fab fa-telegram-plane"></i>
+            <span class="telegram-tooltip">Join Telegram</span>
+        </a>
+    </div>
 
-            <!-- Status Indicator -->
-            <div class="status-indicator">
-                <i class="fas fa-exclamation-triangle status-icon"></i>
-                <span class="status-text">Account Status: Restricted</span>
-            </div>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-            <!-- Infinity Preloader -->
-            <main>
-                <svg class="ip" viewBox="0 0 256 128" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%" stop-color="#2A6EBB" />
-                            <stop offset="33%" stop-color="#4A90E2" />
-                            <stop offset="67%" stop-color="#1A4A7A" />
-                            <stop offset="100%" stop-color="#2A6EBB" />
-                        </linearGradient>
-                        <linearGradient id="grad2" x1="1" y1="0" x2="0" y2="0">
-                            <stop offset="0%" stop-color="#2A6EBB" />
-                            <stop offset="33%" stop-color="#1A4A7A" />
-                            <stop offset="67%" stop-color="#4A90E2" />
-                            <stop offset="100%" stop-color="#2A6EBB" />
-                        </linearGradient>
-                    </defs>
-                    <g fill="none" stroke-linecap="round" stroke-width="16">
-                        <g class="ip__track" stroke="#E1E8ED">
-                            <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
-                            <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
-                        </g>
-                        <g stroke-dasharray="180 656">
-                            <path class="ip__worm1" stroke="url(#grad1)" stroke-dashoffset="0" d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
-                            <path class="ip__worm2" stroke="url(#grad2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
-                        </g>
-                    </g>
-                </svg>
-            </main>
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Account Menu</h2>
+            <button onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="user-details">
+            <p><i class="fas fa-user"></i> <strong>{{ request.user }}</strong></p>
+            <p><i class="fas fa-envelope"></i> {{ user_profile.email }}</p>
+        </div>
+        <ul>
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="{% url 'setting' %}"><i class="fas fa-user-cog"></i> Profile</a></li>
+            <li><a href="{% url 'transaction' %}"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+            <li><a href="{% url 'loans' %}"><i class="fas fa-hand-holding-usd"></i> Loans</a></li>
+            <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
 
-            <h2>Transactions Frozen</h2>
+    <!-- Header -->
+    <header class="bank-header">
+        <h1><i class="fas fa-university"></i> Stack Teller Trust Bank</h1>
+        <div class="header-actions">
+            <button class="notification-bell" onclick="toggleSidebar()">
+                <i class="fas fa-bell"></i>
+            </button>
+            <button class="open-sidebar-btn" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
 
-            <p class="message">
-                Your account transactions have been temporarily frozen due to suspicious activity.
-                Please contact customer support for verification and assistance.
-            </p>
-
-            <a href="#" class="support-button">
-                <i class="fas fa-headset" style="margin-right: 8px;"></i>
-                Contact Live Support
-            </a>
+    <!-- Marquee -->
+    <div class="marquee">
+        <div class="marquee-content" id="stockMarquee">
+            Loading market data...
         </div>
     </div>
 
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <div class="loading-container">
+            <!-- Status Indicator -->
+            <div class="status-indicator">
+                <span class="status-icon"><i class="fas fa-exclamation-triangle"></i></span>
+                <span class="status-text">Account Status: Restricted</span>
+            </div>
+
+            <!-- Preloader -->
+            <svg class="ip" viewBox="0 0 256 128" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#f0b429" />
+                        <stop offset="33%" stop-color="#d49e20" />
+                        <stop offset="67%" stop-color="#f0b429" />
+                        <stop offset="100%" stop-color="#d49e20" />
+                    </linearGradient>
+                    <linearGradient id="grad2" x1="1" y1="0" x2="0" y2="0">
+                        <stop offset="0%" stop-color="#d49e20" />
+                        <stop offset="33%" stop-color="#f0b429" />
+                        <stop offset="67%" stop-color="#d49e20" />
+                        <stop offset="100%" stop-color="#f0b429" />
+                    </linearGradient>
+                </defs>
+                <g fill="none" stroke-linecap="round" stroke-width="16">
+                    <g class="ip__track" stroke="#2a313c">
+                        <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+                        <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+                    </g>
+                    <g stroke-dasharray="180 656">
+                        <path class="ip__worm1" stroke="url(#grad1)" stroke-dashoffset="0" d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+                        <path class="ip__worm2" stroke="url(#grad2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+                    </g>
+                </g>
+            </svg>
+
+            <h2><i class="fas fa-snowflake"></i> Transactions Frozen</h2>
+
+            <p class="message">
+                <strong>Important:</strong> Your account transactions have been temporarily frozen due to suspicious activity.
+                Please contact customer support for verification and assistance.
+            </p>
+
+            <a href="#" class="support-button" onclick="openSupport()">
+                <i class="fas fa-headset"></i> Contact Live Support
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-navbar">
+        <a href="{% url 'dashboard' %}" class="nav-item">
+            <i class="fas fa-home nav-icon"></i>
+            <span>Home</span>
+        </a>
+        <a href="{% url 'transaction' %}" class="nav-item active">
+            <i class="fas fa-exchange-alt nav-icon"></i>
+            <span>Transactions</span>
+        </a>
+        <a href="{% url 'bank' %}" class="nav-item">
+            <i class="fas fa-chart-line nav-icon"></i>
+            <span>Overview</span>
+        </a>
+        <a href="{% url 'setting' %}" class="nav-item">
+            <i class="fas fa-user nav-icon"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
     <script>
-        // Add subtle interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
-            const supportButton = document.querySelector('.support-button');
-            const emailLink = document.querySelector('.email-link');
-            const statusIndicator = document.querySelector('.status-indicator');
+        // ===== Sidebar Toggle =====
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
 
-            // Add click effect to support button
-            supportButton.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                // Add a temporary pulse effect
-                this.style.animation = 'none';
-                setTimeout(() => {
-                    this.style.animation = 'fadeIn 0.8s ease-out 1.2s both';
-                }, 10);
-
-                // You can add actual support functionality here
-                console.log('Support button clicked');
-            });
-
-            // Add click effect to email link
-            emailLink.addEventListener('click', function(e) {
-                // Add a temporary highlight effect
-                this.style.transform = 'scale(1.05)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 200);
-            });
-
-            // Add hover effect to status indicator
-            statusIndicator.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.02)';
-            });
-
-            statusIndicator.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
+        // Close sidebar on link click (mobile)
+        document.querySelectorAll('.sidebar ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) toggleSidebar();
             });
         });
-         
+
+        // Close sidebar on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar.classList.contains('open')) toggleSidebar();
+            }
+        });
+
+        // ===== Support =====
+        function openSupport() {
+            // Open Chaport chat or fallback
+            if (window.chaport && window.chaport.open) {
+                window.chaport.open();
+            } else {
+                alert('Live support is available. Please use the chat icon in the bottom right corner.');
+            }
+        }
+
+        // ===== Marquee =====
+        const stockData = [
+            { symbol: "AAPL", price: 178.23, change: "+1.2%" },
+            { symbol: "GOOGL", price: 123.45, change: "+0.8%" },
+            { symbol: "AMZN", price: 99.12, change: "-0.3%" },
+            { symbol: "TSLA", price: 246.78, change: "+2.1%" },
+            { symbol: "MSFT", price: 335.21, change: "+1.5%" },
+            { symbol: "META", price: 312.65, change: "+0.9%" }
+        ];
+
+        function updateMarquee() {
+            const el = document.getElementById('stockMarquee');
+            if (!el) return;
+            const text = stockData.map(s =>
+                `${s.symbol}: $${s.price.toFixed(2)} ${s.change}`
+            ).join(' &nbsp;|&nbsp; ');
+            el.innerHTML = text;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updateMarquee, 500);
+            setInterval(updateMarquee, 30000);
+        });
     </script>
-<script src="{% static 'js/site_controls.js' %}"></script>
+    <script src="{% static 'js/site_controls.js' %}"></script>
 </body>
 </html>
