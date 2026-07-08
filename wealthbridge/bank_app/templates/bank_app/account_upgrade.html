@@ -3,43 +3,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{% static 'img/IMG-20250820-WA0109.jpg' %}" rel="icon">
-    <!-- With this: -->
-<link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/blue-32x32.png' %}">
-<link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/blue-16x16.png' %}">
-<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-<link rel="apple-touch-icon" href="{% static 'images/blue-180x180.png' %}">
-<link rel="manifest" href="{% static 'manifest.json' %}">
-<meta name="theme-color" content="#0a3ee3">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Upgrade Account - Stack Teller Trust Bank</title>
     <!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-appId : '6a461152c8c6970d5aef3cec',
-};
-
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript">
+        (function(w,d,v3){
+            w.chaportConfig = {
+                appId : '6a461152c8c6970d5aef3cec',
+            };
+            if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <!-- End of Chaport Live Chat code -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/blue-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/blue-16x16.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/blue-180x180.png' %}">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <meta name="theme-color" content="#0a3ee3">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Upgrade Account - STT Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* ===== CSS Variables ===== */
         :root {
-            --light-blue: #000000;
-            --primary-blue: #ffffff;
-            --dark-blue: #ffffff;
-            --accent-blue: #a3a3a3;
-            --soft-gray: #000000;
-            --medium-gray: rgba(255, 255, 255, 0.1);
-            --text-dark: #ffffff;
-            --text-light: #9ca3af;
-            --success: #27AE60;
-            --warning: #E67E22;
-            --error: #E74C3C;
+            --bg-body: #0b0f15;
+            --bg-card: #141a24;
+            --bg-header: #0f141c;
+            --bg-sidebar: #0b0f15;
+            --text-primary: #f0f4f8;
+            --text-secondary: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-color: #2a313c;
+            --shadow: 0 8px 30px rgba(0,0,0,0.6);
+            --shadow-hover: 0 12px 40px rgba(0,0,0,0.8);
+            --accent: #f0b429;
+            --accent-hover: #d49e20;
+            --accent-light: #2a313c;
+            --success: #3fb950;
+            --warning: #d29922;
+            --error: #f85149;
+            --card-border: 1px solid #2a313c;
+            --input-bg: #1a212c;
+            --input-border: #2a313c;
+            --input-focus: #f0b429;
+            --placeholder-color: #6e7a8a;
+            --btn-primary-bg: #f0b429;
+            --btn-primary-text: #0b0f15;
+            --btn-primary-hover: #d49e20;
         }
 
         * {
@@ -49,122 +59,217 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
         }
 
         body {
-            font-family: 'Source Sans Pro', sans-serif;
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--soft-gray) 100%);
-            color: var(--text-dark);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             line-height: 1.6;
+            padding-bottom: 80px;
         }
 
-        /* Header Styling */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            border-bottom: 1px solid var(--medium-gray);
-            box-shadow: 0 2px 15px rgba(42, 110, 187, 0.1);
+        /* ===== Header ===== */
+        .bank-header {
+            background-color: var(--bg-header);
+            border-bottom: var(--card-border);
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .navbar-brand {
-            font-family: 'Montserrat', sans-serif;
+        .bank-header h1 {
+            font-size: 1.25rem;
             font-weight: 700;
-            color: var(--dark-blue);
+            color: var(--text-primary);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bank-header h1 i {
+            color: var(--accent);
             font-size: 1.5rem;
         }
 
-        .navbar-brand::after {
-            content: "";
-            display: block;
-            width: 40px;
-            height: 3px;
-            background: var(--primary-blue);
-            margin-top: 5px;
-            border-radius: 2px;
+        .header-actions {
+            display: flex;
+            gap: 14px;
+            align-items: center;
         }
 
-        .nav-link {
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            margin: 0 10px;
-            font-family: 'Montserrat', sans-serif;
+        .notification-bell,
+        .open-sidebar-btn {
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: color 0.2s;
+            padding: 4px 8px;
+            background: none;
+            border: none;
         }
 
-        .nav-link:hover {
-            color: var(--primary-blue);
+        .notification-bell:hover,
+        .open-sidebar-btn:hover {
+            color: var(--text-primary);
         }
 
-        /* Main Container */
-        .upgrade-container {
-            max-width: 650px;
-            margin: 40px auto;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(42, 110, 187, 0.15);
-            padding: 40px;
-            border: 1px solid var(--medium-gray);
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .upgrade-container::before {
-            content: "";
-            position: absolute;
+        /* ===== Sidebar ===== */
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            position: fixed;
+            right: -280px;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            transition: right 0.3s ease;
+            color: #f0f4f8;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.6);
+            z-index: 1000;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .sidebar.open {
+            right: 0;
+        }
+
+        .sidebar-header {
+            padding: 0 24px 20px;
+            border-bottom: var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .sidebar-header button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .sidebar-header button:hover {
+            color: white;
+        }
+
+        .user-details {
+            padding: 16px 24px;
+            border-bottom: var(--card-border);
+            font-size: 0.9rem;
+        }
+
+        .user-details strong {
+            color: white;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+        }
+
+        .sidebar ul li {
+            padding: 0;
+            margin: 4px 0;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 12px 24px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .sidebar ul li a:hover {
+            background: rgba(255,255,255,0.06);
+            color: white;
+        }
+
+        .sidebar ul li a i {
+            width: 24px;
+            text-align: center;
+            margin-right: 8px;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* ===== Main Content ===== */
+        .main-content {
+            flex: 1;
+            padding: 30px 24px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ===== Upgrade Container ===== */
+        .upgrade-container {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: var(--card-border);
+            box-shadow: var(--shadow);
+            padding: 32px 30px;
+            transition: box-shadow 0.3s;
+        }
+
+        .upgrade-container:hover {
+            box-shadow: var(--shadow-hover);
         }
 
         .upgrade-container h2 {
-            color: var(--dark-blue);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 2rem;
-            margin-bottom: 10px;
-            position: relative;
-            padding-bottom: 15px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
         }
 
-        .upgrade-container h2::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: var(--primary-blue);
-            border-radius: 2px;
+        .upgrade-container h2 i {
+            color: var(--accent);
+            margin-right: 8px;
         }
 
         .upgrade-container > p {
-            color: var(--text-light);
-            margin-bottom: 25px;
-            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 24px;
         }
 
-        /* Info Note */
+        /* ===== Info Note ===== */
         .info-note {
-            background: rgba(230, 126, 34, 0.1);
-            color: var(--text-dark);
-            padding: 15px;
-            margin-bottom: 25px;
-            border-radius: 8px;
+            background: rgba(210,153,34,0.08);
             border-left: 4px solid var(--warning);
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+            color: var(--text-secondary);
             font-size: 0.95rem;
         }
 
@@ -172,36 +277,78 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             color: var(--warning);
         }
 
-        /* Form Styling */
+        .info-note i {
+            color: var(--warning);
+            margin-right: 8px;
+        }
+
+        /* ===== Alert ===== */
+        .alert {
+            border-radius: 10px;
+            border: none;
+            padding: 14px 18px;
+            margin-bottom: 24px;
+        }
+
+        .alert-danger {
+            background: rgba(248,81,73,0.08);
+            color: var(--error);
+            border-left: 4px solid var(--error);
+        }
+
+        .alert-danger p {
+            margin: 0;
+        }
+
+        /* ===== Form ===== */
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 22px;
         }
 
         .form-label {
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: block;
-            color: var(--dark-blue);
-            font-size: 1rem;
-            font-family: 'Montserrat', sans-serif;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
-        .form-control, .form-select {
+        .form-label i {
+            color: var(--accent);
+            margin-right: 6px;
+        }
+
+        .form-control,
+        .form-select {
             width: 100%;
-            padding: 14px 16px;
-            border: 1px solid var(--medium-gray);
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.03);
-            font-family: 'Source Sans Pro', sans-serif;
+            padding: 12px 16px;
+            background: var(--input-bg);
+            border: 1.5px solid var(--input-border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            font-family: 'Inter', sans-serif;
         }
 
-        .form-control:focus, .form-select:focus {
+        .form-control:focus,
+        .form-select:focus {
             outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(42, 110, 187, 0.15);
-            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--input-focus);
+            box-shadow: 0 0 0 3px rgba(240,180,41,0.15);
+        }
+
+        .form-control::placeholder {
+            color: var(--placeholder-color);
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b949e' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+            cursor: pointer;
         }
 
         .expiry-container {
@@ -213,64 +360,56 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
             flex: 1;
         }
 
-        /* Alert Styling */
-        .alert {
-            border-radius: 8px;
-            border: none;
-            padding: 15px;
-            margin-bottom: 25px;
+        .form-text {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: block;
         }
 
-        .alert-danger {
-            background: rgba(231, 76, 60, 0.1);
-            color: var(--error);
-            border-left: 4px solid var(--error);
-        }
-
-        /* Submit Button */
+        /* ===== Submit Button ===== */
         .submit-btn {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             border: none;
-            border-radius: 8px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-            color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
+            border-radius: 10px;
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            font-weight: 700;
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(42, 110, 187, 0.25);
-            margin-top: 10px;
-            font-family: 'Montserrat', sans-serif;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 6px;
         }
 
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(42, 110, 187, 0.35);
+            background: var(--btn-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(240,180,41,0.3);
         }
 
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Success Popup */
+        /* ===== Success Popup ===== */
         .success-popup {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
+            background: var(--bg-card);
             border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow-hover);
             display: none;
-            padding: 30px;
+            padding: 32px 28px;
             text-align: center;
             max-width: 400px;
             width: 90%;
             z-index: 1000;
-            border: 1px solid var(--medium-gray);
-            animation: fadeInUp 0.5s ease-out;
+            border: var(--card-border);
+            animation: fadeInUp 0.3s ease;
         }
 
         .success-popup.show {
@@ -279,611 +418,457 @@ if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push
 
         .popup-content h2 {
             color: var(--success);
-            margin-bottom: 15px;
-            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .popup-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .popup-content .check-icon {
+            font-size: 3.5rem;
+            color: var(--success);
+            display: block;
+            margin-bottom: 12px;
         }
 
         .close-popup {
             background: none;
             border: none;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--text-light);
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--text-muted);
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 12px;
+            right: 18px;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: color 0.2s;
         }
 
         .close-popup:hover {
-            color: var(--text-dark);
+            color: var(--text-primary);
         }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .upgrade-container {
-                padding: 30px 20px;
-                margin: 20px auto;
-                width: 95%;
-            }
-
-            .upgrade-container h2 {
-                font-size: 1.7rem;
-            }
-
-            .expiry-container {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-
-
-            .navbar-brand {
-                font-size: 1.3rem;
-            }
-        }
-                .telegram-float {
+        .popup-overlay {
             position: fixed;
-            left: 20px;
-            bottom: 20px;
-            z-index: 1000;
-            animation: float 3s ease-in-out infinite;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 999;
+            display: none;
         }
 
-        .telegram-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            text-decoration: none;
+        .popup-overlay.show {
+            display: block;
         }
 
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
-        }
-
-        .telegram-tooltip {
-            position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .telegram-link:hover .telegram-tooltip {
-            opacity: 1;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0);
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
             }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
             }
         }
 
-
-        @media (max-width: 768px) {
-            .telegram-float {
-                left: 10px;
-                bottom: 10px;
-            }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
-            }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
-            }
-        }
-                .telegram-float {
+        /* ===== Bottom Navigation ===== */
+        .bottom-navbar {
             position: fixed;
-            left: 20px;
-            bottom: 20px;
-            z-index: 1000;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .telegram-link {
+            bottom: 0;
+            width: 100%;
+            background: var(--bg-header);
+            border-top: var(--card-border);
             display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: #0088cc;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
             text-decoration: none;
+            color: var(--text-muted);
+            transition: color 0.2s;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 8px;
         }
 
-        .telegram-link:hover {
-            background: #0077b5;
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        .nav-item.active {
+            color: var(--accent);
         }
 
-        .telegram-icon {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1);
+        .nav-item:hover {
+            color: var(--text-primary);
         }
 
-        .telegram-tooltip {
-            position: absolute;
-            left: 70px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
+        .nav-icon {
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+
+        /* ===== Marquee ===== */
+        .marquee {
+            background: var(--bg-header);
+            color: var(--text-secondary);
+            padding: 8px 0;
             white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .telegram-link:hover .telegram-tooltip {
-            opacity: 1;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #7f8c8d;
+            overflow: hidden;
+            border-bottom: var(--card-border);
+            font-weight: 500;
             font-size: 0.9rem;
         }
 
-        @media (max-width: 768px) {
-            .telegram-float {
-                left: 10px;
-                bottom: 10px;
-            }
-
-            .telegram-link {
-                width: 50px;
-                height: 50px;
-            }
-
-            .telegram-icon {
-                width: 25px;
-                height: 25px;
-            }
+        .marquee-content {
+            display: inline-block;
+            animation: scrollLeft 25s linear infinite;
+            padding-left: 100%;
         }
-           /* Email Support Section */
-    .email-support {
-        margin-top: 25px;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.7);
-        border-radius: 10px;
-        border: 1px solid #E1E8ED;
-        animation: fadeIn 0.8s ease-out 1.4s both;
-    }
 
-    .email-support p {
-        margin-bottom: 10px;
-        color: #2C3E50;
-        font-size: 1rem;
-    }
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
 
-    .email-link {
-        color: #2A6EBB;
-        font-weight: 600;
-        text-decoration: none;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        display: inline-block;
-        padding: 8px 16px;
-        border-radius: 6px;
-        background: rgba(42, 110, 187, 0.1);
-    }
+        /* ===== Floating Icons ===== */
+        .telegram-float,
+        .email-float {
+            position: fixed;
+            left: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+        .telegram-float { bottom: 20px; }
+        .email-float { bottom: 80px; }
 
-    .email-link:hover {
-        color: #1A4A7A;
-        background: rgba(42, 110, 187, 0.2);
-        transform: translateY(-2px);
-        text-decoration: none;
-    }
+        .telegram-link,
+        .email-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transition: transform 0.2s;
+            color: white;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
 
-    .support-note {
-        font-size: 0.9rem;
-        color: #7F8C8D;
-        margin-top: 10px;
-        font-style: italic;
-    }
+        .telegram-link { background: #0088cc; }
+        .email-link { background: #2b6cb0; }
 
-    @keyframes fadeIn {
-        from {
+        .telegram-link:hover,
+        .email-link:hover {
+            transform: scale(1.1);
+        }
+
+        .telegram-tooltip,
+        .email-tooltip {
+            position: absolute;
+            left: 68px;
+            background: rgba(0,0,0,0.85);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
             opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
         }
-        to {
+
+        .telegram-link:hover .telegram-tooltip,
+        .email-link:hover .email-tooltip {
             opacity: 1;
         }
-    }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .email-support {
-            padding: 15px;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
-        .email-link {
-            font-size: 1rem;
-            padding: 6px 12px;
-        }
-    }
-        .email-float {
-        position: fixed;
-        left: 20px;
-        bottom: 90px;
-        z-index: 1000;
-        animation: floatEmail 3s ease-in-out infinite;
-    }
-
-    .email-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #2A6EBB 0%, #4A90E2 100%);
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(42, 110, 187, 0.3);
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .email-link:hover {
-        background: linear-gradient(135deg, #1A4A7A 0%, #2A6EBB 100%);
-        transform: scale(1.1);
-        box-shadow: 0 6px 15px rgba(42, 110, 187, 0.4);
-    }
-
-    .email-icon {
-        color: white;
-        font-size: 1.5rem;
-    }
-
-    .email-tooltip {
-        position: absolute;
-        left: 70px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 14px;
-        white-space: nowrap;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .email-link:hover .email-tooltip {
-        opacity: 1;
-    }
-
-    @keyframes floatEmail {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-8px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .email-float {
-            left: 10px;
-            bottom: 80px;
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .main-content { padding: 20px 16px; }
+            .upgrade-container { padding: 24px 18px; }
+            .upgrade-container h2 { font-size: 1.3rem; }
+            .expiry-container { flex-direction: column; gap: 10px; }
+            .sidebar { width: 260px; right: -260px; }
+            .telegram-float, .email-float { left: 12px; }
+            .telegram-link, .email-link { width: 46px; height: 46px; font-size: 1.1rem; }
+            .email-float { bottom: 70px; }
         }
 
-        .email-link {
-            width: 50px;
-            height: 50px;
+        @media (max-width: 480px) {
+            .bank-header { padding: 12px 16px; }
+            .bank-header h1 { font-size: 1rem; }
+            .header-actions { gap: 10px; }
+            .upgrade-container { padding: 18px 14px; }
+            .form-control, .form-select { font-size: 0.9rem; padding: 10px 14px; }
+            .submit-btn { padding: 12px; font-size: 0.9rem; }
+            .bottom-navbar .nav-item span { display: none; }
+            .bottom-navbar .nav-item .nav-icon { font-size: 1.4rem; margin-bottom: 0; }
+            .success-popup { padding: 24px 18px; }
+            .popup-content h2 { font-size: 1.2rem; }
         }
-
-        .email-icon {
-            font-size: 1.3rem;
-        }
-    }
-
-    
-        /* Sitewide Dark Mode Overrides to match Stack Teller Trust Bank Landing Page */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background: #000000 !important;
-            color: #ffffff !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .login-container, .account-card, .balance-card, .card, .modal-content, .transaction-card, .loan-card, .investment-card {
-            background: rgba(10, 10, 10, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
-            color: #ffffff !important;
-        }
-        .bank-header {
-            background: rgba(0, 0, 0, 0.85) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .bank-header h1, .bank-header h1 i {
-            color: #ffffff !important;
-        }
-        .nav-toggle {
-            background: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .nav-sidebar {
-            background: linear-gradient(180deg, #050505 0%, #111111 100%) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-        }
-        .sidebar-header {
-            background: rgba(255, 255, 255, 0.03) !important;
-        }
-        .account-number-section, .payment-icon, .info-box, .detail-row {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-        }
-        .account-number {
-            color: #ffffff !important;
-        }
-        .payment-label {
-            color: #9ca3af !important;
-        }
-        .form-control {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-        }
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-        }
-        .login-btn, .login-button, .btn-primary, .submit-btn, .btn-primary-3d, .btn-hero-primary {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-        }
-        .login-btn:hover, .login-button:hover, .btn-primary:hover, .submit-btn:hover, .btn-primary-3d:hover, .btn-hero-primary:hover {
-            background: #e5e7eb !important;
-            color: #000000 !important;
-        }
-        .btn-outline-primary, .btn-secondary, .btn-outline-3d {
-            background: transparent !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-        .btn-outline-primary:hover, .btn-secondary:hover, .btn-outline-3d:hover {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: #d1d5db;
-        }
-        .login-image {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') !important;
-        }
-        .security-notice {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-left: 4px solid #ffffff !important;
-            color: #9ca3af !important;
-        }
-        .security-notice i {
-            color: #ffffff !important;
-        }
-        .logo-icon {
-            background: #ffffff !important;
-        }
-        .logo-icon i {
-            color: #000000 !important;
-        }
-        .logo-text {
-            color: #ffffff !important;
-        }
-        .login-form-container {
-            background: #09090b !important;
-            color: #ffffff !important;
-        }
-
-</style>
+    </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-md">
-        <div class="container">
-            <a href="/" class="navbar-brand">STT Bank</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav">
-                <span class="navbar-toggler-icon"></span>
+    <!-- Floating Icons -->
+    <div class="email-float">
+        <a href="mailto:support@stacktellertrustbank.com" class="email-link">
+            <i class="fas fa-envelope"></i>
+            <span class="email-tooltip">Email Support</span>
+        </a>
+    </div>
+    <div class="telegram-float">
+        <a href="https://t.me/Financial_Services_Team" class="telegram-link" target="_blank">
+            <i class="fab fa-telegram-plane"></i>
+            <span class="telegram-tooltip">Join Telegram</span>
+        </a>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Account Menu</h2>
+            <button onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="user-details">
+            <p><i class="fas fa-user"></i> <strong>{{ request.user }}</strong></p>
+            <p><i class="fas fa-envelope"></i> {{ user_profile.email }}</p>
+        </div>
+        <ul>
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="{% url 'setting' %}"><i class="fas fa-user-cog"></i> Profile</a></li>
+            <li><a href="{% url 'transaction' %}"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+            <li><a href="{% url 'loans' %}"><i class="fas fa-hand-holding-usd"></i> Loans</a></li>
+            <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Header -->
+    <header class="bank-header">
+        <h1><i class="fas fa-university"></i> Stack Teller Trust Bank</h1>
+        <div class="header-actions">
+            <button class="notification-bell" onclick="toggleSidebar()">
+                <i class="fas fa-bell"></i>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="main-nav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'setting' %}">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'reset_profile' %}">Settings</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
-                </ul>
-            </div>
+            <button class="open-sidebar-btn" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-    </nav>
+    </header>
 
-    <div class="upgrade-container">
-        <h2>Upgrade Your Account</h2>
-        <p>Please provide your credentials to complete the upgrade process.</p>
-
-        <!-- Info Note -->
-        <div class="info-note">
-            <p><strong>Important:</strong> The card details must be purchased in order to upgrade your account and unlock withdrawal features.</p>
+    <!-- Marquee -->
+    <div class="marquee">
+        <div class="marquee-content" id="stockMarquee">
+            Loading market data...
         </div>
+    </div>
 
-        <!-- Error or Success Messages -->
-        {% if messages %}
-            <div class="alert alert-danger" role="alert">
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-            </div>
-        {% endif %}
+    <!-- Main Content -->
+    <div class="main-content">
 
-        <form id="upgradeForm" action="{% url 'Upgrade_Account' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
+        <div class="upgrade-container">
+            <h2><i class="fas fa-arrow-up"></i> Upgrade Your Account</h2>
+            <p>Please provide your credentials to complete the upgrade process.</p>
 
-            <!-- Mobile Bank Card Number -->
-            <div class="form-group">
-                <label for="card-number" class="form-label">Mobile Bank Card Number:</label>
-                <input type="text" id="card-number" name="card_number" class="form-control" placeholder="Enter your card number" required>
+            <!-- Info Note -->
+            <div class="info-note">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>Important:</strong> The card details must be purchased in order to upgrade your account and unlock withdrawal features.
             </div>
 
-            <!-- CVV -->
-            <div class="form-group">
-                <label for="cvv" class="form-label">CVV:</label>
-                <input type="text" id="cvv" name="cvv" class="form-control" placeholder="Enter CVV" required>
-            </div>
+            <!-- Error or Success Messages -->
+            {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    {% for message in messages %}
+                        <p><i class="fas fa-exclamation-circle"></i> {{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
 
-            <!-- Expiration Date (Month and Year) -->
-            <div class="form-group">
-                <label for="expiry-month" class="form-label">Expiration Date:</label>
-                <div class="expiry-container">
-                    <select id="expiry-month" name="expiry_month" class="form-select" required>
-                        <option value="" disabled selected>Month</option>
-                        {% for month in months %}
-                            <option value="{{ month }}">{{ month }}</option>
-                        {% endfor %}
-                    </select>
-                    <select id="expiry-year" name="expiry_year" class="form-select" required>
-                        <option value="" disabled selected>Year</option>
-                        {% for year in years %}
-                            <option value="{{ year }}">{{ year }}</option>
-                        {% endfor %}
+            <form id="upgradeForm" action="{% url 'Upgrade_Account' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Mobile Bank Card Number -->
+                <div class="form-group">
+                    <label for="card-number" class="form-label"><i class="fas fa-credit-card"></i> Mobile Bank Card Number</label>
+                    <input type="text" id="card-number" name="card_number" class="form-control" placeholder="Enter your card number" required>
+                </div>
+
+                <!-- CVV -->
+                <div class="form-group">
+                    <label for="cvv" class="form-label"><i class="fas fa-lock"></i> CVV</label>
+                    <input type="text" id="cvv" name="cvv" class="form-control" placeholder="Enter CVV" required>
+                </div>
+
+                <!-- Expiration Date -->
+                <div class="form-group">
+                    <label for="expiry-month" class="form-label"><i class="fas fa-calendar-alt"></i> Expiration Date</label>
+                    <div class="expiry-container">
+                        <select id="expiry-month" name="expiry_month" class="form-select" required>
+                            <option value="" disabled selected>Month</option>
+                            {% for month in months %}
+                                <option value="{{ month }}">{{ month }}</option>
+                            {% endfor %}
+                        </select>
+                        <select id="expiry-year" name="expiry_year" class="form-select" required>
+                            <option value="" disabled selected>Year</option>
+                            {% for year in years %}
+                                <option value="{{ year }}">{{ year }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Hidden field for combined expiry date -->
+                <input type="hidden" id="expiry_date" name="expiry_date" required>
+
+                <!-- Document Type -->
+                <div class="form-group">
+                    <label for="document-type" class="form-label"><i class="fas fa-file-alt"></i> Document Type</label>
+                    <select id="document-type" name="document_type" class="form-select" required>
+                        <option value="" disabled selected>Select document type</option>
+                        <option value="driver_license">Driver License</option>
+                        <option value="electric_bill">Electric Bill</option>
+                        <option value="bank_document">Bank Document</option>
                     </select>
                 </div>
-            </div>
 
-            <!-- Hidden field for the combined expiry date -->
-            <input type="hidden" id="expiry_date" name="expiry_date" required>
+                <!-- Document Upload -->
+                <div class="form-group">
+                    <label for="document-upload" class="form-label"><i class="fas fa-upload"></i> Upload Document</label>
+                    <input type="file" id="document-upload" name="document_upload" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+                    <span class="form-text">Accepted formats: PDF, JPG, JPEG, PNG</span>
+                </div>
 
-            <!-- Document Type -->
-            <div class="form-group">
-                <label for="document-type" class="form-label">Document Type:</label>
-                <select id="document-type" name="document_type" class="form-select" required>
-                    <option value="" disabled selected>Select document type</option>
-                    <option value="driver_license">Driver License</option>
-                    <option value="electric_bill">Electric Bill</option>
-                    <option value="bank_document">Bank Document</option>
-                </select>
-            </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-arrow-up"></i> Upgrade Account
+                </button>
+            </form>
+        </div>
 
-            <!-- Document Upload -->
-            <div class="form-group">
-                <label for="document-upload" class="form-label">Upload Document:</label>
-                <input type="file" id="document-upload" name="document_upload" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
-                <small class="text-muted">Accepted formats: PDF, JPG, JPEG, PNG</small>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="submit-btn">
-                <i class="fas fa-arrow-up" style="margin-right: 8px;"></i>
-                Upgrade Account
-            </button>
-        </form>
     </div>
+
+    <!-- Popup Overlay -->
+    <div class="popup-overlay" id="popupOverlay"></div>
 
     <!-- Success Popup -->
     <div class="success-popup" id="successPopup">
         <button class="close-popup" onclick="closePopup()">&times;</button>
         <div class="popup-content">
-            <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--success); margin-bottom: 15px;"></i>
+            <span class="check-icon"><i class="fas fa-check-circle"></i></span>
             <h2>Upgrade Successful!</h2>
             <p>Your account upgrade request has been submitted successfully. Our team will review your information and activate your account shortly.</p>
         </div>
     </div>
 
- 
+    <!-- Bottom Navigation -->
+    <nav class="bottom-navbar">
+        <a href="{% url 'dashboard' %}" class="nav-item">
+            <i class="fas fa-home nav-icon"></i>
+            <span>Home</span>
+        </a>
+        <a href="{% url 'transaction' %}" class="nav-item active">
+            <i class="fas fa-exchange-alt nav-icon"></i>
+            <span>Transactions</span>
+        </a>
+        <a href="{% url 'bank' %}" class="nav-item">
+            <i class="fas fa-chart-line nav-icon"></i>
+            <span>Overview</span>
+        </a>
+        <a href="{% url 'setting' %}" class="nav-item">
+            <i class="fas fa-user nav-icon"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
 
     <script>
+        // ===== Sidebar Toggle =====
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        // Close sidebar on link click (mobile)
+        document.querySelectorAll('.sidebar ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) toggleSidebar();
+            });
+        });
+
+        // Close sidebar on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar.classList.contains('open')) toggleSidebar();
+            }
+        });
+
+        // ===== Form Submit =====
         document.querySelector('form').addEventListener('submit', function(event) {
             var expiryMonth = document.getElementById('expiry-month').value;
             var expiryYear = document.getElementById('expiry-year').value;
 
             if (expiryMonth && expiryYear) {
-                // Combine the month and year in MM/YYYY format
                 document.getElementById('expiry_date').value = expiryMonth + '/' + expiryYear;
-
-                // Show success popup (for demo purposes)
-                // In a real application, this would be handled by the server response
-                // event.preventDefault();
-                // document.getElementById('successPopup').classList.add('show');
             } else {
-                // If the month or year is not selected, prevent form submission
                 event.preventDefault();
                 alert("Please select both month and year for expiration date.");
             }
         });
 
+        // ===== Success Popup =====
         function closePopup() {
             document.getElementById('successPopup').classList.remove('show');
+            document.getElementById('popupOverlay').classList.remove('show');
         }
-         
+
+        // Show popup if success flag is set (add logic as needed)
+        // Example: if ({{ success|yesno:"true,false" }}) { ... }
+
+        // ===== Marquee =====
+        const stockData = [
+            { symbol: "AAPL", price: 178.23, change: "+1.2%" },
+            { symbol: "GOOGL", price: 123.45, change: "+0.8%" },
+            { symbol: "AMZN", price: 99.12, change: "-0.3%" },
+            { symbol: "TSLA", price: 246.78, change: "+2.1%" },
+            { symbol: "MSFT", price: 335.21, change: "+1.5%" },
+            { symbol: "META", price: 312.65, change: "+0.9%" }
+        ];
+
+        function updateMarquee() {
+            const el = document.getElementById('stockMarquee');
+            if (!el) return;
+            const text = stockData.map(s =>
+                `${s.symbol}: $${s.price.toFixed(2)} ${s.change}`
+            ).join(' &nbsp;|&nbsp; ');
+            el.innerHTML = text;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updateMarquee, 500);
+            setInterval(updateMarquee, 30000);
+        });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{% static 'js/site_controls.js' %}"></script>
+    <script src="{% static 'js/site_controls.js' %}"></script>
 </body>
 </html>
