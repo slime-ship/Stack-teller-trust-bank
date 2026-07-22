@@ -50,7 +50,7 @@ SECRET_KEY = 'django-insecure-3_)^u&niz%-isn%ciqt+qx7*3h!bo(js3+s%x0qray8bkb8d_1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.stacktellertrust.online', 'stacktellertrust.online', '127.0.0.1', 'localhost', '*']
+ALLOWED_HOSTS = ['www.standardpnc.online', 'standardpnc.online', '127.0.0.1', 'localhost', '*']
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dlzn0moho',
@@ -59,8 +59,8 @@ CLOUDINARY_STORAGE = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://www.stacktellertrust.online",
-    "https://stacktellertrust.online",
+    "https://www.standardpnc.online",
+    "https://standardpnc.online",
     "http://127.0.0.1:8080",
     "http://localhost:8080",
 ]
