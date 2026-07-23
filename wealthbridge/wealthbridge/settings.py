@@ -48,7 +48,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3_)^u&niz%-isn%ciqt+qx7*3h!bo(js3+s%x0qray8bkb8d_1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['www.standardpnc.online', 'standardpnc.online', '127.0.0.1', 'localhost', '*']
 
@@ -95,7 +95,24 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'bank_app.middleware.ExceptionLoggingMiddleware',
-]
+] 
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": "errors.log",
+        },
+    },
+    "loggers": {
+        "": {
+            "handlers": ["file"],
+            "level": "ERROR",
+        },
+    },
+}
 
 ROOT_URLCONF = 'wealthbridge.urls'
 
